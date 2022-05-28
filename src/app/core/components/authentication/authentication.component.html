@@ -1,0 +1,26 @@
+<div class="login-page">
+
+  <div class="login-form">
+    <h2>Bienvenue</h2>
+    <p>Connectez-vous avec votre login et votre mot de passe.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="login-form-item">
+        <span class="p-input-icon-left">
+          <i class="pi pi-user"></i>
+          <input type="text" pInputText placeholder="Login" formControlName="login" />
+        </span>
+      </div>
+
+      <div class="login-form-item">
+        <span class="p-input-icon-left">
+          <i class="pi pi-lock"></i>
+          <input type="password" pInputText placeholder="Password" formControlName="password" />
+        </span>
+      </div>
+
+      <button type="submit" pButton label="Connexion"></button>
+    </form>
+  </div>
+
+</div>
