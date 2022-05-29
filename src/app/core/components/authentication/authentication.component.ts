@@ -11,6 +11,8 @@ import { AuthService } from '../../services/auth.service';
 export class AuthenticationComponent implements OnInit {
 
   loginForm!: FormGroup;
+  errorMessage!: string;
+  showErrorMessage!: boolean;
 
   constructor(
     private _builder: FormBuilder,
@@ -30,8 +32,7 @@ export class AuthenticationComponent implements OnInit {
 
   login(): void {
     const model: LoginInfos = this.loginForm.value;
-    //this._auth.login(model);
-    console.log(model);
+    this._auth.login(model);
     this.blankForm();
   }
 
