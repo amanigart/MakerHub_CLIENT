@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { LoginInfos } from '../../models/login-infos';
 import { AuthService } from '../../services/auth.service';
 
@@ -8,11 +9,13 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent implements OnInit, OnDestroy {
 
   loginForm!: FormGroup;
+  loginField!: AbstractControl;
+  passwdField!: AbstractControl;
   errorMessage!: string;
-  showErrorMessage!: boolean;
+  errorMessageSubscription!: Subscription;
 
   constructor(
     private _builder: FormBuilder,
@@ -20,7 +23,13 @@ export class AuthenticationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.errorMessageSubscription = this._auth.errorMessage$.subscribe({
+      next: (data) => this.errorMessage = data,
+      error: (error) => console.log(error)
+    })
     this.blankForm();
+    this.loginField = this.loginForm.controls['login'];
+    this.passwdField = this.loginForm.controls['password'];
   }
 
   blankForm(): void {
@@ -36,4 +45,7 @@ export class AuthenticationComponent implements OnInit {
     this.blankForm();
   }
 
+  ngOnDestroy(): void {
+    this.errorMessageSubscription.unsubscribe();
+  }
 }

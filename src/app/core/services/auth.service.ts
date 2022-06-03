@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { catchError, Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.dev';
 import { LoginInfos } from '../models/login-infos';
 import { TokenInfos } from '../models/token-infos';
@@ -11,6 +12,11 @@ import { TokenInfos } from '../models/token-infos';
 export class AuthService {
 
   private readonly API_URL: string = environment.baseUrl;
+  private _errorMessage$ : Subject<string> = new Subject();
+
+  get errorMessage$(): Observable<string> {
+    return this._errorMessage$.asObservable();
+  }
 
   constructor(private _http: HttpClient) { }
 
@@ -23,7 +29,7 @@ export class AuthService {
         localStorage.setItem('token', data);
       },
       error: (error) => {
-        console.log(error.error)  // delete
+        this._errorMessage$.next(error.error)
       }
     })
   }

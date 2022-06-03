@@ -1,0 +1,13 @@
+<app-shared-menu></app-shared-menu>
+
+<div class="menu-container">
+  <div>
+    <a [routerLink]="['details/', member.idMembre]" *ngFor="let member of members">
+      <div class="menu-card">
+        {{ member.prenom }} {{ member.nom }}
+      </div>
+    </a>
+  </div>
+</div>
+
+

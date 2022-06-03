@@ -8,23 +8,29 @@
       <div class="login-form-item">
         <span class="p-input-icon-left">
           <i class="pi pi-user"></i>
-          <input type="text" pInputText placeholder="Login" formControlName="login" />
+          <input type="text" pInputText placeholder="Login" formControlName="login" required />
         </span>
+        <p *ngIf="loginField.invalid && (loginField.dirty || loginField.touched)" class="alert">
+          Le champ Login est requis.
+        </p>
       </div>
 
       <div class="login-form-item">
         <span class="p-input-icon-left">
           <i class="pi pi-lock"></i>
-          <input type="password" pInputText placeholder="Password" formControlName="password" />
+          <input type="password" pInputText placeholder="Password" formControlName="password" required />
         </span>
+        <p *ngIf="passwdField.invalid && (passwdField.dirty || passwdField.touched)" class="alert">
+          Le champ Password est requis.
+        </p>
       </div>
 
-      <div *ngIf="showErrorMessage">
-        <span>{{ errorMessage }}</span>
-      </div>
-
-      <button type="submit" pButton label="Connexion"></button>
+      <button type="submit" pButton label="Connexion" [disabled]="!loginForm.valid"></button>
     </form>
+
+    <p>
+      {{ errorMessage }}
+    </p>
   </div>
 
 </div>

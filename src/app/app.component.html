@@ -1,5 +1,54 @@
-<h1>App Component</h1>
 
-<a routerLink="">Home</a> |
+<header class="header">
+  <app-nav></app-nav>
+</header>
+
+<main class="main">
+  <aside class="nav-sidebar">
+    <app-side-menu></app-side-menu>
+  </aside>
+
+  <div class="primary-container">
+      <aside class="menu">
+        menu (router)
+        <router-outlet name="menu"></router-outlet>
+      </aside>
+
+      <section class="content">
+        content (router)
+        <router-outlet name="content"></router-outlet>
+      </section>
+  </div>
+</main>
+
+
+
+
+
+
+
+
+<!-- <div class="primary-container">
+
+  <div class="module-title">
+    <h1>Titre</h1>
+  </div>
+
+  <div class="secondary-container">
+    <aside class="menu">
+      <router-outlet name="menu"></router-outlet>
+    </aside>
+
+    <section class="content">
+      <router-outlet name="content"></router-outlet>
+    </section>
+  </div>
+
+</div> -->
+
+
+
+
+<!-- <a routerLink="">Home</a> |
 <a routerLink="login">Login</a>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
