@@ -13,6 +13,7 @@ export class MembersListComponent implements OnInit, OnDestroy {
 
   members!: BasicMember[];
   serviceSubscriptions!: Subscription;
+  // selectedId! : number;
 
   constructor(
     private service: MembersService,

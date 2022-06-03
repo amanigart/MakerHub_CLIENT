@@ -1,0 +1,21 @@
+.header-app {
+  // border-bottom: 1px solid #E2E8F0;
+  background-color: #DA0037;
+  // position: fixed;
+  width: 100%;
+  top: 0;
+  height: 50px;
+}
+
+.main-app {
+  display: flex;
+}
+
+.sidebar-menu {
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+.section-app {
+  width: 100%;
+}

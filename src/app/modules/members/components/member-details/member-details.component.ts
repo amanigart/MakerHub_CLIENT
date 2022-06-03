@@ -14,7 +14,7 @@ export class MemberDetailsComponent implements OnInit {
   member!: MemberDetails;
   subscriptions!: Subscription
 
-  @Input() currentMemberId! : number
+  // @Input() currentMemberId! : number
 
   constructor(
     private service: MembersService,
@@ -24,7 +24,7 @@ export class MemberDetailsComponent implements OnInit {
   ngOnInit(): void {
     const CurrentMemberId: number = this.route.snapshot.params['id'];
 
-    this.subscriptions = this.service.getMemberDetails(this.currentMemberId).subscribe({
+    this.subscriptions = this.service.getMemberDetails(CurrentMemberId).subscribe({
       next: (data) => {
         this.member = data;
       }

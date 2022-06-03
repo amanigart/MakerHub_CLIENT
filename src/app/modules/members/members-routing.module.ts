@@ -4,10 +4,13 @@ import { MemberDetailsComponent } from './components/member-details/member-detai
 import { MembersListComponent } from './components/members-list/members-list.component';
 
 const routes: Routes = [
-  { path: '', component: MembersListComponent, outlet: 'menu', children : [
-    { path: 'details/:id', component: MemberDetailsComponent, outlet: 'content' }
-  ] }
+  // { path: '', component: MembersListComponent, outlet: 'menu', children : [
+  //   { path: 'details/:id', component: MemberDetailsComponent, outlet: 'content' }
+  // ] }
 
+  { path: '', component: MembersListComponent, children: [
+    { path: ':id', component: MembersListComponent }
+  ]}
 ];
 
 @NgModule({
