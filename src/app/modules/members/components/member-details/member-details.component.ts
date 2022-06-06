@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MemberDetails } from '../../models/member-details.model';
@@ -9,7 +9,7 @@ import { MembersService } from '../../services/members.service';
   templateUrl: './member-details.component.html',
   styleUrls: ['./member-details.component.scss']
 })
-export class MemberDetailsComponent implements OnInit {
+export class MemberDetailsComponent implements OnInit, OnDestroy {
 
   member!: MemberDetails;
   subscriptions!: Subscription
@@ -17,7 +17,7 @@ export class MemberDetailsComponent implements OnInit {
   // @Input() currentMemberId! : number
 
   constructor(
-    private service: MembersService,
+    // private service: MembersService,
     private route: ActivatedRoute
   ) { }
 
@@ -32,11 +32,13 @@ export class MemberDetailsComponent implements OnInit {
     // });
 
     this.member = this.route.snapshot.data['currentMember'];
-    console.log(this.member);
-    console.log(this.member.personne.nom);
   }
 
   ngOnDestroy(): void {
     //this.subscriptions.unsubscribe();
+  }
+
+  deleteMember() {
+    throw new Error('Method not implemented.');
   }
 }

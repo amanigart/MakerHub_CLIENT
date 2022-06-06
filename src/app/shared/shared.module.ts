@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { ButtonModule } from 'primeng/button';
-//import { DropdownModule } from 'primeng/dropdown';
+// import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -14,12 +14,12 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     // PrimeNg
     ButtonModule,
-    //DropdownModule,
+    // DropdownModule,
   ],
   exports: [
     MenuListComponent,
     ButtonModule,
-    //DropdownModule
+    // DropdownModule
   ]
 })
 export class SharedModule { }

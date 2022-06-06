@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BasicMember } from '../../models/basic-member.model';
 import { MembersService } from '../../services/members.service';

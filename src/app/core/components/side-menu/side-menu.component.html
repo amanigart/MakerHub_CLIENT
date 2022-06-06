@@ -66,7 +66,9 @@
 <div class="sidebar" [ngClass]="isCollapsed ? 'sidebar-collapsed' : ''">
 
   <div class="sidebar-logo-container">
-    <button class="sidebar-logo" (click)="toggleCollapse()">J</button>
+    <button class="sidebar-logo" (click)="toggleCollapse()">
+      <i class="bx bx-door-open"></i>
+    </button>
     <div class="sidebar-logo-text" *ngIf="isCollapsed">JTCN</div>
     <button class="sidebar-btn-close" *ngIf="isCollapsed" (click)="closeSidebar()">
       <i class="bx bx-x sidebar-x"></i>

@@ -1,9 +1,7 @@
 <h1 class="header-module">Membres</h1>
 
 <div class="container-module">
-
   <div class="container-module-menu">
-    <!-- <app-shared-menu></app-shared-menu> -->
     <div class="module-menu-header">
       <!-- <p-dropdown optionLabel="name"></p-dropdown> -->
       <button pButton type="button" icon="pi pi-plus" class="p-button-rounded" routerLink="inscription"></button>
@@ -11,17 +9,38 @@
 
     <div *ngFor="let member of members">
       <div class="module-menu-card">
-        <a [routerLink]="['details/', member.idMembre]" >{{ member.prenom }} {{ member.nom }}</a> &nbsp;
-        <a [routerLink]="['../membres/update/', member.idMembre]">update</a>
+        <a [routerLink]="['details/', member.idMembre]" >{{ member.prenom }} {{ member.nom }}</a>
       </div>
     </div>
-    <!-- <app-member-details [id]="selectedId"></app-member-details> -->
+  </div>
+
+  <div class="container-module-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+<!-- <div class="container-module">
+
+  <div class="container-module-menu">
+    <app-shared-menu></app-shared-menu>
+    <div class="module-menu-header">
+      <p-dropdown optionLabel="name"></p-dropdown>
+      <button pButton type="button" icon="pi pi-plus" class="p-button-rounded" routerLink="inscription"></button>
+    </div>
+
+    <div *ngFor="let member of members">
+      <div class="module-menu-card">
+        <a [routerLink]="['details/', member.idMembre]" >{{ member.prenom }} {{ member.nom }}</a>
+      </div>
+    </div>
+    <app-member-details [id]="selectedId"></app-member-details>
   </div>
 
   <div class="container-module-content">
     <router-outlet></router-outlet>
   </div>
 
-</div>
+</div> -->
 
 

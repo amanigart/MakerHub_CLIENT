@@ -17,7 +17,9 @@ const routes: Routes = [
     { path: '', redirectTo: '/membres', pathMatch: 'full' },
     { path: 'app/admin', loadChildren: () => import('./modules/admin/admin.module').then(m=> m.AdminModule) },
     { path: 'app/membres', loadChildren: () => import('./modules/members/members.module').then(m => m.MembersModule) },
-    { path: 'app/entrainements', loadChildren: () => import('./modules/training/training.module').then(m => m.TrainingModule) }
+    { path: 'app/entrainements', loadChildren: () => import('./modules/training/training.module').then(m => m.TrainingModule) },
+    { path: 'app/ceintures', loadChildren: () => import('./modules/belts/belts.module').then(m => m.BeltsModule) },
+    { path: 'app/horaires', loadChildren: () => import('./modules/schedules/schedules.module').then(m => m.SchedulesModule) }
   ]},
   { path: '**', component: NotFoundErrorComponent }
 ];
