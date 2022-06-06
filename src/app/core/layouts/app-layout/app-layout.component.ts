@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarToggle } from '../../models/sidebar-toggle.model';
 import { NavService } from '../../services/nav.service';
 
 @Component({
@@ -6,11 +7,14 @@ import { NavService } from '../../services/nav.service';
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss']
 })
-export class AppLayoutComponent implements OnInit {
+export class AppLayoutComponent {
 
-  constructor() { }
+  isSidebarCollapsed: boolean = false;
+  screenWidth: number = 0;
 
-  ngOnInit(): void {
+  onToggleSidebar(data: SidebarToggle): void {
+    this.screenWidth = data.screenWidth;
+    this.isSidebarCollapsed = data.isCollapsed;
   }
 
 }

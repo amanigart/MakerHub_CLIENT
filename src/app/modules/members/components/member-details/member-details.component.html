@@ -1,2 +1,7 @@
 <p>member-details works!</p>
 
+Id : {{ member.idMembre }}
+<p>Nom : {{ member.personne.nom }}</p>
+<p>Prenom : {{ member.personne.prenom }}</p>
+
+<a [routerLink]="['update/', member.idMembre]">Update</a>

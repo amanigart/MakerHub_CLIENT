@@ -1,12 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
 
 // html, body {
 //   min-height: 100vh;
 //   height: auto;
 // }
 
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: 'Dosis', sans-serif;
+  font-weight: 500;
+}
+
+
+/* ---------- COLORS ---------- */
+:root {
+  --primary-red: #DA0037;
+}
+
+$color-link: #125699;
+
+/* ---------- MODULES LAYOUT ---------- */
+.header-module {
+  background-color: aqua;
+  //margin-top: 0;
+  //margin-bottom: 0;
+  height: 4rem;
+}
+
+.container-module {
+  display: flex;
+  height: calc(100vh - 50px - 4rem);
+
+  .container-module-menu {
+    width: 25rem;   // 300px;
+    background-color: pink;
+
+    .module-menu-header {
+      height: 75px;
+      //padding: 1rem;
+    }
+
+    .module-menu-card {
+      height: 75px;
+      background-color: lightcoral;
+      border-bottom: 1px solid black;
+      //padding: 0.5rem;
+    }
+  }
+
+  .container-module-content {
+    width: 100%;
+    background-color: lightgreen;
+  }
 }

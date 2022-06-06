@@ -1,1 +1,21 @@
-<p>training-list works!</p>
+<h1 class="header-module">Entraînements</h1>
+
+<div class="container-module">
+
+  <div class="container-module-menu">
+    <!-- <app-shared-menu></app-shared-menu> -->
+    <div>
+      <!-- <a [routerLink]="['./', member.idMembre]" *ngFor="let member of members">
+        <div class="module-menu-card">
+          {{ member.prenom }} {{ member.nom }}
+        </div>
+      </a> -->
+    </div>
+    <!-- <app-member-details [id]="selectedId"></app-member-details> -->
+  </div>
+
+  <div class="container-module-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

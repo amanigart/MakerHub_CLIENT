@@ -1,21 +1,26 @@
-.header-app {
+.app-header {
   // border-bottom: 1px solid #E2E8F0;
-  background-color: #DA0037;
-  // position: fixed;
+  background-color: var(--primary-red);
+  position: fixed;
   width: 100%;
   top: 0;
   height: 50px;
+  z-index: 1;
 }
 
-.main-app {
-  display: flex;
+.app-section {
 }
 
-.sidebar-menu {
-  width: 200px;
-  border-right: 1px solid black;
-}
+// .app-main {
+//   display: flex;
+// }
 
-.section-app {
-  width: 100%;
-}
+// .app-sidebar {
+//   width: 5rem;
+//   border-right: 1px solid black;
+// }
+
+// .section-app {
+//   width: 100%;
+// }
+

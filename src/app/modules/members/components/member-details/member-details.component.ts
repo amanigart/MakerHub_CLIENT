@@ -22,16 +22,21 @@ export class MemberDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const CurrentMemberId: number = this.route.snapshot.params['id'];
+    // const CurrentMemberId: number = this.route.snapshot.params['id'];
 
-    this.subscriptions = this.service.getMemberDetails(CurrentMemberId).subscribe({
-      next: (data) => {
-        this.member = data;
-      }
-    });
+    // this.subscriptions = this.service.getMemberDetails(CurrentMemberId).subscribe({
+    //   next: (data) => {
+    //     this.member = data;
+    //     console.log(data.idMembre);
+    //   }
+    // });
+
+    this.member = this.route.snapshot.data['currentMember'];
+    console.log(this.member);
+    console.log(this.member.personne.nom);
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    //this.subscriptions.unsubscribe();
   }
 }

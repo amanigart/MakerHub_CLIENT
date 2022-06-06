@@ -1,5 +1,5 @@
 
-<ul class="sidebar-menu">
+<!-- <ul class="sidebar-menu">
   <li class="sidebar-item">
     <a class="sidebar-link" routerLink="app/admin">Admin</a>
   </li>
@@ -9,4 +9,79 @@
   <li class="sidebar-item">
     <a class="sidebar-link" routerLink="app/entrainements">Entraînements</a>
   </li>
-</ul>
+  <li class="sidebar-item">
+    <a class="sidebar-link">Ceintures</a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link">Horaires</a>
+  </li>
+</ul> -->
+
+
+<!--  --------------------------------------------------------------------  -->
+
+<!-- <div class="sidebar-container" autosize="true">
+  <div class="sidebar-menu">
+
+    <div (click)="toggleSidebar()">
+      <i class='bx bx-menu'></i>
+      <span>Menu</span>
+    </div>
+
+    <div class="sidebar-item" *ngFor="let item of sideMenu" [routerLink]="[item.route]" (click)="$event.stopPropagation()">
+      <i class="bx bx-{{item.icon}}"></i>
+      <span [hidden]="isCollapsed">{{ item.name }}</span>
+    </div>
+
+  </div>
+</div> -->
+
+
+<!--  --------------------------------------------------------------------  -->
+
+
+<!-- <div class="sidebar" [ngClass]="isCollapsed ? 'sidebar-collapsed' : ''">
+
+  <div class="sidebar-logo-container">
+    <button class="sidebar-logo" (click)="toggleCollapse()">J</button>
+    <div class="sidebar-logo-text" @fadeInOut *ngIf="isCollapsed">JTCN</div>
+    <button class="sidebar-btn-close" @rotate *ngIf="isCollapsed" (click)="closeSidebar()">
+      <i class="bx bx-x sidebar-x"></i>
+    </button>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li class="sidebar-nav-item" *ngFor="let item of sideNavItems">
+      <a class="sidebar-nav-link" [routerLink]="[item.route]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <i class="sidebar-nav-link-icon" [class]="item.icon"></i>
+        <span class="sidebar-nav-link-text" @fadeInOut *ngIf="isCollapsed">
+          {{ item.name }}
+        </span>
+      </a>
+    </li>
+  </ul>
+
+</div> -->
+
+<div class="sidebar" [ngClass]="isCollapsed ? 'sidebar-collapsed' : ''">
+
+  <div class="sidebar-logo-container">
+    <button class="sidebar-logo" (click)="toggleCollapse()">J</button>
+    <div class="sidebar-logo-text" *ngIf="isCollapsed">JTCN</div>
+    <button class="sidebar-btn-close" *ngIf="isCollapsed" (click)="closeSidebar()">
+      <i class="bx bx-x sidebar-x"></i>
+    </button>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li class="sidebar-nav-item" *ngFor="let item of sideNavItems">
+      <a class="sidebar-nav-link" [routerLink]="[item.route]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <i class="sidebar-nav-link-icon" [class]="item.icon"></i>
+        <span class="sidebar-nav-link-text" *ngIf="isCollapsed">
+          {{ item.name }}
+        </span>
+      </a>
+    </li>
+  </ul>
+
+</div>

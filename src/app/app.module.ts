@@ -16,6 +16,8 @@ import { NavComponent } from './core/components/nav/nav.component';
 import { SideMenuComponent } from './core/components/side-menu/side-menu.component';
 import { WebsiteLayoutComponent } from './core/layouts/website-layout/website-layout.component';
 import { AppLayoutComponent } from './core/layouts/app-layout/app-layout.component';
+import { NotFoundErrorComponent } from './core/components/not-found-error/not-found-error.component';
+import { BodyComponent } from './core/components/body/body.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AppLayoutComponent } from './core/layouts/app-layout/app-layout.compone
     SideMenuComponent,
     WebsiteLayoutComponent,
     AppLayoutComponent,
+    NotFoundErrorComponent,
+    BodyComponent,
   ],
   imports: [
     BrowserModule,
