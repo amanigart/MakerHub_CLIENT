@@ -9,14 +9,9 @@ import { MemberDetailsResolver } from './resolvers/member-details.resolver';
 const routes: Routes = [
   { path: '', component: MembersListComponent, children: [
     { path: 'details/:id', resolve: {currentMember: MemberDetailsResolver }, component: MemberDetailsComponent },
-    { path: 'update/:id', component: MembersUpdateComponent },
+    { path: 'update/:id', resolve: {currentMember: MemberDetailsResolver }, component: MembersUpdateComponent },
     { path: 'inscription', component: MemberCreateComponent }
   ]},
-
-  // { path: '', component: MembersListComponent },
-  // { path: ':id', component: MemberDetailsComponent },
-  // { path: 'update/:id', component: MembersUpdateComponent },
-  // { path: 'inscription', component: MemberCreateComponent }
 ];
 
 @NgModule({

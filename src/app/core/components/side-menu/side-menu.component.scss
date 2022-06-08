@@ -2,7 +2,7 @@
 /* ------------------------------------------------------- */
 
 .sidebar {
-  background: #263238;
+  background: var(--primary-red); //#263238;
   transition: all .4s ease;  // all .5s ease;
   position: fixed;
   z-index: 1;

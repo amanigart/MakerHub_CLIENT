@@ -1,0 +1,86 @@
+
+.member-container {
+  margin: 1.65rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 1rem;
+}
+
+.member-top-infos {
+
+  .member-photo-container {
+    width: 20%;
+    height: 20%;
+
+    .member-photo {
+      width: 100%;
+      border-radius: 50%;
+      border: 3px solid black;
+    }
+  }
+
+  .member-personal-infos {
+
+    .member-fullname {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .member-dob {
+      color: grey;
+    }
+  }
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+
+  .contact-personal {
+
+  }
+
+  .contact-others{
+
+  }
+}
+
+
+/* ------- Belt colors ------- */
+
+:host ::ng-deep .p-chip.white-belt {
+  background: white;
+  color: black;
+}
+
+:host ::ng-deep .p-chip.yellow-belt {
+  background: yellow;
+  color: black;
+}
+
+:host ::ng-deep .p-chip.orange-belt {
+  background: orange;
+  color: black;
+}
+
+:host ::ng-deep .p-chip.orange-belt {
+  background: green;
+  color: white;
+}
+
+:host ::ng-deep .p-chip.orange-belt {
+  background: blue;
+  color: white;
+}
+
+:host ::ng-deep .p-chip.orange-belt {
+  background: brown;
+  color: white;
+}
+
+:host ::ng-deep .p-chip.orange-belt {
+  background: black;
+  color: white;
+}
+
+

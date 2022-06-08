@@ -1,41 +1,32 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 import { MemberDetails } from '../../models/member-details.model';
-import { MembersService } from '../../services/members.service';
 
 @Component({
   selector: 'app-member-details',
   templateUrl: './member-details.component.html',
   styleUrls: ['./member-details.component.scss']
 })
-export class MemberDetailsComponent implements OnInit, OnDestroy {
+export class MemberDetailsComponent implements OnInit {
 
   member!: MemberDetails;
-  subscriptions!: Subscription
-
-  // @Input() currentMemberId! : number
 
   constructor(
-    // private service: MembersService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    // const CurrentMemberId: number = this.route.snapshot.params['id'];
+    this.getRouteData('currentMember');
 
-    // this.subscriptions = this.service.getMemberDetails(CurrentMemberId).subscribe({
-    //   next: (data) => {
-    //     this.member = data;
-    //     console.log(data.idMembre);
-    //   }
-    // });
-
-    this.member = this.route.snapshot.data['currentMember'];
+    let dob = this.member.dateNaissance
+    console.log(dob);
+    console.log(new Date(dob));
   }
 
-  ngOnDestroy(): void {
-    //this.subscriptions.unsubscribe();
+  getRouteData(resolverName: string): void {
+    this.route.params.subscribe((id : Params) => {
+      this.member = this.route.snapshot.data[resolverName];
+    });
   }
 
   deleteMember() {

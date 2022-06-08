@@ -5,6 +5,8 @@ import { BeltsRoutingModule } from './belts-routing.module';
 import { BeltsListComponent } from './components/belts-list/belts-list.component';
 import { BeltDetailsComponent } from './components/belt-details/belt-details.component';
 import { BeltUpdateComponent } from './components/belt-update/belt-update.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { BeltUpdateComponent } from './components/belt-update/belt-update.compon
   ],
   imports: [
     CommonModule,
-    BeltsRoutingModule
+    BeltsRoutingModule,
+    SharedModule
   ]
 })
 export class BeltsModule { }

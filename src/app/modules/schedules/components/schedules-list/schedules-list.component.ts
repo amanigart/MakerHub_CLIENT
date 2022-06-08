@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Schedule } from '../../models/schedule.model';
+import { ScheduleService } from '../../services/schedule.service';
 
 @Component({
   selector: 'app-schedules-list',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchedulesListComponent implements OnInit {
 
-  constructor() { }
+  schedules!: Schedule[];
+
+  constructor(
+    private service: ScheduleService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.service.getAllSchedules().subscribe({
+      next: (data) => {
+        this.schedules = data;
+      },
+      error: (error) => console.log(error)
+    })
+
+    //this.schedules = this.route.snapshot.data['currentSchedules'];
   }
 
 }

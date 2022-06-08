@@ -1,8 +1,57 @@
-<p>member-details works!</p>
+<div class="member-container">
 
-Id : {{ member.idMembre }}
-<p>Nom : {{ member.personne.nom }}</p>
-<p>Prenom : {{ member.personne.prenom }}</p>
+  <div class="member-top-infos">
+    <div class="member-photo-container">
+      <img class="member-photo"
+           src="../../../../../assets/images/default-profile.jpg"
+           alt="photo de {{member.personne.prenom}}-{{member.personne.nom}}">
+    </div>
+    <div class="member-personal-infos">
+      <h2 class="member-fullname">{{ member.personne.prenom }} {{ member.personne.nom }}</h2>
+      <p class="member-dob">
+        Né le {{ member.dateNaissance | date: 'dd-MM-yyyy' }} ({{ member.dateNaissance | age }} ans)
+      </p>
+    </div>
+    <div class="member-belts-container">
+      <p-chip label="jiu-jutsu"></p-chip>
+      <p-chip label="taï-jutsu"></p-chip>
+    </div>
+  </div>
+
+  <p-divider align="left">
+    <b>Contact</b>
+  </p-divider>
+
+  <div class="contact-container">
+
+    <div class="contact-personal">
+      <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
+      <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
+      <p><i class="pi pi-map-marker"></i> {{ member.adresse.rue }}, {{ member.adresse.numero }} - {{ member.adresse.codePostal }} {{ member.adresse.ville }}</p>
+    </div>
+
+    <div class="contact-others">
+      <div class="contact-contact">
+        <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
+        <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
+      </div>
+      <div class="contact-referent">
+        <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
+        <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <p-divider align="left">
+    <b>Ceintures</b>
+  </p-divider>
+
+  <div class="grades">
+
+  </div>
+
+</div>
 
 &nbsp; <button [routerLink]="['./../../update/', member.idMembre]" pButton type="button" label="Modifier" class="p-button-sm"></button>
 &nbsp; <button (click)="deleteMember()" pButton type="button" label="Supprimer" class="p-button-sm"></button>

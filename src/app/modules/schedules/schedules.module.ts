@@ -5,6 +5,7 @@ import { SchedulesRoutingModule } from './schedules-routing.module';
 import { SchedulesListComponent } from './components/schedules-list/schedules-list.component';
 import { ScheduleDetailsComponent } from './components/schedule-details/schedule-details.component';
 import { ScheduleUpdateComponent } from './components/schedule-update/schedule-update.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ScheduleUpdateComponent } from './components/schedule-update/schedule-u
   ],
   imports: [
     CommonModule,
-    SchedulesRoutingModule
+    SchedulesRoutingModule,
+    SharedModule
   ]
 })
 export class SchedulesModule { }

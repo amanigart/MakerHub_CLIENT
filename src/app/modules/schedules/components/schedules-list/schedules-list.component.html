@@ -1,1 +1,16 @@
-<p>schedules-list works!</p>
+<h1 class="header-module">Horaires</h1>
+
+<div class="container-module">
+  <div class="container-module-menu">
+
+    <div *ngFor="let schedule of schedules">
+      <div class="module-menu-card">
+        <a [routerLink]="['details/', schedule.idHoraire]" >{{ schedule.jour }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-module-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

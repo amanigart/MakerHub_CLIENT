@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Belt } from '../../models/belt.model';
+import { ServiceBeltService } from '../../services/service-belt.service';
 
 @Component({
   selector: 'app-belt-details',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeltDetailsComponent implements OnInit {
 
-  constructor() { }
+  belt!: Belt;
+  subscriptions!: Subscription;
+
+  constructor(
+    private service: ServiceBeltService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.getRouteData('currentBelt');
+  }
+
+  getRouteData(resolverName: string): void {
+    this.route.params.subscribe((id : Params) => {
+      this.belt = this.route.snapshot.data[resolverName];
+    });
   }
 
 }

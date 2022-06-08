@@ -1,1 +1,7 @@
 <p>belt-details works!</p>
+
+<p>{{ belt.idCeinture }}</p>
+<p>{{ belt.couleur }}</p>
+<p>{{ belt.discipline.nom }}</p>
+
+&nbsp; <button [routerLink]="['./../../update/', belt.idCeinture]" pButton type="button" label="Modifier" class="p-button-sm"></button>
