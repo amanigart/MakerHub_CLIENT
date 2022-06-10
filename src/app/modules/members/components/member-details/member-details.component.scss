@@ -1,16 +1,8 @@
-
-.member-container {
-  margin: 1.65rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 1rem;
-}
-
 .member-top-infos {
 
   .member-photo-container {
-    width: 20%;
-    height: 20%;
+    width: 12%;
+    height: 12%;
 
     .member-photo {
       width: 100%;
@@ -19,17 +11,21 @@
     }
   }
 
-  .member-personal-infos {
+  .member-basic-infos {
 
     .member-fullname {
       font-size: 3rem;
       font-weight: 700;
     }
 
-    .member-dob {
+    .member-since {
       color: grey;
     }
   }
+}
+
+.member-infos-container {
+
 }
 
 .contact-container {
@@ -41,12 +37,12 @@
   }
 
   .contact-others{
-
+    width: 62.5%;
   }
 }
 
 
-/* ------- Belt colors ------- */
+/* ------- Couleurs des ceintures ------- */
 
 :host ::ng-deep .p-chip.white-belt {
   background: white;
@@ -63,22 +59,22 @@
   color: black;
 }
 
-:host ::ng-deep .p-chip.orange-belt {
+:host ::ng-deep .p-chip.green-belt {
   background: green;
   color: white;
 }
 
-:host ::ng-deep .p-chip.orange-belt {
+:host ::ng-deep .p-chip.blue-belt {
   background: blue;
   color: white;
 }
 
-:host ::ng-deep .p-chip.orange-belt {
+:host ::ng-deep .p-chip.brown-belt {
   background: brown;
   color: white;
 }
 
-:host ::ng-deep .p-chip.orange-belt {
+:host ::ng-deep .p-chip.black-belt {
   background: black;
   color: white;
 }

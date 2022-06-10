@@ -14,7 +14,7 @@ const routes: Routes = [
   ]},
   // App routes
   { path: '', component: AppLayoutComponent, children: [
-    { path: '', redirectTo: '/membres', pathMatch: 'full' },
+    // { path: '', redirectTo: '', pathMatch: 'full' },
     { path: 'app/admin', loadChildren: () => import('./modules/admin/admin.module').then(m=> m.AdminModule) },
     { path: 'app/membres', loadChildren: () => import('./modules/members/members.module').then(m => m.MembersModule) },
     { path: 'app/entrainements', loadChildren: () => import('./modules/training/training.module').then(m => m.TrainingModule) },

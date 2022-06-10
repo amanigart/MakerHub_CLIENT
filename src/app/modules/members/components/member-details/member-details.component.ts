@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MemberDetails } from '../../models/member-details.model';
+import { MemberBelt } from '../../models/member-belt.model';
+import { Member } from '../../models/member.model';
 
 @Component({
   selector: 'app-member-details',
@@ -9,7 +10,9 @@ import { MemberDetails } from '../../models/member-details.model';
 })
 export class MemberDetailsComponent implements OnInit {
 
-  member!: MemberDetails;
+  member!: Member;
+  jujutsuTopBelt: string = 'orange-belt';
+  taijutsuTopBelt: string = 'yellow-belt';
 
   constructor(
     private route: ActivatedRoute
@@ -17,10 +20,6 @@ export class MemberDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRouteData('currentMember');
-
-    let dob = this.member.dateNaissance
-    console.log(dob);
-    console.log(new Date(dob));
   }
 
   getRouteData(resolverName: string): void {

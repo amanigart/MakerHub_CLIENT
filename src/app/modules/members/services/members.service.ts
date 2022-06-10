@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.dev';
 import { BasicMember } from '../models/basic-member.model';
-import { MemberDetails } from '../models/member-details.model';
+import { Member } from '../models/member.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class MembersService {
     return this.http.get<BasicMember[]>(this.API_URL+'liste');
   }
 
-  getMemberDetails(id: number): Observable<MemberDetails> {
-    return this.http.get<MemberDetails>(this.API_URL + id);
+  getMemberDetails(id: number): Observable<Member> {
+    return this.http.get<Member>(this.API_URL + id);
   }
 }

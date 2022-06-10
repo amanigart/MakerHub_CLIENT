@@ -1,5 +1,6 @@
 
   <nav class="navbar">
+    <!-- <a href="#" class="nav-logo">JTCN</a> -->
     <ul class="nav-menu">
       <li class="nav-item">
         <a class="nav-link" routerLink=""><i class="pi pi-home"></i></a>
@@ -10,17 +11,20 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="tai-jitsu">Taï-jitsu</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" routerLink="club">Club</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="cours">Cours</a>
-      </li>
+      </li> -->
       <li class="nav-item">
-        <a class="nav-link" routerLink="app/membres">App</a>
+        <a class="nav-link" routerLink="app/admin">App</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="auth">Connexion</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="auth" (click)="logout()">Déconnexion</a>
       </li>
     </ul>
   </nav>

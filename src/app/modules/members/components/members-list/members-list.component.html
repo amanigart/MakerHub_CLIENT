@@ -1,46 +1,24 @@
-<h1 class="header-module">Membres</h1>
-
 <div class="container-module">
+
   <div class="container-module-menu">
-    <div class="module-menu-header">
-      <!-- <p-dropdown optionLabel="name"></p-dropdown> -->
+    <h1 class="header-module">Membres</h1>
+
+    <div class="module-menu-header flex justify-content-between">
+      <div class="w-full">
+        <p-dropdown class="w-full" optionLabel="name" filterPlaceholder="Filtrer la liste" emptyFilterMessage="Aucun résultat" style="{width: 350px}"></p-dropdown>
+      </div>
       <button pButton type="button" icon="pi pi-plus" class="p-button-rounded" routerLink="inscription"></button>
     </div>
 
-    <div *ngFor="let member of members">
+    <a *ngFor="let member of members" [routerLink]="['details/', member.idMembre]">
       <div class="module-menu-card">
-        <a [routerLink]="['details/', member.idMembre]" >{{ member.prenom }} {{ member.nom }}</a>
+        <p>{{ member.prenom }} {{ member.nom }}</p>
       </div>
-    </div>
+    </a>
   </div>
 
   <div class="container-module-content">
     <router-outlet></router-outlet>
   </div>
+
 </div>
-
-
-<!-- <div class="container-module">
-
-  <div class="container-module-menu">
-    <app-shared-menu></app-shared-menu>
-    <div class="module-menu-header">
-      <p-dropdown optionLabel="name"></p-dropdown>
-      <button pButton type="button" icon="pi pi-plus" class="p-button-rounded" routerLink="inscription"></button>
-    </div>
-
-    <div *ngFor="let member of members">
-      <div class="module-menu-card">
-        <a [routerLink]="['details/', member.idMembre]" >{{ member.prenom }} {{ member.nom }}</a>
-      </div>
-    </div>
-    <app-member-details [id]="selectedId"></app-member-details>
-  </div>
-
-  <div class="container-module-content">
-    <router-outlet></router-outlet>
-  </div>
-
-</div> -->
-
-

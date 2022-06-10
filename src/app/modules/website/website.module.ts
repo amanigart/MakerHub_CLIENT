@@ -7,6 +7,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { JiuJitsuComponent } from './pages/jiu-jitsu/jiu-jitsu.component';
 import { TaiJitsuComponent } from './pages/tai-jitsu/tai-jitsu.component';
 import { ClubComponent } from './pages/club/club.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ClubComponent } from './pages/club/club.component';
     CoursesComponent,
     JiuJitsuComponent,
     TaiJitsuComponent,
-    ClubComponent
+    ClubComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

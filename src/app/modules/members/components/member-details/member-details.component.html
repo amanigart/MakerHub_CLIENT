@@ -1,57 +1,131 @@
 <div class="member-container">
 
-  <div class="member-top-infos">
-    <div class="member-photo-container">
-      <img class="member-photo"
-           src="../../../../../assets/images/default-profile.jpg"
-           alt="photo de {{member.personne.prenom}}-{{member.personne.nom}}">
+  <div class="member-content-container">
+    <div class="member-top-infos">
+      <div class="member-photo-container">
+        <img class="member-photo"
+             src="../../../../../assets/images/default-profile.jpg"
+             alt="photo de {{member.personne.prenom}}-{{member.personne.nom}}">
+      </div>
+      <div class="member-basic-infos">
+        <h2 class="member-fullname">{{ member.personne.prenom }} {{ member.personne.nom }}</h2>
+        <p class="member-since">
+          Membre depuis le xx/xx/xxxx
+        </p>
+      </div>
+      <div class="member-belts-container">
+        <p-chip label="jiu-jutsu" styleClass="{{jujutsuTopBelt}}"></p-chip>
+        <p-chip label="taï-jutsu" styleClass="{{taijutsuTopBelt}}"></p-chip>
+      </div>
     </div>
-    <div class="member-personal-infos">
-      <h2 class="member-fullname">{{ member.personne.prenom }} {{ member.personne.nom }}</h2>
-      <p class="member-dob">
+
+    <p-divider align="left">
+      <b>Informations</b>
+    </p-divider>
+
+    <div class="member-infos-container">
+      <p>
         Né le {{ member.dateNaissance | date: 'dd-MM-yyyy' }} ({{ member.dateNaissance | age }} ans)
       </p>
-    </div>
-    <div class="member-belts-container">
-      <p-chip label="jiu-jutsu"></p-chip>
-      <p-chip label="taï-jutsu"></p-chip>
-    </div>
-  </div>
-
-  <p-divider align="left">
-    <b>Contact</b>
-  </p-divider>
-
-  <div class="contact-container">
-
-    <div class="contact-personal">
-      <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
-      <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
-      <p><i class="pi pi-map-marker"></i> {{ member.adresse.rue }}, {{ member.adresse.numero }} - {{ member.adresse.codePostal }} {{ member.adresse.ville }}</p>
+      <p><u>Sexe</u> : {{ member.sexe }}</p>
+      <p><u>Groupe sanguin</u>: {{ member.groupeSanguin ? member.groupeSanguin: 'inconnu' }}</p>
+      <p><u>Autorisation image</u> : {{ member.autoriseImage ? 'oui' : 'non' }}</p>
     </div>
 
-    <div class="contact-others">
-      <div class="contact-contact">
+    <p-divider align="left">
+      <b>Contact</b>
+    </p-divider>
+
+    <div class="contact-container">
+
+      <div class="contact-personal">
         <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
         <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
+        <p *ngIf="!member.referent">
+          <i class="pi pi-map-marker"></i>
+          {{ member.adresse.rue }},
+          {{ member.adresse.numero }} -
+          {{ member.adresse.codePostal }} {{ member.adresse.ville }}
+        </p>
       </div>
-      <div class="contact-referent">
-        <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
-        <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
+
+      <div class="contact-others">
+        <p-accordion>
+          <p-accordionTab header="Contact en cas d'urgence">
+            <div class="contact-contact">
+              <p>
+                <b>{{ member.contact.personne.prenom }} {{ member.contact.personne.nom }}</b>
+                <span> ({{ member.contact.lienAvecMembre }} de l'adhérent)</span>
+              </p>
+              <p><i class="pi pi-phone"></i> {{ member.contact.personne.telephone }}</p>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Référent légal" *ngIf="member.referent">
+            <div class="contact-referent">
+              <p>
+                <b>{{ member.referent.personne.prenom }} {{ member.referent.personne.nom }}</b>
+                <span> ({{ member.referent.lienAvecMembre }} de l'adhérent)</span>
+              </p>
+              <p><i class="pi pi-phone"></i> {{ member.referent.personne.telephone }}</p>
+              <p><i class="pi pi-envelope"></i> {{ member.referent.personne.email }}</p>
+              <p>
+                <i class="pi pi-map-marker"></i>
+                {{ member.referent.adresse.rue }},
+                {{ member.referent.adresse.numero }} -
+                {{ member.referent.adresse.codePostal }} {{ member.referent.adresse.ville }}
+              </p>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
       </div>
+
     </div>
 
+    <p-divider align="left">
+      <b>Ceintures</b>
+    </p-divider>
+
+    <!-- <div class="grades">
+      <div>
+        <p-timeline [value]="allBelts">
+            <ng-template pTemplate="content" let-belt>
+                <small class="p-text-secondary">date</small>
+            </ng-template>
+            <ng-template pTemplate="opposite" let-belt>
+                {{belt.couleur}} ({{belt.discipline}})
+            </ng-template>
+        </p-timeline>
+      </div>
+    </div> -->
+
+    <div class="grades">
+      <p-table [value]="member.ceintures" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+                <th pSortableColumn="discipline">Discipline<p-sortIcon field="discipline"></p-sortIcon></th>
+                <th pSortableColumn="couleur">Ceinture <p-sortIcon field="couleur"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-belt>
+            <tr>
+                <td>Inconnue</td>
+                <td>{{belt.discipline}}</td>
+                <td>{{belt.couleur}}</td>
+            </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 
-  <p-divider align="left">
-    <b>Ceintures</b>
-  </p-divider>
+  <div class="member-actions-container">
+    <!-- <p-divider align="left">
+      <b>Actions</b>
+    </p-divider> -->
 
-  <div class="grades">
-
+    <div class="action-btns">
+      &nbsp; <button [routerLink]="['./../../update/', member.idMembre]" pButton type="button" label="Modifier" class="p-button-sm"></button>
+      &nbsp; <button (click)="deleteMember()" pButton type="button" label="Désactiver" class="p-button-sm"></button>
+    </div>
   </div>
-
 </div>
-
-&nbsp; <button [routerLink]="['./../../update/', member.idMembre]" pButton type="button" label="Modifier" class="p-button-sm"></button>
-&nbsp; <button (click)="deleteMember()" pButton type="button" label="Supprimer" class="p-button-sm"></button>

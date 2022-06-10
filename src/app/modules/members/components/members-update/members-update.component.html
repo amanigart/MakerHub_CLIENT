@@ -1,11 +1,137 @@
-<p>members-update works!</p>
+<div class="member-container">
+  <div class="member-content-container">
+    <h2>Mettre à jour le profil de {{ member.personne.prenom }} {{ member.personne.nom }}</h2>
 
-<p>Nom : {{ member.personne.nom }}</p>
-<p>Prenom : {{ member.personne.prenom }}</p>
+    <form [formGroup]="memberForm" (ngSubmit)="submitForm()">
+      <div class="p-fluid grid">
+        <div class="field col-12 md:col-3">
 
-<!-- <form [formGroup]="memberForm">
+          <p-divider align="left">
+            <b>Informations générales</b>
+          </p-divider>
 
-  <input type="text" pInputText />
+          <div class="group-update-member">
+            <label for="lastname">Nom</label>
+            <input id="lastname" type="text" pInputText formControlName="nom" />
+          </div>
+          <div class="group-update-member">
+            <label for="firstname">Prénom</label>
+            <input id="firstname" type="text" pInputText formControlName="prenom" />
+          </div>
 
-</form> -->
+          <div class="group-update-member">
+            <label for="registerDate">Date d'inscription</label>
+            <input id="registerDate" type="text" pInputText formControlName="dateInscription" />
+          </div>
+
+          <div class="group-update-member">
+            <label for="birthDate">Date de naissance</label>
+            <input id="birthDate" type="text" pInputText formControlName="dateNaissance" />
+          </div>
+          <div class="group-update-member">
+            <label for="sex">Sexe</label>
+            <input id="sex" type="text" pInputText formControlName="sexe" />
+          </div>
+          <div class="group-update-member">
+            <label for="blood">Groupe sanguin</label>
+            <input id="blood" type="text" pInputText formControlName="groupeSanguin" />
+          </div>
+          <div class="group-update-member">
+            <label for="imageAuth">Autorisation image</label>
+            <input id="imageAuth" type="text" pInputText formControlName="autoriseImage" />
+          </div>
+
+          <p-divider align="left">
+            <b>Informations de contact</b>
+          </p-divider>
+
+          <div class="group-update-member">
+            <label for="phone">Téléphone</label>
+            <input id="phone" type="text" pInputText formControlName="telephone" />
+          </div>
+          <div class="group-update-member">
+            <label for="email">Email</label>
+            <input id="email" type="text" pInputText formControlName="email" />
+          </div>
+
+          <p-divider align="left">
+            <b>Adresse</b>
+          </p-divider>
+
+          <div class="group-update-member">
+            <label for="adStreet">Rue</label>
+            <input id="adStreet" type="text" pInputText formControlName="adRue" />
+          </div>
+          <div class="group-update-member">
+            <label for="adNumber">Numéro</label>
+            <input id="adNumber" type="text" pInputText formControlName="adNumero" />
+          </div>
+          <div class="group-update-member">
+            <label for="adZip">Code postal</label>
+            <input id="adZip" type="text" pInputText formControlName="adCP" />
+          </div>
+          <div class="group-update-member">
+            <label for="adCity">Ville</label>
+            <input id="adCity" type="text" pInputText formControlName="adVille" />
+          </div>
+
+          <p-divider align="left">
+            <b>Personne de contact</b>
+          </p-divider>
+
+          <div class="group-update-member">
+            <label for="contactName">Nom</label>
+            <input id="contactName" type="text" pInputText formControlName="contactNom" />
+          </div>
+          <div class="group-update-member">
+            <label for="contactFirstName">Prénom</label>
+            <input id="contactFirstName" type="text" pInputText formControlName="contactPrenom" />
+          </div>
+          <div class="group-update-member">
+            <label for="contactPhone">Téléphone</label>
+            <input id="contactPhone" type="text" pInputText formControlName="contactTelephone" />
+          </div>
+          <div class="group-update-member">
+            <label for="contactLink">Lien avec l'adhérent</label>
+            <input id="contactLink" type="text" pInputText formControlName="contactLienAdherent" />
+          </div>
+          <h3>Changer le contact ?</h3>
+
+          <!-- <div *ngIf="member.referent"> -->
+            <p-divider align="left">
+              <b>Référent légal</b>
+            </p-divider>
+            <div class="group-update-member">
+              <label for="referentName">Nom</label>
+              <input id="referentName" type="text" pInputText formControlName="referentNom" />
+            </div>
+            <div class="group-update-member">
+              <label for="referentFirstName">Prénom</label>
+              <input id="referentFirstName" type="text" pInputText formControlName="referentPrenom" />
+            </div>
+            <div class="group-update-member">
+              <label for="referentPhone">Téléphone</label>
+              <input id="referentPhone" type="text" pInputText formControlName="referentTelephone" />
+            </div>
+            <div class="group-update-member">
+              <label for="referentLink">Lien avec l'adhérent</label>
+              <input id="referentLink" type="text" pInputText formControlName="referentLienAdherent" />
+            </div>
+            <h3>Changer le référent ?</h3>
+          <!-- </div> -->
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="member-actions-container">
+    <div class="action-btns">
+      &nbsp; <button [routerLink]="['./../../details/', member.idMembre]" pButton type="button" label="Retour profil" class="p-button-sm"></button>
+      &nbsp; <button [routerLink]="[]" pButton type="button" label="Enregistrer" class="p-button-sm"></button>
+      <!-- &nbsp; <button (click)="" pButton type="button" label="Supprimer" class="p-button-sm"></button> -->
+    </div>
+  </div>
+
+</div>
 

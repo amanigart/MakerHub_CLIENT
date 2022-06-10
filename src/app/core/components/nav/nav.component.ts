@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { NavService } from '../../services/nav.service';
 
 @Component({
@@ -8,9 +9,14 @@ import { NavService } from '../../services/nav.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AuthService) { }
 
   ngOnInit(): void {
+
+  }
+
+  logout(): void {
+    this.service.logout();
   }
 
 }

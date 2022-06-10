@@ -1,1 +1,181 @@
-<p>member-create works!</p>
+<div class="member-container">
+
+  <div class="member-content-container">
+
+    <p-tabView [(activeIndex)]="tabIndex">
+      <p-tabPanel header="Informations">
+          <form class="personal-infos-register-form">
+            <div class="p-fluid grid">
+              <div class="field col-12 md:col-4">
+                <div class="group-register-form">
+                  <label for="lastname">Nom</label>
+                  <input type="text" id="lastname" pInputText>
+                </div>
+                <div class="group-register-form">
+                  <label for="firstname">Prénom</label>
+                  <input type="text" id="firstname" pInputText>
+                </div>
+                <div class="group-register-form">
+                  <label for="sex">Sexe</label>
+                  <p-dropdown optionLabel="sex"></p-dropdown>
+                </div>
+                <div class="group-register-form">
+                  <span>Date de naissance</span>
+                  <p-inputMask mask="99/99/9999" placeholder="31/12/9999" slotChar="dd/MM/yyyy"></p-inputMask>
+                </div>
+                <div class="group-register-form">
+                  <label for="phone">Téléphone</label>
+                  <input type="text" id="phone" pInputText>
+                </div>
+                <div class="group-register-form">
+                  <label for="email">Email</label>
+                  <input type="text" id="email" pInputText>
+                </div>
+                <div class="group-register-form">
+                  <label for="blood">Groupe sanguin</label>
+                  <input type="text" id="blood" pInputText>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+      </p-tabPanel>
+
+      <p-tabPanel header="Adresse">
+        <form class="contact-register-form">
+          <div class="p-fluid grid">
+            <div class="field col-12 md:col-4">
+              <div class="group-register-form">
+                <label for="street">Rue</label>
+                <input type="text" id="street" pInputText>
+              </div>
+              <div class="group-register-form">
+                <label for="number">Numéro</label>
+                <input type="text" id="number" pInputText>
+              </div>
+              <div class="group-register-form">
+                <label for="zipcode">Code postal</label>
+                <input type="number" id="zipcode" pInputText>
+              </div>
+              <div class="group-register-form">
+                <label for="city">Ville</label>
+                <input type="text" id="city" pInputText>
+              </div>
+            </div>
+          </div>
+        </form>
+        <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+        <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+      </p-tabPanel>
+
+      <p-tabPanel header="Ceintures">
+          <form class="belts-register-form">
+            <div class="p-fluid grid">
+              <div class="field col-12 md:col-4">
+                <div class="group-register-form">
+                  <label for="jiujitsu">Jiu-jitsu</label>
+                  <p-dropdown optionLabel="jiujitsu"></p-dropdown>
+                </div>
+                <div class="group-register-form">
+                  <label for="taijitsu">Taï-jitsu</label>
+                  <p-dropdown optionLabel="taijitsu"></p-dropdown>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+          <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+      </p-tabPanel>
+
+      <p-tabPanel header="Contact">
+          <form class="contact-register-form">
+            <div class="p-fluid grid">
+              <div class="field col-12 md:col-4">
+                <div class="group-register-form">
+                  <label for="contact-lastname">Nom</label>
+                  <input type="text" id="contact-lastname" pInputText>
+                </div>
+                <div class="group-register-form">
+                  <label for="contact-firstname">Prénom</label>
+                  <input type="text" id="contact-firstname" pInputText>
+                </div>
+                <div class="group-register-form">
+                  <label for="contact-phone">Téléphone</label>
+                  <input type="text" id="contact-phone" pInputText>
+                </div>
+                <div class="group-register-form">
+                  <label for="contact-link">Lien avec l'adhérent</label>
+                  <input type="text" id="contact-link" pInputText>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+          <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+      </p-tabPanel>
+
+      <p-tabPanel header="Référent" [disabled]="estMineur">
+        <form class="referent-register-form">
+          <div class="p-fluid grid">
+            <div class="field col-12 md:col-4">
+              <div class="group-register-form">
+                <label for="referent-lastname">Nom</label>
+                <input type="text" id="referent-lastname" pInputText [disabled]="estMineur">
+              </div>
+              <div class="group-register-form">
+                <label for="referent-firstname">Prénom</label>
+                <input type="text" id="referent-firstname" pInputText [disabled]="estMineur">
+              </div>
+              <div class="group-register-form">
+                <label for="referent-phone">Téléphone</label>
+                <input type="text" id="referent-phone" pInputText [disabled]="estMineur">
+              </div>
+              <div class="group-register-form">
+                <label for="referent-link">Lien avec l'adhérent</label>
+                <input type="text" id="referent-link" pInputText [disabled]="estMineur">
+              </div>
+            </div>
+          </div>
+        </form>
+        <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+        <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+      </p-tabPanel>
+
+      <p-tabPanel header="Autre">
+        <form class="referent-register-form">
+          <div class="p-fluid grid">
+            <div class="field col-12 md:col-4">
+              <div class="group-register-form">
+                <span>Date d'inscription</span>
+                <p-inputMask mask="99/99/9999" placeholder="31/12/9999" slotChar="dd/MM/yyyy"></p-inputMask>
+              </div>
+              <div class="group-register-form">
+                <label for="image-authorize">Autorisation de publication d'image</label>
+                <p-selectButton [options]="stateOptions" optionLabel="label"></p-selectButton>
+              </div>
+              <div>
+                Upload photo
+              </div>
+            </div>
+          </div>
+        </form>
+        <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+
+  <div class="member-actions-container">
+    <div class="action-btns">
+      &nbsp; <button [routerLink]="[]" pButton type="button" label="Réinitialiser" class="p-button-sm"></button>
+      &nbsp; <button [routerLink]="[]" pButton type="button" label="Valider" class="p-button-sm"></button>
+      <!-- &nbsp; <button (click)="" pButton type="button" label="Supprimer" class="p-button-sm"></button> -->
+    </div>
+  </div>
+
+</div>
+
+
+<!-- <span class="p-float-label">
+                      <input type="text" id="inputtext" pInputText>
+                      <label for="inputtext">Nom du membre</label>
+                  </span> -->

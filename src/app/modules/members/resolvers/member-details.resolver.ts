@@ -5,17 +5,17 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { MemberDetails } from '../models/member-details.model';
+import { Member } from '../models/member.model';
 import { MembersService } from '../services/members.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemberDetailsResolver implements Resolve<MemberDetails> {
+export class MemberDetailsResolver implements Resolve<Member> {
 
   constructor(private service: MembersService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MemberDetails> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Member> {
     const idMembre = route.params['id'];
     return this.service.getMemberDetails(idMembre);
   }

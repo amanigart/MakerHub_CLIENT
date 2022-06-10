@@ -55,7 +55,7 @@ export class SideMenuComponent implements OnInit {
     this.sideNavItems = [
       { name: 'Admin', route: 'app/admin', icon: 'bx bx-cog' },
       { name: 'Membres', route: 'app/membres', icon: 'bx bx-user' },
-      { name: 'Entraînements', route: 'app/entrainements', icon: 'bx bx-calendar-edit' },
+      // { name: 'Entraînements', route: 'app/entrainements', icon: 'bx bx-calendar-edit' },
       { name: 'Ceintures', route: 'app/ceintures', icon: 'bx bx-band-aid' },
       { name: 'Horaires', route: 'app/horaires', icon: 'bx bx-time-five' }
     ];

@@ -1,16 +1,18 @@
-<h1 class="header-module">Horaires</h1>
-
 <div class="container-module">
-  <div class="container-module-menu">
 
-    <div *ngFor="let schedule of schedules">
+  <div class="container-module-menu">
+    <h1 class="header-module">Horaires</h1>
+
+    <a *ngFor="let schedule of schedules" [routerLink]="['details/', schedule.idHoraire]">
       <div class="module-menu-card">
-        <a [routerLink]="['details/', schedule.idHoraire]" >{{ schedule.jour }}</a>
+        <p>{{ schedule.jour }}</p>
       </div>
-    </div>
+    </a>
+
   </div>
 
   <div class="container-module-content">
     <router-outlet></router-outlet>
   </div>
+
 </div>
