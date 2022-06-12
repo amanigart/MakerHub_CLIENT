@@ -1,23 +1,26 @@
+import { Cotisation } from "src/app/shared/models/cotisation.model"
 import { MemberBelt } from "./member-belt.model"
 
 export interface Member {
   idMembre: number,
   dateInscription: Date,
+  estActif : boolean,
   photo?: string,
   sexe: string,
   dateNaissance: Date,
   groupeSanguin?: string,
   autoriseImage: boolean,
-  basePresences: number,
+  basePresencesRequises: number,
+  basePresencesTotal: number,
   personne: {
     idPersonne: number,
     nom: string,
     prenom: string,
     email: string,
     telephone: string,
-    idAdresse: number
+    idAdresse?: number
   },
-  adresse: {
+  adresse?: {
     idAdresse: number,
     rue: string,
     numero: string,
@@ -31,16 +34,7 @@ export interface Member {
       idPersonne: number,
       nom: string,
       prenom: string,
-      email: string,
       telephone: string,
-      idAdresse: number
-    },
-    adresse: {
-      idAdresse: number,
-      rue: string,
-      numero: string,
-      codePostal: number,
-      ville: string
     },
     lienAvecMembre: string
   },
@@ -62,5 +56,6 @@ export interface Member {
       ville: string
     },
     lienAvecMembre: string
-  }
+  },
+  cotisations: [Cotisation]
 }

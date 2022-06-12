@@ -1,12 +1,12 @@
 <div class="container-module">
 
   <div class="container-module-menu">
-    <h1 class="header-module">Membres</h1>
+    <div class="header-module flex justify-content-between">
+      <h1>Membres</h1>
+    </div>
 
     <div class="module-menu-header flex justify-content-between">
-      <div class="w-full">
-        <p-dropdown class="w-full" optionLabel="name" filterPlaceholder="Filtrer la liste" emptyFilterMessage="Aucun résultat" style="{width: 350px}"></p-dropdown>
-      </div>
+      <p-dropdown optionLabel="name"></p-dropdown>
       <button pButton type="button" icon="pi pi-plus" class="p-button-rounded" routerLink="inscription"></button>
     </div>
 

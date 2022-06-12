@@ -25,10 +25,37 @@ export class MemberDetailsComponent implements OnInit {
   getRouteData(resolverName: string): void {
     this.route.params.subscribe((id : Params) => {
       this.member = this.route.snapshot.data[resolverName];
+      this.jujutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'jiu-jitsu');
+      this.taijutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'taï-jitsu');
     });
   }
 
   deleteMember() {
     throw new Error('Method not implemented.');
   }
+
+  getTopBeltColor(belts: MemberBelt[], discipline: string): string {
+    let maxBelt = this.member.ceintures.filter(x => x.discipline === discipline)
+                                       .map(x => ({id: x.id, couleur: x.couleur}))
+                                       .sort((a, b) => a.id - b.id)
+                                       .slice(-1)[0];
+
+    switch (maxBelt.couleur) {
+      case 'blanche':
+        return 'white-belt';
+      case 'jaune':
+        return 'yellow-belt';
+      case 'orange':
+        return 'orange-belt';
+      case 'verte':
+        return 'green-belt';
+      case 'bleue':
+        return 'blue-belt';
+      case 'marron':
+        return 'brown-belt';
+      default:
+        return 'black-belt';
+    }
+  }
+
 }

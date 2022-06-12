@@ -29,10 +29,7 @@ $color-link: #125699;
 
 /* ---------- MODULES LAYOUT ---------- */
 .header-module {
-  background-color: aqua;
-  //margin-top: 0;
-  //margin-bottom: 0;
-  height: 4rem;
+
 }
 
 .container-module {
@@ -40,16 +37,16 @@ $color-link: #125699;
   height: calc(100vh - 80px);
 
   .container-module-menu {
-    width: 25rem;   // 300px;
+    width: 35rem;   // 300px;
     background-color: pink;
 
     .module-menu-header {
-      height: 75px;
+      //height: 75px;
       //padding: 1rem;
     }
 
     .module-menu-card {
-      height: 75px;
+      height: 85px;
       background-color: lightcoral;
       border-bottom: 1px solid black;
       //padding: 0.5rem;

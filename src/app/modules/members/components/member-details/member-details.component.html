@@ -9,9 +9,7 @@
       </div>
       <div class="member-basic-infos">
         <h2 class="member-fullname">{{ member.personne.prenom }} {{ member.personne.nom }}</h2>
-        <p class="member-since">
-          Membre depuis le xx/xx/xxxx
-        </p>
+        <p class="member-since">Membre depuis le {{ member.dateInscription | date: 'dd/MM/yyyy' }}</p>
       </div>
       <div class="member-belts-container">
         <p-chip label="jiu-jutsu" styleClass="{{jujutsuTopBelt}}"></p-chip>

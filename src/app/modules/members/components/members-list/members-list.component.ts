@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { BasicMember } from '../../models/basic-member.model';
+import { MemberForList } from '../../models/member-for-list.model';
 import { MembersService } from '../../services/members.service';
 
 @Component({
@@ -10,9 +10,8 @@ import { MembersService } from '../../services/members.service';
 })
 export class MembersListComponent implements OnInit, OnDestroy {
 
-  members!: BasicMember[];
+  members!: MemberForList[];
   serviceSubscriptions!: Subscription;
-  // selectedId! : number;
 
   constructor(
     private service: MembersService,

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.dev';
-import { BasicMember } from '../models/basic-member.model';
+import { MemberForList } from '../models/member-for-list.model';
 import { Member } from '../models/member.model';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class MembersService {
 
   constructor(private http: HttpClient) { }
 
-  getMembersList(): Observable<BasicMember[]> {
-    return this.http.get<BasicMember[]>(this.API_URL+'liste');
+  getMembersList(): Observable<MemberForList[]> {
+    return this.http.get<MemberForList[]>(this.API_URL+'liste');
   }
 
   getMemberDetails(id: number): Observable<Member> {
