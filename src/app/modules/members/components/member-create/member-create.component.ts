@@ -9,7 +9,7 @@ import { PricePlanService } from 'src/app/shared/services/price-plan.service';
 import { BloodType } from '../../models/blood-type.model';
 import { Gender } from '../../models/genders.model';
 import { MemberForCreation } from '../../models/member-for-creation.model';
-import { MembersService } from '../../services/members.service';
+import { MembersService } from '../../../../shared/services/members.service';
 
 @Component({
   selector: 'app-member-create',
@@ -45,14 +45,16 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       },
       error: (error) => console.log(error)
     });
-
     this.subscriptions = this.priceService.getAllPricePlans().subscribe({
       next: (data) => this.pricePlans = data,
       error: (error) => console.log(error)
     });
-
-    this.stateOptions = [{label: 'Oui', value: true}, {label: 'Non', value: false}];
-    this.genders = [{label: 'homme'}, {label: 'femme'}, {label: 'autre'}];
+    this.stateOptions = [
+      {label: 'Oui', value: true}, {label: 'Non', value: false}
+    ];
+    this.genders = [
+      {label: 'homme'}, {label: 'femme'}, {label: 'autre'}
+    ];
     this.bloodTypes = [
       {label: 'A+'}, {label: 'B+'}, {label: 'O+'}, {label: 'AB+'},
       {label: 'A-'}, {label: 'B-'}, {label: 'O-'}, {label: 'AB-'},
@@ -97,23 +99,26 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       referentNumero: new FormControl({value: '', disabled: !this.estMineur}),
       referentCP: new FormControl({value: null, disabled: !this.estMineur}),
       referentVille: new FormControl({value: '', disabled: !this.estMineur}),
-      dateSouscription: [null],
-      formuleCotisation: ['']
+      dateSouscription: [null, Validators.required],
+      formuleCotisation: ['', Validators.required],
+      estPaye: [null, Validators.required]
     })
   }
 
   // Crée le nouveau membre si le formulaire est valide
   submitForm(): void {
     this.newMember = {
-      dateInscription: new Date(this.form.value['dateInscription']),
-      estActif : true,
-      photo: null,
-      sexe: this.form.value['sexe'],
-      dateNaissance: new Date(this.form.value['dateNaissance']),
-      groupeSanguin: this.form.value['groupeSanguin'].label,
-      autoriseImage: this.form.value['autoriseImage'],
-      basePresencesRequises: this.form.value['basePresencesRequises'],
-      basePresencesTotal: this.form.value['basePresencesTotal'],
+      membreInfos: {
+        dateInscription: new Date(this.form.value['dateInscription']),
+        estActif : true,
+        photo: null,
+        sexe: this.form.value['sexe'],
+        dateNaissance: new Date(this.form.value['dateNaissance']),
+        groupeSanguin: this.form.value['groupeSanguin'].label,
+        autoriseImage: this.form.value['autoriseImage'],
+        basePresencesRequises: this.form.value['basePresencesRequises'],
+        basePresencesTotal: this.form.value['basePresencesTotal'],
+      },
       personne: {
         nom: this.form.value['nom'],
         prenom: this.form.value['prenom'],
@@ -127,7 +132,14 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
         ville: this.form.value['ville'] === '' ? null : this.form.value['ville']
       },
       ceintures: [
-
+        {
+          idDiscipline: this.form.value['jjCeinture'].idDiscipline,
+          idCeinture: this.form.value['jjCeinture'].idCeinture
+        },
+        {
+          idDiscipline: this.form.value['tjCeinture'].idDiscipline,
+          idCeinture: this.form.value['tjCeinture'].idCeinture
+        }
       ],
       contact: {
         personne: {
@@ -154,6 +166,7 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       },
       cotisation: {
         dateDebut: new Date(this.form.value['dateSouscritpion']),
+        estPaye: this.form.value['estPaye'],
         idTarif: this.form.value['formuleCotisation'].idTarif
       }
     };

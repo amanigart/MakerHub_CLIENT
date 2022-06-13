@@ -4,6 +4,7 @@
     <div class="test1"></div>
     <form class="member-register-form" [formGroup]="form" (ngSubmit)="submitForm()" >
       <p-tabView [(activeIndex)]="tabIndex">
+
         <p-tabPanel header="Informations">
           <div class="p-fluid grid">
             <div class="field col-6 col-offset-3">
@@ -198,6 +199,10 @@
                 <label for="formule">Formule de cotisation</label>
                 <p-dropdown [options]="pricePlans" optionLabel="duree" formControlName="formuleCotisation"></p-dropdown>
               </div>
+              <div class="group-register-form">
+                <label for="isPaid">Le membre a-t-il payé sa cotisation ?</label>
+                <p-selectButton [options]="stateOptions" formControlName="estPaye"></p-selectButton>
+              </div>
             </div>
           </div>
           <div class="grid">
@@ -256,9 +261,3 @@
   </div>
 
 </div>
-
-
-<!-- <span class="p-float-label">
-                      <input type="text" id="inputtext" pInputText>
-                      <label for="inputtext">Nom du membre</label>
-                  </span> -->

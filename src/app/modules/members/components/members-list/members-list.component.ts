@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MemberForList } from '../../models/member-for-list.model';
-import { MembersService } from '../../services/members.service';
+import { MembersService } from '../../../../shared/services/members.service';
 
 @Component({
   selector: 'app-members-list',

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.dev';
-import { MemberForList } from '../models/member-for-list.model';
-import { Member } from '../models/member.model';
+import { MemberForList } from '../../modules/members/models/member-for-list.model';
+import { Member } from '../../modules/members/models/member.model';
 
 @Injectable({
   providedIn: 'root'

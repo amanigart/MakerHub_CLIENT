@@ -4,7 +4,7 @@ import { MemberCreateComponent } from './components/member-create/member-create.
 import { MemberDetailsComponent } from './components/member-details/member-details.component';
 import { MembersListComponent } from './components/members-list/members-list.component';
 import { MembersUpdateComponent } from './components/members-update/members-update.component';
-import { MemberDetailsResolver } from './resolvers/member-details.resolver';
+import { MemberDetailsResolver } from '../../shared/resolvers/member-details.resolver';
 
 const routes: Routes = [
   { path: '', component: MembersListComponent, children: [

@@ -2,15 +2,17 @@ import { Cotisation } from "src/app/shared/models/cotisation.model"
 import { MemberBelt } from "./member-belt.model"
 
 export interface MemberForCreation {
-  dateInscription: Date,
-  estActif : boolean,
-  photo: string | null,
-  sexe: string,
-  dateNaissance: Date,
-  groupeSanguin?: string,
-  autoriseImage: boolean,
-  basePresencesRequises: number,
-  basePresencesTotal: number,
+  membreInfos: {
+    dateInscription: Date,
+    estActif : boolean,
+    photo: string | null,
+    sexe: string,
+    dateNaissance: Date,
+    groupeSanguin?: string,
+    autoriseImage: boolean,
+    basePresencesRequises: number,
+    basePresencesTotal: number
+  },
   personne: {
     nom: string,
     prenom: string,
@@ -22,9 +24,18 @@ export interface MemberForCreation {
     numero: string | null,
     codePostal: number | null,
     ville: string | null
-  }
+  },
   ceintures: [
-
+    {
+      idDiscipline: number,
+      idCeinture: number,
+      //dateObtention: Date
+    },
+    {
+      idDiscipline: number,
+      idCeinture: number,
+      //DateObtention: Date
+    }
   ],
   contact: {
     personne: {
@@ -51,6 +62,8 @@ export interface MemberForCreation {
   },
   cotisation: {
     dateDebut: Date,
-    idTarif: number
+    estPaye: boolean,
+    idTarif: number,
+    duree: string
   }
 }
