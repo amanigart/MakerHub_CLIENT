@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { checkIfUnderage } from 'src/app/shared/functions/check-if-underage';
 import { Member } from '../../models/member.model';
 
 @Component({
@@ -11,7 +12,9 @@ import { Member } from '../../models/member.model';
 export class MembersUpdateComponent implements OnInit {
 
   member!: Member;
-  memberForm!: FormGroup;
+  form!: FormGroup;
+  stateOptions!: any[];
+  estMineur!: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,12 +22,14 @@ export class MembersUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.stateOptions = [{label: 'Oui', value: true}, {label: 'Non', value: false}];
     this.member = this.getRouteData('currentMember');
     this.filledForm();
+    this.estMineur = checkIfUnderage(new Date(this.form.value['dateNaissance']));
   }
 
   filledForm(): void {
-    this.memberForm = this.builder.group({
+    this.form = this.builder.group({
       nom: [this.member.personne.nom, Validators.required],
       prenom: [this.member.personne.prenom, Validators.required],
       dateInscription: [this.member.dateInscription, Validators.required],
@@ -34,10 +39,10 @@ export class MembersUpdateComponent implements OnInit {
       autoriseImage: [this.member.autoriseImage, Validators.required],
       telephone: [this.member.personne.telephone, Validators.required],
       email: [this.member.personne.email, Validators.required],
-      adRue: [this.member.adresse.rue, Validators.required],
-      adNumero: [this.member.adresse.numero, Validators.required],
-      adCP: [this.member.adresse.codePostal, Validators.required],
-      adVille: [this.member.adresse.ville, Validators.required],
+      adRue: [this.member.adresse ? this.member.adresse.rue : '', Validators.required],
+      adNumero: [this.member.adresse ? this.member.adresse.numero : '', Validators.required],
+      adCP: [this.member.adresse ? this.member.adresse.codePostal : '', Validators.required],
+      adVille: [this.member.adresse ? this.member.adresse.ville : '', Validators.required],
       contactNom: [this.member.contact.personne.nom, Validators.required],
       contactPrenom: [this.member.contact.personne.prenom, Validators.required],
       contactTelephone: [this.member.contact.personne.telephone, Validators.required],

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Belt } from '../../models/belt.model';
-import { ServiceBeltService } from '../../services/service-belt.service';
+import { Belt } from '../../../../shared/models/belt.model';
+import { BeltService } from '../../../../shared/services/belt.service';
 
 @Component({
   selector: 'app-belt-details',
@@ -15,7 +15,7 @@ export class BeltDetailsComponent implements OnInit {
   subscriptions!: Subscription;
 
   constructor(
-    private service: ServiceBeltService,
+    private service: BeltService,
     private route: ActivatedRoute
   ) { }
 

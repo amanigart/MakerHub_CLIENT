@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Belt } from '../../models/belt.model';
-import { ServiceBeltService } from '../../services/service-belt.service';
+import { Belt } from '../../../../shared/models/belt.model';
+import { BeltService } from '../../../../shared/services/belt.service';
 
 @Component({
   selector: 'app-belts-list',
@@ -14,7 +14,7 @@ export class BeltsListComponent implements OnInit, OnDestroy {
   subscriptions!: Subscription;
 
   constructor(
-    private service: ServiceBeltService
+    private service: BeltService
   ) { }
 
   ngOnInit(): void {

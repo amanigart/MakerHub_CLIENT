@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { AgePipe } from './pipes/age.pipe';
@@ -19,7 +20,7 @@ import {FieldsetModule} from 'primeng/fieldset';
 import {TabViewModule} from 'primeng/tabview';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {FileUploadModule} from 'primeng/fileupload';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -46,7 +47,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FieldsetModule,
     TabViewModule,
     SelectButtonModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule
   ],
   exports: [
     MenuListComponent,
@@ -67,7 +69,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FieldsetModule,
     TabViewModule,
     SelectButtonModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule
   ]
 })
 export class SharedModule { }

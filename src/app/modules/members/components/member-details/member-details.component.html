@@ -9,7 +9,10 @@
       </div>
       <div class="member-basic-infos">
         <h2 class="member-fullname">{{ member.personne.prenom }} {{ member.personne.nom }}</h2>
-        <p class="member-since">Membre depuis le {{ member.dateInscription | date: 'dd/MM/yyyy' }}</p>
+        <p class="member-since">
+          Membre depuis le {{ member.dateInscription | date: 'dd/MM/yyyy' }}
+          <span class="member-status">({{ member.estActif ? 'actif' : 'inactif' }})</span>
+        </p>
       </div>
       <div class="member-belts-container">
         <p-chip label="jiu-jutsu" styleClass="{{jujutsuTopBelt}}"></p-chip>
@@ -39,7 +42,7 @@
       <div class="contact-personal">
         <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
         <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
-        <p *ngIf="!member.referent">
+        <p *ngIf="member.adresse">
           <i class="pi pi-map-marker"></i>
           {{ member.adresse.rue }},
           {{ member.adresse.numero }} -
@@ -83,33 +86,49 @@
       <b>Ceintures</b>
     </p-divider>
 
-    <!-- <div class="grades">
-      <div>
-        <p-timeline [value]="allBelts">
-            <ng-template pTemplate="content" let-belt>
-                <small class="p-text-secondary">date</small>
-            </ng-template>
-            <ng-template pTemplate="opposite" let-belt>
-                {{belt.couleur}} ({{belt.discipline}})
-            </ng-template>
-        </p-timeline>
-      </div>
-    </div> -->
-
     <div class="grades">
       <p-table [value]="member.ceintures" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
-                <th pSortableColumn="discipline">Discipline<p-sortIcon field="discipline"></p-sortIcon></th>
-                <th pSortableColumn="couleur">Ceinture <p-sortIcon field="couleur"></p-sortIcon></th>
+              <th pSortableColumn="dateObtention">Date <p-sortIcon field="dateObtention"></p-sortIcon></th>
+              <th pSortableColumn="discipline">Discipline<p-sortIcon field="discipline"></p-sortIcon></th>
+              <th pSortableColumn="couleur">Ceinture <p-sortIcon field="couleur"></p-sortIcon></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-belt>
             <tr>
-                <td>Inconnue</td>
-                <td>{{belt.discipline}}</td>
-                <td>{{belt.couleur}}</td>
+              <td>{{ belt.dateObtention | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ belt.discipline }}</td>
+              <td>{{ belt.couleur }}</td>
+            </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <p-divider align="left">
+      <b>Cotisations</b>
+    </p-divider>
+
+    <div class="member-cotisations">
+      <p-table [value]="member.cotisations" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="estArchive">Status<p-sortIcon field="estArchive"></p-sortIcon></th>
+              <th pSortableColumn="estPaye">Paiement<p-sortIcon field="estPaye"></p-sortIcon></th>
+              <th pSortableColumn="prix">Prix<p-sortIcon field="prix"></p-sortIcon></th>
+              <th pSortableColumn="duree">Formule<p-sortIcon field="duree"></p-sortIcon></th>
+              <th pSortableColumn="dateDebut">Date de souscription<p-sortIcon field="dateDebut"></p-sortIcon></th>
+              <th pSortableColumn="dateFin">Echéance<p-sortIcon field="dateFin"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-cotisation>
+            <tr>
+              <td>{{ cotisation.estArchive ? 'Archivé' : 'Active' }}</td>
+              <td>{{ cotisation.estPaye ? 'Payé' : 'En attente de paiement' }}</td>
+              <td>{{ cotisation.prix }}€</td>
+              <td>{{ cotisation.duree }}</td>
+              <td>{{ cotisation.dateDebut | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ cotisation.dateFin | date: 'dd-MM-yyyy' }}</td>
             </tr>
         </ng-template>
       </p-table>
@@ -117,10 +136,6 @@
   </div>
 
   <div class="member-actions-container">
-    <!-- <p-divider align="left">
-      <b>Actions</b>
-    </p-divider> -->
-
     <div class="action-btns">
       &nbsp; <button [routerLink]="['./../../update/', member.idMembre]" pButton type="button" label="Modifier" class="p-button-sm"></button>
       &nbsp; <button (click)="deleteMember()" pButton type="button" label="Désactiver" class="p-button-sm"></button>

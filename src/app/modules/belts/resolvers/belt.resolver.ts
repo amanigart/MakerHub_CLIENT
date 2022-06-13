@@ -5,15 +5,15 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Belt } from '../models/belt.model';
-import { ServiceBeltService } from '../services/service-belt.service';
+import { Belt } from '../../../shared/models/belt.model';
+import { BeltService } from '../../../shared/services/belt.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BeltResolver implements Resolve<Belt> {
 
-  constructor(private service: ServiceBeltService) {}
+  constructor(private service: BeltService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Belt> {
     const beltId = route.params['id'];

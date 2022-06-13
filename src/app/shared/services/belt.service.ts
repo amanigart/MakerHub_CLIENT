@@ -7,7 +7,7 @@ import { Belt } from '../models/belt.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceBeltService {
+export class BeltService {
 
   private readonly API_URL: string = environment.baseUrl + 'ceintures/'
 

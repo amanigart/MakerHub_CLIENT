@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Schedule } from 'src/app/modules/schedules/models/schedule.model';
+import { ScheduleService } from 'src/app/modules/schedules/services/schedule.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  schedules: Schedule[] = [];
+
+  constructor(private scheduleService: ScheduleService) { }
 
   ngOnInit(): void {
+
   }
 
 }
