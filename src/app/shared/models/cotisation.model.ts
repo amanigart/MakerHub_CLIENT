@@ -7,5 +7,7 @@ export interface Cotisation {
   idMembre: number,
   idTarif: number,
   prix: number,
-  duree: string
+  duree: string,
+  nom: string,
+  prenom: string
 }

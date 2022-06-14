@@ -1,1 +1,30 @@
-<p>membership-list works!</p>
+<div class="all-cotisations">
+  <p-table [value]="memberships" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+          <!-- <th pColumn="check"></th> -->
+          <th pSortableColumn="estArchive">Status<p-sortIcon field="estArchive"></p-sortIcon></th>
+          <th pSortableColumn="estPaye">Paiement<p-sortIcon field="estPaye"></p-sortIcon></th>
+          <th pSortableColumn="nom">Nom<p-sortIcon field="nom"></p-sortIcon></th>
+          <th pSortableColumn="prenom">Prénom<p-sortIcon field="prenom"></p-sortIcon></th>
+          <th pSortableColumn="prix">Prix<p-sortIcon field="prix"></p-sortIcon></th>
+          <th pSortableColumn="duree">Formule<p-sortIcon field="duree"></p-sortIcon></th>
+          <th pSortableColumn="dateDebut">Date de souscription<p-sortIcon field="dateDebut"></p-sortIcon></th>
+          <th pSortableColumn="dateFin">Echéance<p-sortIcon field="dateFin"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cotisation>
+        <tr>
+          <!-- <td><p-checkbox [(ngModel)]="selectedMembership" [binary]="true" name="{{cotisation.idCotisation}}"></p-checkbox></td> -->
+          <td>{{ cotisation.estArchive ? 'Archivé' : 'Active' }}</td>
+          <td>{{ cotisation.estPaye ? 'Payé' : 'En attente de paiement' }}</td>
+          <td>{{ cotisation.nom }}</td>
+          <td>{{ cotisation.prenom }}</td>
+          <td>{{ cotisation.prix }}€</td>
+          <td>{{ cotisation.duree }}</td>
+          <td>{{ cotisation.dateDebut | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ cotisation.dateFin | date: 'dd-MM-yyyy' }}</td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>

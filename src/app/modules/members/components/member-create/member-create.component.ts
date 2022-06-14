@@ -167,7 +167,8 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       cotisation: {
         dateDebut: new Date(this.form.value['dateSouscritpion']),
         estPaye: this.form.value['estPaye'],
-        idTarif: this.form.value['formuleCotisation'].idTarif
+        idTarif: this.form.value['formuleCotisation'].idTarif,
+        duree: this.form.value['formuleCotisation'].duree
       }
     };
     console.log(this.newMember);

@@ -21,6 +21,7 @@ import {TabViewModule} from 'primeng/tabview';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 
@@ -48,7 +49,8 @@ import {DialogModule} from 'primeng/dialog';
     TabViewModule,
     SelectButtonModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    CheckboxModule
   ],
   exports: [
     MenuListComponent,
@@ -70,7 +72,8 @@ import {DialogModule} from 'primeng/dialog';
     TabViewModule,
     SelectButtonModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    CheckboxModule
   ]
 })
 export class SharedModule { }
