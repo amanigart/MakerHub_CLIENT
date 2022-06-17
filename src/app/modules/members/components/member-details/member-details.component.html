@@ -87,6 +87,27 @@
     </p-divider>
 
     <div class="grades">
+      <p-dialog header="Ajouter une ceinture" [(visible)]="displayBeltModal" [modal]="true" [style]="{width: '50vw', height:'60vh'}" [draggable]="false" [resizable]="false">
+        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <form [formGroup]="beltForm">
+          <div class="field col-6 col-offset-3">
+            <div class="group-addbelt-form">
+              <label for="jiujitsu">Discipline</label>
+              <p-dropdown [options]="jjBelts" placeholder="Sélectionner la discipline" optionLabel="discipline" formControlName="discipline"></p-dropdown>
+            </div>
+            <div class="group-addbelt-form">
+              <label for="jiujitsu">Ceinture</label>
+              <p-dropdown [options]="jjBelts" placeholder="Sélectionner la ceinture" optionLabel="couleur" formControlName="ceinture"></p-dropdown>
+            </div>
+          </div>
+        </form>
+        <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="addBelt()" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-dialog>
       <p-table [value]="member.ceintures" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
@@ -110,6 +131,20 @@
     </p-divider>
 
     <div class="member-cotisations">
+      <p-dialog header="Ajouter une cotisation" [(visible)]="displayMembershipModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <form [formGroup]="membershipForm">
+          <div class="p-fluid grid">
+
+          </div>
+        </form>
+        <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="addMembership()" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-dialog>
       <p-table [value]="member.cotisations" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
@@ -138,6 +173,8 @@
   <div class="member-actions-container">
     <div class="action-btns">
       &nbsp; <button [routerLink]="['./../../update/', member.idMembre]" pButton type="button" label="Modifier" class="p-button-sm"></button>
+      &nbsp; <button (click)="displayAddBelt()" pButton type="button" label="Ajouter une ceinture" class="p-button-sm"></button>
+      &nbsp; <button (click)="displayAddMembership()" pButton type="button" label="Ajouter une cotisation" class="p-button-sm"></button>
       &nbsp; <button (click)="deleteMember()" pButton type="button" label="Désactiver" class="p-button-sm"></button>
     </div>
   </div>

@@ -1,0 +1,37 @@
+<div class="admin-stats">
+
+  <div class="admin-stats-members">
+    <div class="admin-stats-card">
+      <div class="admin-stats-card-content">
+        <p class="admin-stat-title">Membres</p>
+        <p class="admin-stat-number">{{ totalOfMembers }}</p>
+      </div>
+    </div>
+    <div class="admin-stats-card">
+      <div class="admin-stats-card-content">
+        <p class="admin-stat-title">Membres actifs</p>
+        <p class="admin-stat-number">{{ totalOfActiveMembers }}</p>
+      </div>
+    </div>
+    <div class="admin-stats-card">
+      <div class="admin-stats-card-content">
+        <p class="admin-stat-title">Moyenne d'âge</p>
+        <p class="admin-stat-number">{{ ageAverage }} ans</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-stats-subscriptions">
+    <div class="subscriptions-evolution">
+      <p-tabView>
+        <p-tabPanel header="Année">
+          <p-chart type="line" [data]="subscriptionsPerYear"></p-chart>
+        </p-tabPanel>
+        <p-tabPanel header="Mois">
+          <p-chart type="bar" [data]="subscriptionsPerMonth"></p-chart>
+        </p-tabPanel>
+    </p-tabView>
+    </div>
+  </div>
+
+</div>

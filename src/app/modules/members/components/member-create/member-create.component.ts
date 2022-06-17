@@ -18,6 +18,13 @@ import { MembersService } from '../../../../shared/services/members.service';
 })
 export class MemberCreateComponent implements OnInit, OnDestroy {
 
+  constructor(
+    private builder: FormBuilder,
+    private memberService: MembersService,
+    private beltService: BeltService,
+    private priceService: PricePlanService
+  ) { }
+
   form!: FormGroup;
   newMember!: MemberForCreation;
   tabIndex: number = 0;
@@ -29,13 +36,6 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
   pricePlans!: PricePlan[];
   subscriptions!: Subscription;
   stateOptions!: any[];
-
-  constructor(
-    private builder: FormBuilder,
-    private memberService: MembersService,
-    private beltService: BeltService,
-    private priceService: PricePlanService
-  ) { }
 
   ngOnInit(): void {
     this.subscriptions = this.beltService.getAllBelts().subscribe({
@@ -81,24 +81,36 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       prenom: ['', Validators.required],
       telephone: ['', Validators.required],
       email: [''],
-      rue: new FormControl({value: '', disabled: this.estMineur}),
-      numero: new FormControl({value: '', disabled: this.estMineur}),
-      codePostal: new FormControl({value: null, disabled: this.estMineur}),
-      ville: new FormControl({value: '', disabled: this.estMineur}),
+      // rue: new FormControl({value: ''}),
+      // numero: new FormControl({value: ''}),
+      // codePostal: new FormControl({value: null}),
+      // ville: new FormControl({value: ''}),
+      rue: [''],
+      numero: [''],
+      codePostal: [null],
+      ville: [''],
       jjCeinture: ['', Validators.required],
       tjCeinture: ['', Validators.required],
       contactNom: ['', Validators.required],
       contactPrenom: ['', Validators.required],
       contactTelephone: ['', Validators.required],
       contactLien: ['', Validators.required],
-      referentNom: new FormControl({value: '', disabled: !this.estMineur}),
-      referentPrenom: new FormControl({value: '', disabled: !this.estMineur}),
-      referentTelephone: new FormControl({value: '', disabled: !this.estMineur}),
-      referentLien: new FormControl({value: '', disabled: !this.estMineur}),
-      referentRue: new FormControl({value: '', disabled: !this.estMineur}),
-      referentNumero: new FormControl({value: '', disabled: !this.estMineur}),
-      referentCP: new FormControl({value: null, disabled: !this.estMineur}),
-      referentVille: new FormControl({value: '', disabled: !this.estMineur}),
+      // referentNom: new FormControl({value: '', disabled: true}),
+      // referentPrenom: new FormControl({value: ''}),
+      // referentTelephone: new FormControl({value: ''}),
+      // referentLien: new FormControl({value: ''}),
+      // referentRue: new FormControl({value: ''}),
+      // referentNumero: new FormControl({value: ''}),
+      // referentCP: new FormControl({value: null}),
+      // referentVille: new FormControl({value: ''}),
+      referentNom: [''],
+      referentPrenom: [''],
+      referentTelephone: [''],
+      referentLien: [''],
+      referentRue: [''],
+      referentNumero: [''],
+      referentCP: [null],
+      referentVille: [''],
       dateSouscription: [null, Validators.required],
       formuleCotisation: ['', Validators.required],
       estPaye: [null, Validators.required]
@@ -165,13 +177,14 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
         lienAvecMembre: this.form.value['referentLien']
       },
       cotisation: {
-        dateDebut: new Date(this.form.value['dateSouscritpion']),
+        dateDebut: new Date(this.form.value['dateSouscription']),
         estPaye: this.form.value['estPaye'],
         idTarif: this.form.value['formuleCotisation'].idTarif,
         duree: this.form.value['formuleCotisation'].duree
       }
     };
     console.log(this.newMember);
+    return this.memberService.createMember(this.newMember);
   }
 
   // Change la valeur de estMineur lorsque la valeur change dans le formulaire

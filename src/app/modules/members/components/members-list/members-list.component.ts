@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MemberForList } from '../../models/member-for-list.model';
+import { MemberForList } from '../../../../shared/models/member-for-list.model';
 import { MembersService } from '../../../../shared/services/members.service';
 
 @Component({

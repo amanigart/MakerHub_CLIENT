@@ -31,7 +31,7 @@ export class AuthService {
       error: (error) => {
         this._errorMessage$.next(error.error)
       }
-    })
+    });
   }
 
   getTokenClaims(token: string): TokenInfos {

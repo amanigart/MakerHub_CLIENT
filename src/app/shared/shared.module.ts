@@ -22,6 +22,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
 import {CheckboxModule} from 'primeng/checkbox';
+import {ChartModule} from 'primeng/chart';
 
 
 
@@ -50,7 +51,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     SelectButtonModule,
     FileUploadModule,
     DialogModule,
-    CheckboxModule
+    CheckboxModule,
+    ChartModule
   ],
   exports: [
     MenuListComponent,
@@ -73,7 +75,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     SelectButtonModule,
     FileUploadModule,
     DialogModule,
-    CheckboxModule
+    CheckboxModule,
+    ChartModule
   ]
 })
 export class SharedModule { }
