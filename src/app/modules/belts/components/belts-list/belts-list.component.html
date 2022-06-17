@@ -1,7 +1,23 @@
 <div class="container-module">
 
   <div class="container-module-menu">
-    <!-- <app-shared-menu></app-shared-menu> -->
+
+    <h1 class="header-module">Ceintures</h1>
+      <div>
+        <a [routerLink]="['details/', belt.idCeinture]" *ngFor="let belt of belts">
+          <div class="module-menu-card">
+            Ceinture {{ belt.couleur }} ({{ belt.discipline.nom }})
+          </div>
+        </a>
+      </div>
+  </div>
+
+  <!-- <div class="container-module-menu">
+
+    <p-scrollPanel [style]="{width: '100%', height: '100vh'}">
+      Content
+    </p-scrollPanel>
+
     <h1 class="header-module">Ceintures</h1>
     <div>
       <a [routerLink]="['details/', belt.idCeinture]" *ngFor="let belt of belts">
@@ -10,8 +26,7 @@
         </div>
       </a>
     </div>
-    <!-- <app-member-details [id]="selectedId"></app-member-details> -->
-  </div>
+  </div> -->
 
   <div class="container-module-content">
     <router-outlet></router-outlet>

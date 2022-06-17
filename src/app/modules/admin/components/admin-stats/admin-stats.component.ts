@@ -36,7 +36,7 @@ export class AdminStatsComponent implements OnInit {
     this.ageAverage = Math.round(this.members.reduce((total, member) => { return total + member.age }, 0) / this.totalOfMembers);
     this.subscriptions = this.members.map(x => new Date(x.dateInscription));
 
-    // Création du dataset pour le graphique des inscriptions par année
+    // Création du dataset pour le graphique des inscriptions par année -------------------------------
     this.subscriptionsYears = this.subscriptions.map(x => x.getFullYear()).sort((a,b) => a - b);
     this.subscriptionsPerYear_years = this.removeDuplicates(this.subscriptionsYears);
 
@@ -60,7 +60,7 @@ export class AdminStatsComponent implements OnInit {
       ]
     };
 
-    // Création du dataset pour le graphique des inscriptions par mois
+    // Création du dataset pour le graphique des inscriptions par mois --------------------------------
     this.subscriptionsMonths = this.subscriptions.map(x => x.getMonth()).sort((a,b) => a - b); // tableau des mois (number) d'inscriptions, trié
     let months:string[] = [];
 
@@ -83,7 +83,7 @@ export class AdminStatsComponent implements OnInit {
 
     // Graphique des inscriptions par mois
     this.subscriptionsPerMonth = {
-      labels: this.subscriptionsPerMonths_months,
+      labels: months,
       datasets: [
         {
           label: 'Insciptions par mois',

@@ -88,22 +88,32 @@
 
     <div class="grades">
       <p-dialog header="Ajouter une ceinture" [(visible)]="displayBeltModal" [modal]="true" [style]="{width: '50vw', height:'60vh'}" [draggable]="false" [resizable]="false">
-        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <p class="m-0">
         </p>
+
         <form [formGroup]="beltForm">
           <div class="field col-6 col-offset-3">
             <div class="group-addbelt-form">
               <label for="jiujitsu">Discipline</label>
-              <p-dropdown [options]="jjBelts" placeholder="Sélectionner la discipline" optionLabel="discipline" formControlName="discipline"></p-dropdown>
+              <p-dropdown [options]="disciplines" placeholder="Sélectionner la discipline" optionLabel="nom" formControlName="discipline"></p-dropdown>
             </div>
+            &nbsp;
+            <!-- <div *ngIf="beltForm.value['discipline'].nom == 'jiu-jitsu'" class="group-addbelt-form">
+              <label for="jiujitsu">Ceinture</label>
+              <p-dropdown [options]="jjBelts" placeholder="Sélectionner la ceinture" optionLabel="couleur" formControlName="ceinture"></p-dropdown>
+            </div> -->
             <div class="group-addbelt-form">
               <label for="jiujitsu">Ceinture</label>
               <p-dropdown [options]="jjBelts" placeholder="Sélectionner la ceinture" optionLabel="couleur" formControlName="ceinture"></p-dropdown>
             </div>
+            &nbsp;
+            <div class="col-12 md:col-6 lg:col-4">
+              <span>Date d'obtention</span>
+              <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateObtention"></p-inputMask>
+          </div>
           </div>
         </form>
+
         <ng-template pTemplate="footer">
         <p-button icon="pi pi-check" (click)="addBelt()" label="Ok" styleClass="p-button-text"></p-button>
         </ng-template>

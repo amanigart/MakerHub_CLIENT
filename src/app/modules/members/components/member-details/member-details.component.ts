@@ -2,8 +2,11 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { toUsDate } from 'src/app/shared/functions/convert-date-format';
 import { Belt } from 'src/app/shared/models/belt.model';
+import { Discipline } from 'src/app/shared/models/discipline.model';
 import { BeltService } from 'src/app/shared/services/belt.service';
+import { DisciplineService } from 'src/app/shared/services/discipline.service';
 import { MemberBelt } from '../../models/member-belt.model';
 import { Member } from '../../models/member.model';
 
@@ -18,17 +21,22 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private builder: FormBuilder,
     private beltService: BeltService,
+    private disciplineService: DisciplineService
   ) { }
 
   member!: Member;
+  belts!: Belt[];
   jujutsuTopBelt: string = 'orange-belt';
   taijutsuTopBelt: string = 'yellow-belt';
+  disciplines!: Discipline[];
+  newBelt!: any;
   beltForm!: FormGroup;
   membershipForm!: FormGroup;
   displayBeltModal: boolean = false;
   displayMembershipModal: boolean = false;
   jjBelts!: Belt[];
   tjBelts!: Belt[];
+  beltColors!: Belt[];
   subscriptions!: Subscription;
   beltCreatedSubscription$!: Subscription;
   membershipCreatedSubscription$!: Subscription;
@@ -36,12 +44,25 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getRouteData('currentMember');
 
+    // this.belts = this.route.snapshot.data['allBelts'];
+    // this.beltColors = this.belts.filter(x => x.discipline.nom === 'jiu-jitsu')
+    // this.jjBelts = this.belts.filter((x: any) => x.discipline.nom === 'jiu-jitsu');
+    // this.tjBelts = this.belts.filter((x: any) => x.discipline.nom === 'taï-jitsu');
+
     this.subscriptions = this.beltService.getAllBelts().subscribe({
       next: (data) => {
+        this.belts = data;
         this.jjBelts = data.filter(x => x.discipline.nom === 'jiu-jitsu');
         this.tjBelts = data.filter(x => x.discipline.nom === 'taï-jitsu');
       }
     });
+    this.subscriptions = this.disciplineService.getAllDisciplines().subscribe({
+      next: (data) => {
+        this.disciplines = data;
+      }
+    })
+    this.blankBeltForm();
+    this.blankMembershipForm();
   }
 
   ngOnDestroy(): void {
@@ -54,15 +75,13 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
       this.jujutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'jiu-jitsu');
       this.taijutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'taï-jitsu');
     });
-
-    this.blankBeltForm();
-    this.blankMembershipForm();
   }
 
   blankBeltForm(): void {
     this.beltForm = this.builder.group({
       discipline: ['', Validators.required],
-      ceinture: ['', Validators.required]
+      ceinture: ['', Validators.required],
+      dateObtention: [null, Validators.required]
     })
   }
 
@@ -85,7 +104,19 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
   }
 
   addBelt(): void {
+    this.newBelt = this.beltForm.value;
 
+    let ceinture = this.beltColors.filter((x: Belt) => (x.couleur === this.beltForm.value['ceinture'].couleur) && (x.discipline.idDiscipline === this.beltForm.value['discipline'].idDiscipline))
+
+    console.log(ceinture[0].couleur);
+    let test = {
+      idMembre: this.member.idMembre,
+      idCeinture: ceinture[0].idCeinture,
+      dateObtention: new Date(toUsDate(this.beltForm.value['dateObtention']))
+    }
+    //console.log(this.newBelt);
+    // console.log(this.jjBelts);
+    console.log(test);
   }
 
   addMembership():void {

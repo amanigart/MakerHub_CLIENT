@@ -17,6 +17,26 @@ body {
   position: relative;
   font-family: 'Dosis', sans-serif;
   font-weight: 500;
+  //overflow: overlay;
+}
+
+/* ---------- SCROLL ---------- */
+::-webkit-scrollbar {
+  display: none;
+  //width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+ //background: #f1f1f1;
+ background: transparent;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: whitesmoke;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 
@@ -29,16 +49,17 @@ $color-link: #125699;
 
 /* ---------- MODULES LAYOUT ---------- */
 .header-module {
-
 }
 
 .container-module {
   display: flex;
   height: calc(100vh - 80px);
+  overflow: hidden;
 
   .container-module-menu {
     width: 35rem;   // 300px;
     background-color: pink;
+    overflow-y: scroll;
 
     .module-menu-header {
       //height: 75px;

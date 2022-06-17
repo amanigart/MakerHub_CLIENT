@@ -5,10 +5,12 @@ import { MemberDetailsComponent } from './components/member-details/member-detai
 import { MembersListComponent } from './components/members-list/members-list.component';
 import { MembersUpdateComponent } from './components/members-update/members-update.component';
 import { MemberDetailsResolver } from '../../shared/resolvers/member-details.resolver';
+import { BeltsResolver } from '../belts/resolvers/belts.resolver';
+import { MemberListResolver } from 'src/app/shared/resolvers/member-list.resolver';
 
 const routes: Routes = [
-  { path: '', component: MembersListComponent, children: [
-    { path: 'details/:id', resolve: {currentMember: MemberDetailsResolver }, component: MemberDetailsComponent },
+  { path: '', resolve: {allMembers: MemberListResolver }, component: MembersListComponent, children: [
+    { path: 'details/:id', resolve: {currentMember: MemberDetailsResolver }, component: MemberDetailsComponent },  // , allBelts: BeltsResolver
     { path: 'update/:id', resolve: {currentMember: MemberDetailsResolver }, component: MembersUpdateComponent },
     { path: 'inscription', component: MemberCreateComponent }
   ]},

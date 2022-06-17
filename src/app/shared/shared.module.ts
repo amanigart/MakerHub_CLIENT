@@ -23,6 +23,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ChartModule} from 'primeng/chart';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 
 
@@ -52,7 +53,8 @@ import {ChartModule} from 'primeng/chart';
     FileUploadModule,
     DialogModule,
     CheckboxModule,
-    ChartModule
+    ChartModule,
+    ScrollPanelModule
   ],
   exports: [
     MenuListComponent,
@@ -76,7 +78,8 @@ import {ChartModule} from 'primeng/chart';
     FileUploadModule,
     DialogModule,
     CheckboxModule,
-    ChartModule
+    ChartModule,
+    ScrollPanelModule
   ]
 })
 export class SharedModule { }

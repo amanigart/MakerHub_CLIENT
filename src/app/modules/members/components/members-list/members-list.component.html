@@ -6,15 +6,25 @@
     </div>
 
     <div class="module-menu-header flex justify-content-between">
-      <p-dropdown optionLabel="name"></p-dropdown>
+      <!-- <p-dropdown optionLabel="name"></p-dropdown> -->
+      <button (click)="filterList()">Active only</button>
       <button pButton type="button" icon="pi pi-plus" class="p-button-rounded" routerLink="inscription"></button>
     </div>
 
-    <a *ngFor="let member of members" [routerLink]="['details/', member.idMembre]">
-      <div class="module-menu-card">
-        <p>{{ member.prenom }} {{ member.nom }}</p>
-      </div>
-    </a>
+    <div *ngIf="showAllMembers">
+      <a *ngFor="let member of members" [routerLink]="['details/', member.idMembre]">
+        <div class="module-menu-card">
+          <p>{{ member.prenom }} {{ member.nom }}</p>
+        </div>
+      </a>
+    </div>
+    <div *ngIf="!showAllMembers">
+      <a *ngFor="let member of activeMembers" [routerLink]="['details/', member.idMembre]">
+        <div class="module-menu-card">
+          <p>{{ member.prenom }} {{ member.nom }}</p>
+        </div>
+      </a>
+    </div>
   </div>
 
   <div class="container-module-content">
