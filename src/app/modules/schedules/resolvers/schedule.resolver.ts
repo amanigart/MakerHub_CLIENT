@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Schedule } from '../models/schedule.model';
-import { ScheduleService } from '../services/schedule.service';
+import { ScheduleService } from '../../../shared/services/schedule.service';
 
 @Injectable({
   providedIn: 'root'

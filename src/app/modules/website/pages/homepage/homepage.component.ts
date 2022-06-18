@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Schedule } from 'src/app/modules/schedules/models/schedule.model';
-import { ScheduleService } from 'src/app/modules/schedules/services/schedule.service';
+import { ScheduleService } from 'src/app/shared/services/schedule.service';
 
 @Component({
   selector: 'app-homepage',

@@ -1,27 +1,36 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { toUsDate } from 'src/app/shared/functions/convert-date-format';
+import { BeltForCreation } from 'src/app/shared/models/belt-for-creation.model';
 import { Belt } from 'src/app/shared/models/belt.model';
+import { CotisationForCreation } from 'src/app/shared/models/cotisation-for-creation.model';
 import { Discipline } from 'src/app/shared/models/discipline.model';
+import { PricePlan } from 'src/app/shared/models/price-plan.model';
 import { BeltService } from 'src/app/shared/services/belt.service';
-import { DisciplineService } from 'src/app/shared/services/discipline.service';
+import { MembersService } from 'src/app/shared/services/members.service';
+import { MembershipService } from 'src/app/shared/services/membership.service';
 import { MemberBelt } from '../../models/member-belt.model';
 import { Member } from '../../models/member.model';
 
 @Component({
   selector: 'app-member-details',
   templateUrl: './member-details.component.html',
-  styleUrls: ['./member-details.component.scss']
+  styleUrls: ['./member-details.component.scss'],
+  providers: [MessageService]
 })
 export class MemberDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private builder: FormBuilder,
     private beltService: BeltService,
-    private disciplineService: DisciplineService
+    private memberService: MembersService,
+    private membershipService: MembershipService,
+    private messageService: MessageService
   ) { }
 
   member!: Member;
@@ -29,7 +38,8 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
   jujutsuTopBelt: string = 'orange-belt';
   taijutsuTopBelt: string = 'yellow-belt';
   disciplines!: Discipline[];
-  newBelt!: any;
+  newBelt!: BeltForCreation;
+  newMembership!: CotisationForCreation;
   beltForm!: FormGroup;
   membershipForm!: FormGroup;
   displayBeltModal: boolean = false;
@@ -37,36 +47,81 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
   jjBelts!: Belt[];
   tjBelts!: Belt[];
   beltColors!: Belt[];
+  pricePlans!: PricePlan[];
   subscriptions!: Subscription;
-  beltCreatedSubscription$!: Subscription;
-  membershipCreatedSubscription$!: Subscription;
+  beltCreatedSubscription!: Subscription;
+  membershipCreatedSubscription!: Subscription;
+  memberDisabledSubscription!: Subscription;
+  memberActivatedSubscription! :Subscription;
+  items!: MenuItem[];
 
   ngOnInit(): void {
     this.getRouteData('currentMember');
+    this.belts = this.route.snapshot.data['allBelts'];
+    this.pricePlans = this.route.snapshot.data['allPrices'];
 
-    // this.belts = this.route.snapshot.data['allBelts'];
-    // this.beltColors = this.belts.filter(x => x.discipline.nom === 'jiu-jitsu')
-    // this.jjBelts = this.belts.filter((x: any) => x.discipline.nom === 'jiu-jitsu');
-    // this.tjBelts = this.belts.filter((x: any) => x.discipline.nom === 'taï-jitsu');
-
-    this.subscriptions = this.beltService.getAllBelts().subscribe({
-      next: (data) => {
-        this.belts = data;
-        this.jjBelts = data.filter(x => x.discipline.nom === 'jiu-jitsu');
-        this.tjBelts = data.filter(x => x.discipline.nom === 'taï-jitsu');
+    // Recharge la page quand une ceinture est ajoutée + déclenche un toaster message
+    this.beltCreatedSubscription = this.beltService.beltCreatedForMember$.subscribe({
+      next: (data: boolean) => {
+        if (data) {
+          this.subscriptions = this.memberService.getMemberDetails(this.member.idMembre).subscribe({
+            next: (data: Member) => {
+              this.member = data;
+              this.jujutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'jiu-jitsu');
+              this.taijutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'taï-jitsu');
+              this.showBeltCreated();
+            }
+          })
+        }
       }
     });
-    this.subscriptions = this.disciplineService.getAllDisciplines().subscribe({
-      next: (data) => {
-        this.disciplines = data;
+    // Recharge la page quand une cotisation estajoutée + déclence un toaster message
+    this.membershipCreatedSubscription = this.membershipService.membershipCreated$.subscribe({
+      next: (data: boolean) => {
+        if (data) {
+          this.subscriptions = this.memberService.getMemberDetails(this.member.idMembre).subscribe({
+            next: (data: Member) => {
+              this.member = data;
+              this.showMembershipCreated();
+            }
+          });
+        }
       }
-    })
+    });
+    // Recharge la page quand le membre est activé ou désactivé
+    this.memberDisabledSubscription = this.memberService.memberDisabled$.subscribe({
+      next: (data: boolean) => {
+        if (data) {
+          this.subscriptions = this.memberService.getMemberDetails(this.member.idMembre).subscribe({
+            next: (data: Member) => {
+              this.member = data;
+            }
+          });
+        }
+      }
+    });
+    // Recharge la page quand le membre est ré-activé
+    this.memberActivatedSubscription = this.memberService.memberActivated$.subscribe({
+      next: (data: boolean) => {
+        if (data) {
+          this.subscriptions = this.memberService.getMemberDetails(this.member.idMembre).subscribe({
+            next: (data: Member) => {
+              this.member = data;
+            }
+          });
+        }
+      }
+    });
+
     this.blankBeltForm();
     this.blankMembershipForm();
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    if (this.subscriptions) this.subscriptions.unsubscribe();
+    if (this.beltCreatedSubscription) this.beltCreatedSubscription.unsubscribe();
+    if (this.membershipCreatedSubscription) this.membershipCreatedSubscription.unsubscribe();
+    if (this.memberDisabledSubscription) this.memberDisabledSubscription.unsubscribe();
   }
 
   getRouteData(resolverName: string): void {
@@ -75,6 +130,15 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
       this.jujutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'jiu-jitsu');
       this.taijutsuTopBelt = this.getTopBeltColor(this.member.ceintures, 'taï-jitsu');
     });
+  }
+
+  splitBtnNav(): void {
+    this.items = [
+      { label: 'Ajouter une ceinture', command: () => {this.addBelt()} },
+      { label: 'Ajouter une cotisation', command: () => {this.addMembership()} }
+    ]
+
+
   }
 
   blankBeltForm(): void {
@@ -87,12 +151,18 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
 
   blankMembershipForm(): void {
     this.membershipForm = this.builder.group({
-      dateDebut: [null, Validators.required]
+      dateDebut: [null, Validators.required],
+      idTarif: [null, Validators.required],
+      estPaye: [null, Validators.required]
     })
   }
 
-  deleteMember() {
-    throw new Error('Method not implemented.');
+  disableMember(): void {
+    this.memberService.disableMember(this.member.idMembre);
+  }
+
+  activateMember(): void {
+    this.memberService.activateMember(this.member.idMembre);
   }
 
   displayAddBelt(): void {
@@ -103,26 +173,35 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
     this.displayMembershipModal = true;
   }
 
+  // Enregistre une nouvelle ceinture pour le membre
   addBelt(): void {
-    this.newBelt = this.beltForm.value;
+    let belt = this.belts.filter(x => (x.discipline.nom === this.beltForm.value['discipline']) && (x.couleur === this.beltForm.value['ceinture']));
 
-    let ceinture = this.beltColors.filter((x: Belt) => (x.couleur === this.beltForm.value['ceinture'].couleur) && (x.discipline.idDiscipline === this.beltForm.value['discipline'].idDiscipline))
-
-    console.log(ceinture[0].couleur);
-    let test = {
+    this.newBelt = {
       idMembre: this.member.idMembre,
-      idCeinture: ceinture[0].idCeinture,
+      idCeinture: belt[0].idCeinture,
       dateObtention: new Date(toUsDate(this.beltForm.value['dateObtention']))
-    }
-    //console.log(this.newBelt);
-    // console.log(this.jjBelts);
-    console.log(test);
+    };
+    this.beltService.createBeltForMember(this.newBelt);
+    this.displayBeltModal = false;
   }
 
-  addMembership():void {
+  addMembership(): void {
+    const idTarif = this.membershipForm.value['idTarif'];
+    const duration = this.pricePlans.filter(x => x.idTarif == idTarif)[0].duree;
 
+    this.newMembership = {
+      idMembre: this.member.idMembre,
+      dateDebut: new Date(toUsDate(this.membershipForm.value['dateDebut'])),
+      estPaye: JSON.parse(this.membershipForm.value['estPaye']),
+      idTarif: idTarif,
+      duree: duration
+    };
+    this.membershipService.createMembershipForMember(this.newMembership);
+    this.displayMembershipModal = false;
   }
 
+  // récupère la classe CSS de la ceinture la plus haute dans la discipline passée en paramètre
   getTopBeltColor(belts: MemberBelt[], discipline: string): string {
     let maxBelt = this.member.ceintures.filter(x => x.discipline === discipline)
                                        .map(x => ({id: x.id, couleur: x.couleur}))
@@ -145,6 +224,21 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
       default:
         return 'black-belt';
     }
+  }
+
+  // Toaster en cas de ceinture ajoutée correctement
+  showBeltCreated(): void {
+    this.messageService.add({key: 'newBeltSuccess', severity:'success', summary: 'Succès', detail: 'Ceinture correctement ajoutée à la base dedonnées.'});
+  }
+
+  // Toaster en cas de cotisation ajoutée correctement
+  showMembershipCreated(): void {
+    this.messageService.add({key: 'newMembershipSuccess', severity:'success', summary: 'Succès', detail: 'Cotisation correctement ajoutée à la base dedonnées.'});
+  }
+
+  // Naviguer vers lapage de modification
+  navToUpdateMember(): void {
+    this.router.navigate(['/app/membres/update/', this.member.idMembre]);
   }
 
 }

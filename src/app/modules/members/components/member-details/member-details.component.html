@@ -1,4 +1,6 @@
 <div class="member-container">
+  <p-toast key="newBeltSuccess"></p-toast>
+  <p-toast key="newMembershipSuccess"></p-toast>
 
   <div class="member-content-container">
     <div class="member-top-infos">
@@ -87,35 +89,64 @@
     </p-divider>
 
     <div class="grades">
-      <p-dialog header="Ajouter une ceinture" [(visible)]="displayBeltModal" [modal]="true" [style]="{width: '50vw', height:'60vh'}" [draggable]="false" [resizable]="false">
+      <p-dialog header="Ajouter une ceinture à {{member.personne.prenom}}" [(visible)]="displayBeltModal" [modal]="true" [style]="{width: '35vw'}" [draggable]="false" [resizable]="false">
         <p class="m-0">
         </p>
-
         <form [formGroup]="beltForm">
-          <div class="field col-6 col-offset-3">
-            <div class="group-addbelt-form">
-              <label for="jiujitsu">Discipline</label>
-              <p-dropdown [options]="disciplines" placeholder="Sélectionner la discipline" optionLabel="nom" formControlName="discipline"></p-dropdown>
+          <div class="flex">  <!-- field col-6 col-offset-3 -->
+            <div>
+              <h4>Date d'obtention</h4>
+              <div>
+                <!-- <span>Date d'obtention</span> -->
+                <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateObtention"></p-inputMask>
+              </div>
+              <h4>Discipline</h4>
+              <div class="add-belt-radio">
+                <p-radioButton name="discipline" value="jiu-jitsu" inputId="discipline_jj" formControlName="discipline"></p-radioButton>
+                <label for="discipline_jj">Jiu-jitsu</label>
+              </div>
+              <div class="add-belt-radio">
+                <p-radioButton name="discipline" value="taï-jitsu" inputId="discipline_tj" formControlName="discipline"></p-radioButton>
+                <label for="discipline_tj">Taï-jitsu</label>
+              </div>
             </div>
-            &nbsp;
-            <!-- <div *ngIf="beltForm.value['discipline'].nom == 'jiu-jitsu'" class="group-addbelt-form">
-              <label for="jiujitsu">Ceinture</label>
-              <p-dropdown [options]="jjBelts" placeholder="Sélectionner la ceinture" optionLabel="couleur" formControlName="ceinture"></p-dropdown>
-            </div> -->
-            <div class="group-addbelt-form">
-              <label for="jiujitsu">Ceinture</label>
-              <p-dropdown [options]="jjBelts" placeholder="Sélectionner la ceinture" optionLabel="couleur" formControlName="ceinture"></p-dropdown>
+            <p-divider layout="vertical" ></p-divider>
+            <div>
+              <h4>Ceinture</h4>
+              <div class="add-belt-radio">
+                <p-radioButton name="ceinture" value="blanche" inputId="white-belt" formControlName="ceinture"></p-radioButton>
+                <label for="white-belt">Blanche</label>
+              </div>
+              <div class="add-belt-radio">
+                <p-radioButton name="ceinture" value="jaune" inputId="yellow-belt" formControlName="ceinture"></p-radioButton>
+                <label for="yellow-belt">Jaune</label>
+              </div>
+              <div class="add-belt-radio">
+                <p-radioButton name="ceinture" value="orange" inputId="orange-belt" formControlName="ceinture"></p-radioButton>
+                <label for="orange-belt">Orange</label>
+              </div>
+              <div class="add-belt-radio">
+                <p-radioButton name="ceinture" value="verte" inputId="green-belt" formControlName="ceinture"></p-radioButton>
+                <label for="green-belt">Verte</label>
+              </div>
+              <div class="add-belt-radio">
+                <p-radioButton name="ceinture" value="bleue" inputId="blue-belt" formControlName="ceinture"></p-radioButton>
+                <label for="blue-belt">Bleue</label>
+              </div>
+              <div class="add-belt-radio">
+                <p-radioButton name="ceinture" value="marron" inputId="brown-belt" formControlName="ceinture"></p-radioButton>
+                <label for="brown-belt">Marron</label>
+              </div>
+              <div class="add-belt-radio">
+                <p-radioButton name="ceinture" value="noire" inputId="black-belt" formControlName="ceinture"></p-radioButton>
+                <label for="black-belt">Noire</label>
+              </div>
             </div>
-            &nbsp;
-            <div class="col-12 md:col-6 lg:col-4">
-              <span>Date d'obtention</span>
-              <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateObtention"></p-inputMask>
-          </div>
           </div>
         </form>
 
         <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="addBelt()" label="Ok" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="addBelt()" label="Enregistrer" styleClass="p-button-text"></p-button>
         </ng-template>
       </p-dialog>
       <p-table [value]="member.ceintures" responsiveLayout="scroll">
@@ -141,18 +172,39 @@
     </p-divider>
 
     <div class="member-cotisations">
-      <p-dialog header="Ajouter une cotisation" [(visible)]="displayMembershipModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
-        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <p-dialog header="Ajouter une cotisation à {{member.personne.prenom}}" [(visible)]="displayMembershipModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+        <p class="m-0">
         </p>
         <form [formGroup]="membershipForm">
-          <div class="p-fluid grid">
-
+          <div class="flex">
+            <div>
+              <h4>Formule tarifaire</h4>
+              <div *ngFor="let plan of pricePlans; let i = index" class="add-membership-radio">
+                <p-radioButton name="idTarif" value="{{plan.idTarif}}" inputId="plan{{i}}" formControlName="idTarif"></p-radioButton>
+                <label for="plan{{i}}">{{ plan.duree }} ({{ plan.prix }}€)</label>
+              </div>
+            </div>
+            <p-divider layout="vertical" ></p-divider>
+            <div>
+              <h4>Date de souscription</h4>
+              <div>
+                <!-- <span>Date d'obtention</span> -->
+                <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateDebut"></p-inputMask>
+              </div>
+              <h4>Status du paiement</h4>
+              <div class="add-membership-radio">
+                <p-radioButton name="estPaye" value="true" inputId="paied" formControlName="estPaye"></p-radioButton>
+                <label for="paied">Payé</label>
+              </div>
+              <div class="add-membership-radio">
+                <p-radioButton name="estPaye" value="false" inputId="unpaied" formControlName="estPaye"></p-radioButton>
+                <label for="unpaied">Impayé</label>
+              </div>
+            </div>
           </div>
         </form>
         <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="addMembership()" label="Ok" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="addMembership()" label="Enregistrer" styleClass="p-button-text"></p-button>
         </ng-template>
       </p-dialog>
       <p-table [value]="member.cotisations" responsiveLayout="scroll">
@@ -182,10 +234,10 @@
 
   <div class="member-actions-container">
     <div class="action-btns">
-      &nbsp; <button [routerLink]="['./../../update/', member.idMembre]" pButton type="button" label="Modifier" class="p-button-sm"></button>
       &nbsp; <button (click)="displayAddBelt()" pButton type="button" label="Ajouter une ceinture" class="p-button-sm"></button>
       &nbsp; <button (click)="displayAddMembership()" pButton type="button" label="Ajouter une cotisation" class="p-button-sm"></button>
-      &nbsp; <button (click)="deleteMember()" pButton type="button" label="Désactiver" class="p-button-sm"></button>
+      &nbsp; <button *ngIf="member.estActif" (click)="disableMember()" pButton type="button" label="Désactiver" class="p-button-sm"></button>
+      &nbsp; <button *ngIf="!member.estActif" (click)="activateMember()" pButton type="button" label="Activer" class="p-button-sm"></button>
     </div>
   </div>
 </div>

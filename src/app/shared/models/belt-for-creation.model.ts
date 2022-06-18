@@ -1,5 +1,5 @@
 export interface BeltForCreation {
-  idDiscipline: number,
+  idMembre: number,
   idCeinture: number,
-  DateObtention: Date
+  dateObtention: Date
 }

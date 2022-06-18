@@ -24,7 +24,9 @@ import {DialogModule} from 'primeng/dialog';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ChartModule} from 'primeng/chart';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
-
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {ToastModule} from 'primeng/toast';
+import {SplitButtonModule} from 'primeng/splitbutton';
 
 
 @NgModule({
@@ -54,7 +56,10 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     DialogModule,
     CheckboxModule,
     ChartModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    RadioButtonModule,
+    ToastModule,
+    SplitButtonModule
   ],
   exports: [
     MenuListComponent,
@@ -79,7 +84,10 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     DialogModule,
     CheckboxModule,
     ChartModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    RadioButtonModule,
+    ToastModule,
+    SplitButtonModule
   ]
 })
 export class SharedModule { }

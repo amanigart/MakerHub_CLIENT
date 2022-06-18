@@ -6,13 +6,15 @@ import { SchedulesListComponent } from './components/schedules-list/schedules-li
 import { ScheduleDetailsComponent } from './components/schedule-details/schedule-details.component';
 import { ScheduleUpdateComponent } from './components/schedule-update/schedule-update.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SchedulesPanelComponent } from './components/schedules-panel/schedules-panel.component';
 
 
 @NgModule({
   declarations: [
     SchedulesListComponent,
     ScheduleDetailsComponent,
-    ScheduleUpdateComponent
+    ScheduleUpdateComponent,
+    SchedulesPanelComponent
   ],
   imports: [
     CommonModule,
