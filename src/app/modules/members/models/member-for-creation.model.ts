@@ -27,14 +27,12 @@ export interface MemberForCreation {
   },
   ceintures: [
     {
-      idDiscipline: number,
       idCeinture: number,
-      //dateObtention: Date
+      dateObtention: Date
     },
     {
-      idDiscipline: number,
       idCeinture: number,
-      //DateObtention: Date
+      dateObtention: Date
     }
   ],
   contact: {

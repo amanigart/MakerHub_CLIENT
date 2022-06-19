@@ -1,0 +1,52 @@
+.admin-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.admin-stats-cards{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin-top: 30px;
+  margin-right: 25px;
+  margin-bottom: 40px;
+
+  .stat-card{
+    height: 30%;
+    background: whitesmoke;
+    border: 1px solid lightgray;
+    padding: 1rem;
+    margin: 1.65rem;
+    border-radius: 4px;
+
+    .stat-card-content {
+      text-align: center;
+      height: 100%;
+      margin-bottom: 10px;
+
+      .stat-card-title {
+        font-size: 1.3rem;
+        border-bottom: 2px solid grey;
+        padding-bottom: 1rem;
+      }
+
+      .stat-card-number{
+        margin-top: 1rem;
+        color: black;
+        font-size: 4.5rem;
+        font-weight: 500;
+        height: 90%;
+      }
+    }
+  }
+}
+
+.admin-stats-subscriptions {
+  width: 80%;
+}
+
+.card-age {
+  font-size: 2rem;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Schedule } from 'src/app/modules/schedules/models/schedule.model';
-import { ScheduleService } from 'src/app/shared/services/schedule.service';
+import { PricePlan } from 'src/app/shared/models/price-plan.model';
 
 @Component({
   selector: 'app-homepage',
@@ -9,12 +10,14 @@ import { ScheduleService } from 'src/app/shared/services/schedule.service';
 })
 export class HomepageComponent implements OnInit {
 
-  schedules: Schedule[] = [];
+  schedules!: Schedule[];
+  prices!: PricePlan[];
 
-  constructor(private scheduleService: ScheduleService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.schedules = this.route.snapshot.data['allSchedules'];
+    this.prices = this.route.snapshot.data['allPrices'];
   }
 
 }

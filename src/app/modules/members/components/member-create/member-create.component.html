@@ -1,5 +1,7 @@
 <div class="member-container">
   <div class="member-content-container">
+    <p-toast position="bottom-center" key="created"></p-toast>
+    <p-toast position="bottom-center" key="notCreated"></p-toast>
 
     <div class="test1"></div>
     <form class="member-register-form" [formGroup]="form" (ngSubmit)="submitForm()" >
@@ -22,7 +24,7 @@
               </div>
               <div class="group-register-form">
                 <span>Date de naissance</span>
-                <p-inputMask mask="99/99/9999" placeholder="12/31/9999" slotChar="MM/dd/yyyy" formControlName="dateNaissance" (change)="onBirthdateChange($event)"></p-inputMask>
+                <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateNaissance" (change)="onBirthdateChange($event)"></p-inputMask>
               </div>
               <div class="group-register-form">
                 <label for="phone">Téléphone</label>
@@ -82,13 +84,31 @@
             <!-- <form class="belts-register-form"> -->
               <div class="p-fluid grid">
                 <div class="field col-6 col-offset-3">
+                  <p-divider align="center">
+                    <b>Jiu-jitsu</b>
+                  </p-divider>
                   <div class="group-register-form">
-                    <label for="jiujitsu">Jiu-jitsu</label>
-                    <p-dropdown [options]="jjBelts" placeholder="Sélectionner la ceinture" optionLabel="couleur" formControlName="jjCeinture"></p-dropdown>
+                    <label for="jiujitsu">Ceinture</label>
+                    <p-dropdown [options]="jjBelts" optionLabel="couleur" formControlName="jjCeinture"></p-dropdown>
                   </div>
                   <div class="group-register-form">
-                    <label for="taijitsu">Taï-jitsu</label>
-                    <p-dropdown [options]="tjBelts" optionLabel="couleur" placeholder="Sélectionner la ceinture" formControlName="tjCeinture"></p-dropdown>
+                    <label for="jjdate">Date d'obtention</label>
+                    <p-inputMask id="jjdate" mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="jjDateObtention"></p-inputMask>
+                  </div>
+                  <div class="blank-height-space"></div>
+                  <!-- <div class="blank-height-space"></div>
+                  <hr>
+                  <div class="blank-height-space"></div> -->
+                  <p-divider align="center">
+                    <b>Taï-jitsu</b>
+                  </p-divider>
+                  <div class="group-register-form">
+                    <label for="taijitsu">Ceinture</label>
+                    <p-dropdown [options]="tjBelts" optionLabel="couleur" formControlName="tjCeinture"></p-dropdown>
+                  </div>
+                  <div class="group-register-form">
+                    <label for="tjdate">Date d'obtention</label>
+                    <p-inputMask id="tjdate" mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="tjDateObtention"></p-inputMask>
                   </div>
                 </div>
               </div>
@@ -193,7 +213,7 @@
             <div class="field col-6 col-offset-3">
               <div class="group-register-form">
                 <span>Date de souscription</span>
-                <p-inputMask mask="99/99/9999" placeholder="31/12/9999" slotChar="MM/dd/yyyy" formControlName="dateSouscription"></p-inputMask>
+                <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateSouscription"></p-inputMask>
               </div>
               <div class="group-register-form">
                 <label for="formule">Formule de cotisation</label>
@@ -221,7 +241,7 @@
               <div class="field col-6 col-offset-3">
                 <div class="group-register-form">
                   <span>Date d'inscription</span>
-                  <p-inputMask mask="99/99/9999" placeholder="31/12/9999" slotChar="dd/MM/yyyy" formControlName="dateInscription"></p-inputMask>
+                  <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateInscription"></p-inputMask>
                 </div>
                 <div class="group-register-form">
                   <label for="presencesTotal">Nombre de présences (total)</label>
@@ -255,7 +275,7 @@
 
   <div class="member-actions-container">
     <div class="action-btns">
-      &nbsp; <button [routerLink]="[]" pButton type="button" label="Réinitialiser" class="p-button-sm"></button>
+      <!-- &nbsp; <button [formTarget]="form" (click)="resetForm()" pButton type="button" label="Réinitialiser" class="p-button-sm"></button> -->
       &nbsp; <button [formTarget]="form" (click)="submitForm()" pButton type="button" label="Valider" class="p-button-sm"></button>
     </div>
   </div>

@@ -26,8 +26,6 @@ export class SchedulesPanelComponent implements OnInit, OnDestroy {
 
   schedules!: Schedule[];
   prices!: PricePlan[];
-  currentSchedule!: Schedule;
-  // currentPrice!: PricePlan;
   scheduleForm1!: FormGroup;
   scheduleForm2!: FormGroup;
   scheduleForm3!: FormGroup;
@@ -50,22 +48,22 @@ export class SchedulesPanelComponent implements OnInit, OnDestroy {
     this.priceForm2 = this.filledPriceForm(1);
     this.priceForm3 = this.filledPriceForm(2);
 
-    // Recharge la liste des tarifs quand un tarif a été modifié
-    this.priceUpdatedSubscription = this.priceService.priceUpdated$.subscribe({
-      next: (data: boolean) => {
-        if (data) {
-          this.subscriptions = this.priceService.getAllPricePlans().subscribe({
-            next: (data: PricePlan[]) => this.prices = data
-          });
-        }
-      }
-    });
     // Recharge la liste des horaires quand un horaire a été modifié
     this.scheduleUpdatedSubscription = this.scheduleService.scheduleCreated$.subscribe({
       next: (data: boolean) => {
         if (data) {
           this.subscriptions = this.scheduleService.getAllSchedules().subscribe({
             next: (data: Schedule[]) => this.schedules = data
+          });
+        }
+      }
+    });
+    // Recharge la liste des tarifs quand un tarif a été modifié
+    this.priceUpdatedSubscription = this.priceService.priceUpdated$.subscribe({
+      next: (data: boolean) => {
+        if (data) {
+          this.subscriptions = this.priceService.getAllPricePlans().subscribe({
+            next: (data: PricePlan[]) => this.prices = data
           });
         }
       }

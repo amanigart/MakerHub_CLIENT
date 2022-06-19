@@ -19,12 +19,14 @@ import { WebsiteLayoutComponent } from './core/layouts/website-layout/website-la
 import { AppLayoutComponent } from './core/layouts/app-layout/app-layout.component';
 import { NotFoundErrorComponent } from './core/components/not-found-error/not-found-error.component';
 import { BodyComponent } from './core/components/body/body.component';
+import { NavbarComponent } from './core/components/nav-app/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticationComponent,
     NavComponent,
+    NavbarComponent,
     SideMenuComponent,
     WebsiteLayoutComponent,
     AppLayoutComponent,

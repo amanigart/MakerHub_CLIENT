@@ -36,6 +36,7 @@ export class MembersService {
     return this.http.get<Member>(this.API_URL + id);
   }
 
+  // Enregistre un nouveau membre
   createMember(newMember: MemberForCreation): void {
     this.http.post<MemberForCreation>(this.API_URL + 'inscription', newMember).subscribe({
       next: () => {

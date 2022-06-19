@@ -55,7 +55,9 @@ export class AdminStatsComponent implements OnInit {
       datasets: [
         {
           label: 'Inscriptions par année',
-          data: this.subscriptionsPerYear_occurrences
+          data: this.subscriptionsPerYear_occurrences,
+          borderColor: '#42A5F5',
+          tension: .3
         }
       ]
     };
@@ -87,7 +89,8 @@ export class AdminStatsComponent implements OnInit {
       datasets: [
         {
           label: 'Insciptions par mois',
-          data: this.subscriptionsPerMonths_occurences
+          data: this.subscriptionsPerMonths_occurences,
+          backgroundColor: '#42A5F5',
         }
       ]
     };

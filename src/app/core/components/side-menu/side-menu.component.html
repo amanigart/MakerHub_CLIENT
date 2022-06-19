@@ -1,14 +1,14 @@
 <div class="sidebar" [ngClass]="isCollapsed ? 'sidebar-collapsed' : ''">
 
-  <!-- <div class="sidebar-logo-container">
+  <div class="sidebar-logo-container">
     <button class="sidebar-logo" (click)="toggleCollapse()">
-      <i class="bx bx-door-open"></i>
+      <i class="bx bx-expand-horizontal"></i>
     </button>
     <div class="sidebar-logo-text" *ngIf="isCollapsed">Kristopher</div>
     <button class="sidebar-btn-close" *ngIf="isCollapsed" (click)="closeSidebar()">
       <i class="bx bx-x sidebar-x"></i>
     </button>
-  </div> -->
+  </div>
 
   <ul class="sidebar-nav">
     <li class="sidebar-nav-item" *ngFor="let item of sideNavItems">

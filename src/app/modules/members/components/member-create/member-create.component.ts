@@ -10,11 +10,14 @@ import { BloodType } from '../../models/blood-type.model';
 import { Gender } from '../../models/genders.model';
 import { MemberForCreation } from '../../models/member-for-creation.model';
 import { MembersService } from '../../../../shared/services/members.service';
+import { toUsDate } from 'src/app/shared/functions/convert-date-format';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-member-create',
   templateUrl: './member-create.component.html',
-  styleUrls: ['./member-create.component.scss']
+  styleUrls: ['./member-create.component.scss'],
+  providers: [MessageService]
 })
 export class MemberCreateComponent implements OnInit, OnDestroy {
 
@@ -22,7 +25,8 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
     private builder: FormBuilder,
     private memberService: MembersService,
     private beltService: BeltService,
-    private priceService: PricePlanService
+    private priceService: PricePlanService,
+    private messageService: MessageService
   ) { }
 
   form!: FormGroup;
@@ -35,9 +39,11 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
   tjBelts!: Belt[];
   pricePlans!: PricePlan[];
   subscriptions!: Subscription;
+  memberCreatedSubscription!: Subscription;
   stateOptions!: any[];
 
   ngOnInit(): void {
+    // Récupère les ceintures pour chaque discipline
     this.subscriptions = this.beltService.getAllBelts().subscribe({
       next: (data) => {
         this.jjBelts = data.filter(x => x.discipline.nom === 'jiu-jitsu');
@@ -45,10 +51,19 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       },
       error: (error) => console.log(error)
     });
+    // Récupère la liste des tarifs
     this.subscriptions = this.priceService.getAllPricePlans().subscribe({
       next: (data) => this.pricePlans = data,
       error: (error) => console.log(error)
     });
+    // Vérifie si le membre a bient été créé
+    this.memberCreatedSubscription = this.memberService.memberCreated$.subscribe({
+      next: (data: boolean) => {
+        if (data) this.showSuccessToast();
+        else this.showErrorToast();
+      }
+    });
+
     this.stateOptions = [
       {label: 'Oui', value: true}, {label: 'Non', value: false}
     ];
@@ -64,7 +79,8 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    if (this.subscriptions) this.subscriptions.unsubscribe();
+    if (this.memberCreatedSubscription) this.memberCreatedSubscription.unsubscribe();
   }
 
   // Génère un formulaire vide pour la création d'un membre
@@ -83,10 +99,16 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       email: [''],
       rue: [''],
       numero: [''],
-      codePostal: [null],
+      codePostal: [null, Validators.compose([
+        Validators.required,
+        Validators.pattern('[0-9]{4}'),
+        Validators.min(1000)
+      ])],
       ville: [''],
       jjCeinture: ['', Validators.required],
+      jjDateObtention: [null, Validators.required],
       tjCeinture: ['', Validators.required],
+      tjDateObtention: [null, Validators.required],
       contactNom: ['', Validators.required],
       contactPrenom: ['', Validators.required],
       contactTelephone: ['', Validators.required],
@@ -97,7 +119,11 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       referentLien: [''],
       referentRue: [''],
       referentNumero: [''],
-      referentCP: [null],
+      referentCP: [null, Validators.compose([
+        Validators.required,
+        Validators.pattern('[0-9]{4}'),
+        Validators.min(1000)
+      ])],
       referentVille: [''],
       dateSouscription: [null, Validators.required],
       formuleCotisation: ['', Validators.required],
@@ -109,11 +135,11 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
   submitForm(): void {
     this.newMember = {
       membreInfos: {
-        dateInscription: new Date(this.form.value['dateInscription']),
+        dateInscription: new Date(toUsDate(this.form.value['dateInscription'])),
         estActif : true,
         photo: null,
         sexe: this.form.value['sexe'],
-        dateNaissance: new Date(this.form.value['dateNaissance']),
+        dateNaissance: new Date(toUsDate(this.form.value['dateNaissance'])),
         groupeSanguin: this.form.value['groupeSanguin'].label,
         autoriseImage: this.form.value['autoriseImage'],
         basePresencesRequises: this.form.value['basePresencesRequises'],
@@ -133,12 +159,12 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       },
       ceintures: [
         {
-          idDiscipline: this.form.value['jjCeinture'].idDiscipline,
-          idCeinture: this.form.value['jjCeinture'].idCeinture
+          idCeinture: this.form.value['jjCeinture'].idCeinture,
+          dateObtention: new Date(toUsDate(this.form.value['jjDateObtention']))
         },
         {
-          idDiscipline: this.form.value['tjCeinture'].idDiscipline,
-          idCeinture: this.form.value['tjCeinture'].idCeinture
+          idCeinture: this.form.value['tjCeinture'].idCeinture,
+          dateObtention: new Date(toUsDate(this.form.value['tjDateObtention']))
         }
       ],
       contact: {
@@ -165,19 +191,18 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
         lienAvecMembre: this.form.value['referentLien']
       },
       cotisation: {
-        dateDebut: new Date(this.form.value['dateSouscription']),
+        dateDebut: new Date(toUsDate(this.form.value['dateSouscription'])),
         estPaye: this.form.value['estPaye'],
         idTarif: this.form.value['formuleCotisation'].idTarif,
         duree: this.form.value['formuleCotisation'].duree
       }
     };
-    console.log(this.newMember);
     return this.memberService.createMember(this.newMember);
   }
 
   // Change la valeur de estMineur lorsque la valeur change dans le formulaire
   onBirthdateChange(event: any): void {
-    this.estMineur = checkIfUnderage(new Date(this.form.value['dateNaissance']));
+    this.estMineur = checkIfUnderage(new Date(toUsDate(this.form.value['dateNaissance'])));
   }
 
   // Modifie tabIndex pour naviguer vers l'onglet suivant (prend en compte si le membre est mineur)
@@ -198,6 +223,14 @@ export class MemberCreateComponent implements OnInit, OnDestroy {
       this.tabIndex = this.tabIndex -2;
     else
       this.tabIndex = this.tabIndex -1;
+  }
+
+  // Toasters
+  showSuccessToast(): void {
+    this.messageService.add({key: 'created', severity:'success', summary: 'Succès', detail: 'Le membre a bien été créé'});
+  }
+  showErrorToast(): void {
+    this.messageService.add({key: 'notCreated', severity:'error', summary: 'Erreur', detail: 'Le membre n\'a pas été correctement ajouté.'});
   }
 
 }

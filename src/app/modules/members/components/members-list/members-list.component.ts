@@ -19,26 +19,35 @@ export class MembersListComponent implements OnInit, OnDestroy {
   members!: MemberForList[];
   activeMembers!: MemberForList[];
   showAllMembers: boolean = false;
-  serviceSubscriptions!: Subscription;
+  serviceSubscription!: Subscription;
+  memberCreatedSubscription!: Subscription;
 
   ngOnInit(): void {
-    // this.serviceSubscriptions = this.service.getMembersList().subscribe({
-    //   next: (data) => {
-    //     this.members = data;
-    //   },
-    //   error: (error) => console.log(error)
-    // })
     this.members = this.route.snapshot.data['allMembers'];
     this.activeMembers = this.members.filter((x) => x.estActif === true);
+
+    // Recharge la liste des membres quand un nouveau membre est créé
+    this.memberCreatedSubscription = this.service.memberCreated$.subscribe({
+      next: (data: boolean) => {
+        if (data) {
+          this.serviceSubscription = this.service.getMembersList().subscribe({
+            next: (data: MemberForList[]) => {
+              this.members = data;
+              console.log(data);
+            }
+          });
+        }
+      }
+    });
   }
 
   ngOnDestroy(): void {
-    // this.serviceSubscriptions.unsubscribe();
+    if (this.serviceSubscription) this.serviceSubscription.unsubscribe();
+    //if (this.memberCreatedSubscription) this.memberCreatedSubscription.unsubscribe();
   }
 
   filterList(): void {
     this.showAllMembers = !this.showAllMembers;
   }
-
 
 }
