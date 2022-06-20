@@ -20,6 +20,7 @@ import { AppLayoutComponent } from './core/layouts/app-layout/app-layout.compone
 import { NotFoundErrorComponent } from './core/components/not-found-error/not-found-error.component';
 import { BodyComponent } from './core/components/body/body.component';
 import { NavbarComponent } from './core/components/nav-app/navbar.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { NavbarComponent } from './core/components/nav-app/navbar.component';
     ReactiveFormsModule,
     // PrimeNg
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    SharedModule
   ],
   exports: [
     BrowserAnimationsModule

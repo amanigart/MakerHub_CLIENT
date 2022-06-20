@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
   //position: relative;
   // font-family: 'Dosis', sans-serif;
@@ -131,7 +135,7 @@ $color-link: #125699;
 
   /* side menu */
   .container-module-menu {
-    width: 45rem;   // 300px;
+    width: 42rem;   // 300px;
     background-color: whitesmoke;
     overflow-y: scroll;
     margin-top: 2.5rem;
@@ -147,7 +151,7 @@ $color-link: #125699;
 
     .module-menu-card {
       display: flex;
-      height: 90px;
+      height: 75px;
       background-color: white;
       border: 1px solid var(--primary-blue);
       border-radius: 5px;
@@ -155,12 +159,13 @@ $color-link: #125699;
       margin-bottom: .8rem;
       margin-left: .8rem;
       margin-right: .8rem;
+      padding-top: 12px;
       overflow: hidden;
       box-shadow: 0 14px 26px rgba(0,0,0,0.04);
       transition: all 0.3s ease-out;
 
       .card-pastille {
-        margin-top: 20px;
+        //margin-top: 13px;
         margin-left: 20px;
         padding-top: 11px;
         height: 50px;
@@ -177,6 +182,7 @@ $color-link: #125699;
       }
       .card-name {
         //color: black;
+        margin-top: 13px;
       }
     }
 
@@ -255,21 +261,21 @@ h1 {
 }
 
 .main h1 {
-  font-size: 4.6rem;
+  font-size: 3rem;
   margin-top: 40px;
   margin-bottom: 40px;
   font-family: 'Oswald', sans-serif;
 }
 
 main {
-  width: 1280px;
+  width: 1080px;
   margin: 0 auto;
   font-size: 1.5rem;
 }
 
 .cover img {
   display: block;
-  width: 1280px;
+  width: 1080px;
   margin: 0 auto;
   margin-top: 80px;
 }

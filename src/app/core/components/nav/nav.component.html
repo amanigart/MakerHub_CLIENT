@@ -17,13 +17,13 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="cours">Cours</a>
       </li> -->
-      <li class="nav-item">
-        <a class="nav-link" routerLink="app/admin">App</a>
+      <li *ngIf="isAuth" class="nav-item">
+        <a class="nav-link" routerLink="app/admin">Admin</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="!isAuth" class="nav-item">
         <a class="nav-link" routerLink="auth">Connexion</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="isAuth" class="nav-item">
         <a class="nav-link" routerLink="auth" (click)="logout()">Déconnexion</a>
       </li>
     </ul>

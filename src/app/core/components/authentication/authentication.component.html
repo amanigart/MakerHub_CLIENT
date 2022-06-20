@@ -2,35 +2,38 @@
 
   <div class="login-form">
     <h2>Bienvenue</h2>
-    <p>Connectez-vous avec votre login et votre mot de passe.</p>
+    <p class="login-form-infoMsg">Connectez-vous pour accéder à l'espace admin</p>
 
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="loginform">
       <div class="login-form-item">
+        <p *ngIf="loginField.invalid && (loginField.dirty || loginField.touched)" class="alert">
+          <span class="alertMsg">Le champ Login est requis</span>
+        </p>
         <span class="p-input-icon-left">
           <i class="pi pi-user"></i>
           <input type="text" pInputText placeholder="Login" formControlName="login" required />
         </span>
-        <p *ngIf="loginField.invalid && (loginField.dirty || loginField.touched)" class="alert">
-          Le champ Login est requis.
-        </p>
       </div>
 
       <div class="login-form-item">
+        <p *ngIf="passwdField.invalid && (passwdField.dirty || passwdField.touched)" class="alert">
+          <span class="alertMsg">Le champ Password est requis</span>
+        </p>
         <span class="p-input-icon-left">
           <i class="pi pi-lock"></i>
-          <input type="password" pInputText placeholder="Password" formControlName="password" required />
+          <input type="password" pInputText placeholder="Password" aria-describedby="badpasswd" formControlName="password" required />
         </span>
-        <p *ngIf="passwdField.invalid && (passwdField.dirty || passwdField.touched)" class="alert">
-          Le champ Password est requis.
-        </p>
       </div>
 
       <button type="submit" pButton label="Connexion" [disabled]="!loginForm.valid"></button>
     </form>
 
-    <p>
+    <!-- <div *ngIf="errorMessage != null">
+    <p-messages [(value)]="errorMsgAlert"></p-messages>
       {{ errorMessage }}
-    </p>
+    </div> -->
+
+    <p class="bad-login-ex">{{ errorMessage }}</p>
   </div>
 
 </div>

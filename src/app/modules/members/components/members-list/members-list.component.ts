@@ -37,7 +37,7 @@ export class MembersListComponent implements OnInit, OnDestroy {
           this.serviceSubscription = this.service.getMembersList().subscribe({
             next: (data: MemberForList[]) => {
               this.members = data;
-              this.activeMembers = this.members.filter((x) => x.estActif === true);
+              this.activeMembers = this.members.filter((x) => x.estActif == true);
               console.log(data);
             }
           });

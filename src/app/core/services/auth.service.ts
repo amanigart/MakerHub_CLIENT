@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.dev';
@@ -11,22 +12,31 @@ import { TokenInfos } from '../models/token-infos';
 })
 export class AuthService {
 
-  private readonly API_URL: string = environment.baseUrl;
-  private _errorMessage$ : Subject<string> = new Subject();
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
+
+  private readonly API_URL: string = environment.baseUrl + 'auth';
+  private _errorMessage$: Subject<string> = new Subject<string>();
+  private _isAuthenticated$: Subject<boolean> = new Subject<boolean>();
 
   get errorMessage$(): Observable<string> {
     return this._errorMessage$.asObservable();
   }
-
-  constructor(private _http: HttpClient) { }
+  get isAuthenticated$(): Observable<boolean> {
+    return this._isAuthenticated$.asObservable();
+  }
 
   login(form: LoginInfos): void {
-    this._http.post(this.API_URL + 'auth', form, { responseType: 'text' }).subscribe({
+    this.http.post(this.API_URL, form, { responseType: 'text' }).subscribe({
       next: (data) => {
         const claims = this.getTokenClaims(data);
         localStorage.setItem('id', claims.sid.toString());
         localStorage.setItem('role', claims.role);
         localStorage.setItem('token', data);
+        this._isAuthenticated$.next(true);
+        this.router.navigate(['app/admin']);
       },
       error: (error) => {
         this._errorMessage$.next(error.error)
@@ -46,5 +56,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
+    this._isAuthenticated$.next(false);
   }
 }

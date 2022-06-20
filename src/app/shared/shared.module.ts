@@ -29,6 +29,8 @@ import {ToastModule} from 'primeng/toast';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { TagModule } from 'primeng/tag';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { TagModule } from 'primeng/tag';
     ToastModule,
     SplitButtonModule,
     AutoCompleteModule,
-    TagModule
+    TagModule,
+    MessageModule,
+    MessagesModule
   ],
   exports: [
     MenuListComponent,
@@ -92,7 +96,9 @@ import { TagModule } from 'primeng/tag';
     ToastModule,
     SplitButtonModule,
     AutoCompleteModule,
-    TagModule
+    TagModule,
+    MessageModule,
+    MessagesModule
   ]
 })
 export class SharedModule { }

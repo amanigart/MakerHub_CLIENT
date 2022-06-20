@@ -229,12 +229,12 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
 
   // Toaster en cas de ceinture ajoutée correctement
   showBeltCreated(): void {
-    this.messageService.add({key: 'newBeltSuccess', severity:'success', summary: 'Succès', detail: 'Ceinture correctement ajoutée à la base dedonnées.'});
+    this.messageService.add({key: 'newBeltSuccess', severity:'success', summary: 'Succès', detail: 'Ceinture correctement ajoutée à la base de données.'});
   }
 
   // Toaster en cas de cotisation ajoutée correctement
   showMembershipCreated(): void {
-    this.messageService.add({key: 'newMembershipSuccess', severity:'success', summary: 'Succès', detail: 'Cotisation correctement ajoutée à la base dedonnées.'});
+    this.messageService.add({key: 'newMembershipSuccess', severity:'success', summary: 'Succès', detail: 'Cotisation correctement ajoutée à la base de données.'});
   }
 
   // Naviguer vers lapage de modification

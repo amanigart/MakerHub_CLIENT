@@ -53,12 +53,12 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
     this.sideNavItems = [
-      { name: 'Dashboard', route: 'app/admin', icon: 'bx bx-cog' },
+      { name: 'Dashboard', route: 'app/admin', icon: 'bx bx-bar-chart' },
       { name: 'Membres', route: 'app/membres', icon: 'bx bx-user' },
       // { name: 'Entraînements', route: 'app/entrainements', icon: 'bx bx-calendar-edit' },
       // { name: 'Ceintures', route: 'app/ceintures', icon: 'bx bx-band-aid' },
-      { name: 'Horaires & Tarifs', route: 'app/horaires', icon: 'bx bx-time-five' },
-      { name: 'Cotisations', route: 'app/cotisations', icon: 'bx bx-euro'}
+      { name: 'Cotisations', route: 'app/cotisations', icon: 'bx bx-euro'},
+      { name: 'Configuration', route: 'app/horaires', icon: 'bx bx-cog' }
     ];
   }
 

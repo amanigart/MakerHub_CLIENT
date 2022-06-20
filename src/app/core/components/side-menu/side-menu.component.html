@@ -2,7 +2,8 @@
 
   <div class="sidebar-logo-container">
     <button class="sidebar-logo" (click)="toggleCollapse()">
-      <i class="bx bx-expand-horizontal"></i>
+      <i *ngIf="!isCollapsed" class="bx bx-arrow-to-right"></i>
+      <i *ngIf="isCollapsed" class="bx bx-arrow-to-left"></i>
     </button>
     <div class="sidebar-logo-text" *ngIf="isCollapsed">Kristopher</div>
     <button class="sidebar-btn-close" *ngIf="isCollapsed" (click)="closeSidebar()">

@@ -8,12 +8,13 @@ import { MemberDetailsResolver } from '../../shared/resolvers/member-details.res
 import { BeltsResolver } from '../../shared/resolvers/belts.resolver';
 import { MemberListResolver } from 'src/app/shared/resolvers/member-list.resolver';
 import { PricePlanResolver } from 'src/app/shared/resolvers/price-plans.resolver';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', resolve: {allMembers: MemberListResolver }, component: MembersListComponent, children: [
-    { path: 'details/:id', resolve: {currentMember: MemberDetailsResolver, allBelts: BeltsResolver, allPrices: PricePlanResolver }, component: MemberDetailsComponent },
-    { path: 'update/:id', resolve: {currentMember: MemberDetailsResolver }, component: MembersUpdateComponent },
-    { path: 'inscription', component: MemberCreateComponent }
+  { path: '', canActivate: [AuthGuard], resolve: {allMembers: MemberListResolver }, component: MembersListComponent, children: [
+    { path: 'details/:id', canActivate: [AuthGuard], resolve: {currentMember: MemberDetailsResolver, allBelts: BeltsResolver, allPrices: PricePlanResolver }, component: MemberDetailsComponent },
+    { path: 'update/:id', canActivate: [AuthGuard], resolve: {currentMember: MemberDetailsResolver }, component: MembersUpdateComponent },
+    { path: 'inscription', canActivate: [AuthGuard], component: MemberCreateComponent }
   ]},
 ];
 

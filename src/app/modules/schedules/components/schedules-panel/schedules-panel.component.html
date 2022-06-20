@@ -1,14 +1,14 @@
 <div class="schedules-panel-container">
   <p-toast position="bottom-center" key="scheduleMsg"></p-toast>
   <p-toast position="bottom-center" key="priceMsg"></p-toast>
-  <h1>Horaires et Tarifs</h1>
+  <!-- <h1>Horaires et Tarifs</h1> -->
   <div class="schedules-prices-container">
 
     <div class="schedule-container">
-      <p-divider align="center">
+      <!-- <p-divider align="center">
         <i class="pi pi-clock mr-2"></i>
         <b>Horaires</b>
-      </p-divider>
+      </p-divider> -->
       <div class="schedule-card-container">
         <div *ngFor="let schedule of schedules" class="schedule-card">
           <div class="schedule-tag">
@@ -26,9 +26,9 @@
         <div class="schedule-forms">
           <p class="m-0">
           </p>
-          <p-divider align="center">
+          <!-- <p-divider align="center">
             <b>Entraînement 1</b>
-          </p-divider>
+          </p-divider> -->
           <form [formGroup]="scheduleForm1" (ngSubmit)="updateSchedule1()">
             <div>
               <div class="flex flex-column">
@@ -50,8 +50,9 @@
           </form>
           &nbsp;
           <p-divider align="center">
-            <b>Entraînement 2</b>
+            <!-- <b>Entraînement 2</b> -->
           </p-divider>
+          &nbsp;
           <form [formGroup]="scheduleForm2" (ngSubmit)="updateSchedule2()">
             <div>
               <div class="flex flex-column">
@@ -73,8 +74,9 @@
           </form>
           &nbsp;
           <p-divider align="center">
-            <b>Entraînement 3</b>
+            <!-- <b>Entraînement 3</b> -->
           </p-divider>
+          &nbsp;
           <form [formGroup]="scheduleForm3" (ngSubmit)="updateSchedule3()">
             <div>
               <div class="flex flex-column">
@@ -104,10 +106,10 @@
     </p-divider>
 
     <div class="price-container">
-      <p-divider align="center">
+      <!-- <p-divider align="center">
         <i class="pi pi-euro mr-2"></i>
         <b>Tarifs</b>
-      </p-divider>
+      </p-divider> -->
       <div class="price-card-container">
         <div *ngFor="let p of prices" class="prices-card">
           <div class="price-tag">
