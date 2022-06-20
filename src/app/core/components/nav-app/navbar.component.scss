@@ -1,29 +1,35 @@
 /* ----- DESKTOP ----- */
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
+// .navbar {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   height: 80px;
+// }
+
+// .nav-menu {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   list-style: none;
+//   margin-top: 10px;
+// }
+
+// .nav-items {
+// }
+
+// .nav-link {
+//   margin-left: 15px;
+//   color: white;
+//   text-decoration: none;
+// }
+// .nav-link-app:hover, .nav-link-app:visited {
+//   color: white;
+//   text-decoration: none;
+//   text-transform: uppercase;
+// }
+
+.icon {
+  font-size: 1.3rem;
 }
 
-.nav-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  margin-top: 10px;
-}
-
-.nav-items {
-}
-
-.nav-link {
-  margin-left: 15px;
-  color: white;
-  text-decoration: none;
-}
-.nav-link:hover, .nav-link:visited {
-  color: white;
-  text-decoration: none;
-}

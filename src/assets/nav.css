@@ -1,0 +1,153 @@
+
+/*------------ DESKTOP version ------------*/
+.header {
+    border-bottom: 1px solid #E2E8F0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 25px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 80px;
+}
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #101010;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 3rem;
+}
+
+.nav-link {
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    /* color: #30475E; */
+}
+
+.nav-current {
+    color: #66BFBF;
+}
+
+.nav-free-course {
+    color: #DA0037;
+}
+
+.nav-logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4.6rem;
+    font-weight: 500;
+    color: #DA0037;
+}
+
+.nav-logo-app {
+  font-family: 'Oswald', sans-serif;
+  font-size: 4.6rem;
+  font-weight: 500;
+  color: white;
+  text-decoration: none!important;
+}
+
+
+
+/*------------ SMARTPHONE version ------------*/
+@media only screen and (max-width: 880px) {
+    .nav-logo {
+        font-size: 3rem;
+    }
+
+    .navbar {
+        height: 55px;
+        padding-right: 18px;
+        padding-left: 10px;
+    }
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 53px;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 2.5rem;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+
+/*------------ TABLET version ------------*/
+@media only screen and (max-width: 768px) {
+    .navbar {
+        padding-left: 10px;
+        padding-right: 16px;
+    }
+
+    .nav-item {
+        margin-left: 2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+        font-size: 1.125rem;
+        font-weight: 400;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        color: #276678;
+    }
+
+    .nav-free-course {
+        color: #DA0037;
+    }
+}

@@ -27,8 +27,8 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {ToastModule} from 'primeng/toast';
 import {SplitButtonModule} from 'primeng/splitbutton';
-import {AutoComplete, AutoCompleteModule} from 'primeng/autocomplete';
-
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import {AutoComplete, AutoCompleteModule} from 'primeng/autocomplete';
     RadioButtonModule,
     ToastModule,
     SplitButtonModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    TagModule
   ],
   exports: [
     MenuListComponent,
@@ -90,7 +91,8 @@ import {AutoComplete, AutoCompleteModule} from 'primeng/autocomplete';
     RadioButtonModule,
     ToastModule,
     SplitButtonModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    TagModule
   ]
 })
 export class SharedModule { }

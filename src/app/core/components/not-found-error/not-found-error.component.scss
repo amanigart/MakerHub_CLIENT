@@ -1,0 +1,21 @@
+.error-404 {
+
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.link-404 {
+  text-decoration: none;
+  color: var(--primary-blue);
+}
+.link:visited {
+  color: var(--primary-blue);
+}
+.link:hover {
+  color: var(--secondary-red);
+}

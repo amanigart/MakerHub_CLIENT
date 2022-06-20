@@ -28,7 +28,7 @@
               </div>
               <div class="group-register-form">
                 <label for="phone">Téléphone</label>
-                <input type="text" id="phone" pInputText placeholder="0475123456" formControlName="telephone">
+                <input type="text" id="phone" pInputText formControlName="telephone">
               </div>
               <div class="group-register-form">
                 <label for="email">Email</label>
@@ -42,7 +42,7 @@
           </div>
           <div class="grid">
             <div class="col-3 col-offset-7">
-              <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+              <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-danger p-button-text" label="Suivant"></p-button>
             </div>
           </div>
         </p-tabPanel>
@@ -71,10 +71,10 @@
             </div>
             <div class="grid">
               <div class="col-3 col-offset-3">
-                <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+                <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-danger p-button-text" label="Précédent"></p-button>
               </div>
               <div class="col-3 col-offset-1">
-                <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+                <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-danger p-button-text" label="Suivant"></p-button>
               </div>
             </div>
           <!-- </form> -->
@@ -114,10 +114,10 @@
               </div>
               <div class="grid">
                 <div class="col-3 col-offset-3">
-                  <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+                  <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-danger p-button-text" label="Précédent"></p-button>
                 </div>
                 <div class="col-3 col-offset-1">
-                  <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+                  <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-danger p-button-text" label="Suivant"></p-button>
                 </div>
               </div>
             <!-- </form> -->
@@ -147,10 +147,10 @@
               </div>
               <div class="grid">
                 <div class="col-3 col-offset-3">
-                  <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+                  <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-danger p-button-text" label="Précédent"></p-button>
                 </div>
                 <div class="col-3 col-offset-1">
-                  <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+                  <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-danger p-button-text" label="Suivant"></p-button>
                 </div>
               </div>
             <!-- </form> -->
@@ -199,10 +199,10 @@
             </div>
             <div class="grid">
               <div class="col-3 col-offset-3">
-                <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+                <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-danger p-button-text" label="Précédent"></p-button>
               </div>
               <div class="col-3 col-offset-1">
-                <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+                <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-danger p-button-text" label="Suivant"></p-button>
               </div>
             </div>
           <!-- </form> -->
@@ -227,10 +227,10 @@
           </div>
           <div class="grid">
             <div class="col-3 col-offset-3">
-              <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+              <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-danger p-button-text" label="Précédent"></p-button>
             </div>
             <div class="col-3 col-offset-1">
-              <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-text" label="Suivant"></p-button>
+              <p-button icon="pi pi-chevron-right" iconPos="right" (click)="openNext()" styleClass="p-button-danger p-button-text" label="Suivant"></p-button>
             </div>
           </div>
         </p-tabPanel>
@@ -255,14 +255,17 @@
                   <label for="image-authorize">Autorisation de publication d'image</label>
                   <p-selectButton [options]="stateOptions" formControlName="autoriseImage"></p-selectButton>
                 </div>
-                <div>
+                <!-- <div>
                   Upload photo
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="grid">
               <div class="col-3 col-offset-3">
-                <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-text" label="Précédent"></p-button>
+                <p-button icon="pi pi-chevron-left" (click)="openPrevious()" styleClass="p-button-danger p-button-text" label="Précédent"></p-button>
+              </div>
+              <div class="col-3 col-offset-1">
+                <button [formTarget]="form" (click)="submitForm()" pButton type="button" label="Valider le formulaire" class="p-button-danger"></button>
               </div>
             </div>
           <!-- </form> -->
@@ -273,11 +276,11 @@
 
   </div>
 
-  <div class="member-actions-container">
+  <!-- <div class="member-actions-container">
     <div class="action-btns">
-      <!-- &nbsp; <button [formTarget]="form" (click)="resetForm()" pButton type="button" label="Réinitialiser" class="p-button-sm"></button> -->
+      &nbsp; <button [formTarget]="form" (click)="resetForm()" pButton type="button" label="Réinitialiser" class="p-button-sm"></button>
       &nbsp; <button [formTarget]="form" (click)="submitForm()" pButton type="button" label="Valider" class="p-button-sm"></button>
     </div>
-  </div>
+  </div> -->
 
 </div>

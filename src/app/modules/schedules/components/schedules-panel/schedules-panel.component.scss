@@ -1,0 +1,101 @@
+.schedules-panel-container {
+  padding-top: 2rem;
+  padding-right: 5rem;
+  padding-bottom: 2rem;
+  padding-left: 5rem;
+}
+
+.schedules-prices-container {
+  display: flex;
+  justify-content: space-between;
+
+  .schedule-container {
+    width: 45%;
+
+    .schedule-card-container {
+      display:flex;
+      flex-direction: column;
+
+      .schedule-card {
+        background: whitesmoke;
+        margin-bottom: 20px;
+        padding-top: 22px;
+        width: 100%;
+        min-height: 150px;
+        text-align: center;
+        border-radius: 6px;
+
+        .schedule-tag {
+          background: var(--secondary-red);
+          width: 20%;
+          margin: 0 auto;
+          font-size: 1.6rem;
+          color: white;
+          border-radius: 6px;
+          margin-bottom: 8px;
+        }
+
+        .schedule-card-hours {
+          font-size: 1.6rem;
+        }
+        .schedule-card-hours > p:first-child {
+          border-bottom: 2px solid grey;
+          width: 9rem;
+          margin:0 auto;
+        }
+      }
+
+    }
+  }
+
+  .price-container {
+    width: 45%;
+
+    .price-card-container {
+      display:flex;
+      flex-direction: column;
+
+      .prices-card {
+        background: whitesmoke;
+        margin-bottom: 20px;
+        padding-top: 30px;
+        width: 100%;
+        min-height: 150px;
+        text-align: center;
+        border-radius: 6px;
+
+        .price-tag {
+          background: var(--secondary-red);
+          width: 20%;
+          margin: 0 auto;
+          font-size: 1.6rem;
+          color: white;
+          border-radius: 6px;
+          margin-bottom: 15px;
+        }
+        .prices-card-price {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+/* ----- Modals -----*/
+.schedule-forms {
+  padding-top: .5rem;
+  padding-right: 12rem;
+  padding-left: 12rem;
+  padding-bottom: 2.5rem;
+
+  .submit-hour {
+    margin-top: 10px;
+  }
+}
+
+.prices-forms {
+  padding-top: .5rem;
+  padding-right: 12rem;
+  padding-left: 12rem;
+  padding-bottom: 2.5rem;
+}

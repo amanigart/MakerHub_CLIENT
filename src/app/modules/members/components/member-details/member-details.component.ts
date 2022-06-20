@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { checkIfUnderage } from 'src/app/shared/functions/check-if-underage';
 import { toUsDate } from 'src/app/shared/functions/convert-date-format';
 import { BeltForCreation } from 'src/app/shared/models/belt-for-creation.model';
 import { Belt } from 'src/app/shared/models/belt.model';

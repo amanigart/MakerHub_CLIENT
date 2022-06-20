@@ -1,9 +1,9 @@
 <div class="cover">
-  <img src="../../../../../assets/images/website/JTCN-jiujitsu-taijitsu-club-namur.jpg" alt="photo du JTCN, club de jiu-jitsu à Namur">
+  <img src="../../../../../assets/images/website/JTCN-jiujitsu-taijitsu-club-namur_wide.jpg" alt="photo du JTCN, club de jiu-jitsu à Namur">
 </div>
 
 <main class="main">
-  <h1>Jiu-jitsu Tai-jitsu Club Namur</h1>
+  <h1>Jiu-jitsu Taï-jitsu Club Namur</h1>
 
   <section>
       <div class="intro">
@@ -30,7 +30,7 @@
           <div class="info-txt">
               <p class="icon"><span class="fas fa-map-marker-alt"></span></p>
               <h2 class="info-title">Où ?</h2>
-              <p class="info-txt-p">Le JTCN se trouve au Centre Namurois des Sports (Tabora), à Namur.</p>
+              <p class="info-txt-p">Le JTCN se trouve <span class="bold">au Centre Namurois des Sports (Tabora)</span> à Salzinnes, Namur.</p>
               <p class="info-txt-p">Dans le centre même, descendre au sous-sol à la salle de judo 2.</p>
               <p class="info-txt-p"><span class="fas fa-caret-right"></span> <a href="./club-jiujitsu.html#jtcn-dojo">Voir sur la carte</a></p>
           </div>
@@ -46,24 +46,24 @@
               <ul>
                   <li class="info-txt-p">
                     <span class="fas fa-caret-right"></span>
-                    {{ schedules[0].jour }}
-                    de {{ schedules[0].heureDebut }}
-                    à {{ schedules[0].heureFin }}
+                    <span class="bold"> {{ schedules[0].jour }}</span>
+                    de <span class="black">{{ schedules[0].heureDebut }}</span>
+                    à <span class="black">{{ schedules[0].heureFin }}</span>
                   </li>
                   <li class="info-txt-p">
                     <span class="fas fa-caret-right"></span>
-                    {{schedules[1].jour}}
-                    de {{ schedules[1].heureDebut }}
-                    à {{ schedules[1].heureFin }}
+                    <span class="bold"> {{schedules[1].jour}}</span>
+                    de <span class="black">{{ schedules[1].heureDebut }}</span>
+                    à <span class="black">{{ schedules[1].heureFin }}</span>
                   </li>
                   <li class="info-txt-p">
                     <span class="fas fa-caret-right"></span>
-                    & {{schedules[2].jour}}
-                    de {{schedules[2].heureDebut}}
-                    à {{schedules[2].heureFin}}
+                    & <span class="bold"> {{schedules[2].jour}}</span>
+                    de <span class="black">{{ schedules[2].heureDebut }}</span>
+                    à <span class="black">{{ schedules[2].heureFin }}</span>
                   </li>
               </ul>
-              <p class="info-txt-p">Les cours ont lieu toute l'année, même pendant les vacances scolaires.</p>
+              <p class="info-txt-p">Les cours ont lieu toute l'année, même pendant les vacances .</p>
           </div>
           <div class="info-img">
               <img id="img2" src="../../../../../assets/images/website/jiu-jitsu-club-horaire_jtcn.png" alt="Jiu jitsu club namur JTCN - horaire">
@@ -75,9 +75,9 @@
               <h2 class="info-title">Combien ?</h2>
               <p class="info-txt-p">Les tarifs (à titre indicatif) :</p>
               <ul>
-                  <li class="info-txt-p"><span class="fas fa-caret-right"></span> {{prices[0].prix}}€ par cours</li>
-                  <li class="info-txt-p"><span class="fas fa-caret-right"></span> {{prices[1].prix}}€ par trimestre</li>
-                  <li class="info-txt-p"><span class="fas fa-caret-right"></span> {{prices[2].prix}}€ par an</li>
+                  <li class="info-txt-p"><span class="fas fa-caret-right"></span> <span class="bold"> {{prices[0].prix}}</span>€ par <span class="black">cours</span></li>
+                  <li class="info-txt-p"><span class="fas fa-caret-right"></span> <span class="bold"> {{prices[1].prix}}</span>€ par <span class="black">trimestre</span></li>
+                  <li class="info-txt-p"><span class="fas fa-caret-right"></span> <span class="bold"> {{prices[2].prix}}</span>€ par <span class="black">saison</span></li>
               </ul>
               <p class="info-txt-p">À cela s'ajoute la licence/assurance qui s'élève à 28€ par an.</p>
           </div>

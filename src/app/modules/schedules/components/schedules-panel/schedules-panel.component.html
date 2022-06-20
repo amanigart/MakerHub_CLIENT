@@ -1,4 +1,4 @@
-<div>
+<div class="schedules-panel-container">
   <p-toast position="bottom-center" key="scheduleMsg"></p-toast>
   <p-toast position="bottom-center" key="priceMsg"></p-toast>
   <h1>Horaires et Tarifs</h1>
@@ -9,148 +9,162 @@
         <i class="pi pi-clock mr-2"></i>
         <b>Horaires</b>
       </p-divider>
-      <div class="flex justify-content-around">
+      <div class="schedule-card-container">
         <div *ngFor="let schedule of schedules" class="schedule-card">
-          <h3>{{ schedule.jour }}</h3>
+          <div class="schedule-tag">
+            {{ schedule.jour }}
+          </div>
           <div class="schedule-card-hours">
-            <p>de {{ schedule.heureDebut }}</p>
-            <p>&nbsp; à {{ schedule.heureFin }}</p>
+            <p>de <span class="bold">{{ schedule.heureDebut }}</span></p>
+            <p>&nbsp; à <span class="bold">{{ schedule.heureFin }}</span></p>
           </div>
         </div>
+        <button pButton pRipple type="button" (click)="showScheduleModal()" label="Modifier les horaires" class="p-button-outlined p-button-danger"></button>
       </div>
       <!-- MODAL avec FORM pour la mise à jour des horaires -->
       <p-dialog header="Mettre à jour les horaires" [(visible)]="displayScheduleModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
-        <p class="m-0">
-        </p>
-        <p-divider align="center">
-          <b>Entraînement 1</b>
-        </p-divider>
-        <form [formGroup]="scheduleForm1" (ngSubmit)="updateSchedule1()">
-          <div>
-            <div class="flex flex-column">
-              <label for="day">Jour</label>
-              <input type="text" pInputText id="day" class="p-inputtext-sm" formControlName="jour">
-            </div>
-            <div class="flex justify-content-between">
+        <div class="schedule-forms">
+          <p class="m-0">
+          </p>
+          <p-divider align="center">
+            <b>Entraînement 1</b>
+          </p-divider>
+          <form [formGroup]="scheduleForm1" (ngSubmit)="updateSchedule1()">
+            <div>
               <div class="flex flex-column">
-                <label for="start">Heure de début</label>
-                <input type="text" pInputText id="start" class="p-inputtext-sm" formControlName="heureDebut">
+                <label for="day">Jour</label>
+                <input type="text" pInputText id="day" class="p-inputtext-sm" formControlName="jour">
               </div>
-              <div class="flex flex-column">
-                <label for="end">Heure de fin</label>
-                <input type="text" pInputText id="end" class="p-inputtext-sm" formControlName="heureFin">
-              </div>
-            </div>
-            <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
-          </div>
-        </form>
-        <p-divider align="center">
-          <b>Entraînement 2</b>
-        </p-divider>
-        <form [formGroup]="scheduleForm2" (ngSubmit)="updateSchedule2()">
-          <div>
-            <div class="flex flex-column">
-              <label for="day">Jour</label>
-              <input type="text" pInputText id="day" class="p-inputtext-sm" formControlName="jour">
-            </div>
-            <div class="flex justify-content-between">
-              <div class="flex flex-column">
-                <label for="start">Heure de début</label>
-                <input type="text" pInputText id="start" class="p-inputtext-sm" formControlName="heureDebut">
-              </div>
-              <div class="flex flex-column">
-                <label for="end">Heure de fin</label>
-                <input type="text" pInputText id="end" class="p-inputtext-sm" formControlName="heureFin">
+              <div class="flex justify-content-between">
+                <div class="flex flex-column">
+                  <label for="start">Heure de début</label>
+                  <input type="text" pInputText id="start" class="p-inputtext-sm" formControlName="heureDebut">
+                </div>
+                <div class="flex flex-column">
+                  <label for="end">Heure de fin</label>
+                  <input type="text" pInputText id="end" class="p-inputtext-sm" formControlName="heureFin">
+                </div>
+                <button class="submit-hour" pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
               </div>
             </div>
-            <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
-          </div>
-        </form>
-        <p-divider align="center">
-          <b>Entraînement 3</b>
-        </p-divider>
-        <form [formGroup]="scheduleForm3" (ngSubmit)="updateSchedule3()">
-          <div>
-            <div class="flex flex-column">
-              <label for="day">Jour</label>
-              <input type="text" pInputText id="day" class="p-inputtext-sm" formControlName="jour">
-            </div>
-            <div class="flex justify-content-between">
+          </form>
+          &nbsp;
+          <p-divider align="center">
+            <b>Entraînement 2</b>
+          </p-divider>
+          <form [formGroup]="scheduleForm2" (ngSubmit)="updateSchedule2()">
+            <div>
               <div class="flex flex-column">
-                <label for="start">Heure de début</label>
-                <input type="text" pInputText id="start" class="p-inputtext-sm" formControlName="heureDebut">
+                <label for="day">Jour</label>
+                <input type="text" pInputText id="day" class="p-inputtext-sm" formControlName="jour">
               </div>
-              <div class="flex flex-column">
-                <label for="end">Heure de fin</label>
-                <input type="text" pInputText id="end" class="p-inputtext-sm" formControlName="heureFin">
+              <div class="flex justify-content-between">
+                <div class="flex flex-column">
+                  <label for="start" class="start-hour-input">Heure de début</label>
+                  <input type="text" pInputText id="start" class="p-inputtext-sm" formControlName="heureDebut">
+                </div>
+                <div class="flex flex-column">
+                  <label for="end">Heure de fin</label>
+                  <input type="text" pInputText id="end" class="p-inputtext-sm" formControlName="heureFin">
+                </div>
+                <button class="submit-hour" pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
               </div>
             </div>
-            <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
-          </div>
-        </form>
+          </form>
+          &nbsp;
+          <p-divider align="center">
+            <b>Entraînement 3</b>
+          </p-divider>
+          <form [formGroup]="scheduleForm3" (ngSubmit)="updateSchedule3()">
+            <div>
+              <div class="flex flex-column">
+                <label for="day">Jour</label>
+                <input type="text" pInputText id="day" class="p-inputtext-sm" formControlName="jour">
+              </div>
+              <div class="flex justify-content-between">
+                <div class="flex flex-column">
+                  <label for="start">Heure de début</label>
+                  <input type="text" pInputText id="start" class="p-inputtext-sm" formControlName="heureDebut">
+                </div>
+                <div class="flex flex-column">
+                  <label for="end">Heure de fin</label>
+                  <input type="text" pInputText id="end" class="p-inputtext-sm" formControlName="heureFin">
+                </div>
+                <button class="submit-hour" pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
+              </div>
+            </div>
+          </form>
+        </div>
       </p-dialog>
     </div>
+
+    <p-divider layout="vertical" align="center">
+      <!-- <i class="pi pi-clock mr-2"></i> -->
+      <!-- <b>Horaires</b> -->
+    </p-divider>
 
     <div class="price-container">
       <p-divider align="center">
         <i class="pi pi-euro mr-2"></i>
         <b>Tarifs</b>
       </p-divider>
-      <div class="flex justify-content-around">
+      <div class="price-card-container">
         <div *ngFor="let p of prices" class="prices-card">
-          <h3>{{ p.duree }}</h3>
+          <div class="price-tag">
+            {{ p.duree }}
+          </div>
           <div class="prices-card-price">
-            <p>{{ p.prix }}€</p>
+            <p><span class="bold">{{ p.prix }}</span>€</p>
           </div>
         </div>
+        <button pButton pRipple type="button" (click)="showPriceModal()" label="Modifier les tarifs" class="p-button-outlined p-button-danger"></button>
       </div>
       <!-- MODAL avec FORM pour la mise à jour des tarifs -->
       <p-dialog header="Mettre à jour les tarifs" [(visible)]="displayPriceModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
-        <p class="m-0">
-        </p>
-        <p-divider align="center">
-          <b>Tarif pour un cours</b>
-        </p-divider>
-        <form [formGroup]="priceForm1" (ngSubmit)="updatePrice1()">
-          <div class="">
-            <div class="flex flex-column">
-              <label for="priceplan">Tarif au cours (en Euros)</label>
-              <input type="number" pInputText id="priceplan" class="p-inputtext-sm" formControlName="prix">
-            </div>
+        <div class="prices-forms">
+          <p class="m-0">
+          </p>
+          <p-divider align="center">
+            <b>Tarif pour un cours</b>
+          </p-divider>
+          <form [formGroup]="priceForm1" (ngSubmit)="updatePrice1()">
             <div class="">
+              <div class="flex flex-column">
+                <label for="priceplan">Tarif au cours (en Euros)</label>
+                <input type="number" pInputText id="priceplan" class="p-inputtext-sm" formControlName="prix">
+              </div>
+              <div class="">
+                <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
+              </div>
+            </div>
+          </form>
+          <p-divider align="center">
+            <b>Tarif pour un trimestre</b>
+          </p-divider>
+          <form [formGroup]="priceForm2" (ngSubmit)="updatePrice2()">
+            <div class="">
+              <div class="flex flex-column">
+                <label for="priceplan">Tarif trimestriel (en Euros)</label>
+                <input type="number" pInputText id="priceplan" class="p-inputtext-sm" formControlName="prix">
+              </div>
+              <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text "></button>
+            </div>
+          </form>
+          <p-divider align="center">
+            <b>Tarif pour une année</b>
+          </p-divider>
+          <form [formGroup]="priceForm3" (ngSubmit)="updatePrice3()">
+            <div class="">
+              <div class="flex flex-column">
+                <label for="priceplan">Tarif annuel (en Euros)</label>
+                <input type="number" pInputText id="priceplan" class="p-inputtext-sm" formControlName="prix">
+              </div>
               <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
             </div>
-          </div>
-        </form>
-        <p-divider align="center">
-          <b>Tarif pour un trimestre</b>
-        </p-divider>
-        <form [formGroup]="priceForm2" (ngSubmit)="updatePrice2()">
-          <div class="">
-            <div class="flex flex-column">
-              <label for="priceplan">Tarif trimestriel(en Euros)</label>
-              <input type="number" pInputText id="priceplan" class="p-inputtext-sm" formControlName="prix">
-            </div>
-            <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text "></button>
-          </div>
-        </form>
-        <p-divider align="center">
-          <b>Tarif pour une année</b>
-        </p-divider>
-        <form [formGroup]="priceForm3" (ngSubmit)="updatePrice3()">
-          <div class="">
-            <div class="flex flex-column">
-              <label for="priceplan">Tarif annuel (en Euros)</label>
-              <input type="number" pInputText id="priceplan" class="p-inputtext-sm" formControlName="prix">
-            </div>
-            <button pButton pRipple type="submit" label="Enregistrer" class="p-button-text"></button>
-          </div>
-        </form>
+          </form>
+        </div>
       </p-dialog>
     </div>
 
   </div>
 </div>
-
-<p-button (click)="showScheduleModal()" label="Modifier les horaires" styleClass="p-button-sm"></p-button>
-<p-button (click)="showPriceModal()" label="Modifier les tarifs" styleClass="p-button-sm"></p-button>

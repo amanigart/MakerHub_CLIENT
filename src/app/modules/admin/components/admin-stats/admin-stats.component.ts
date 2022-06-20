@@ -22,6 +22,8 @@ export class AdminStatsComponent implements OnInit {
   subscriptionsYears!: number[];
   subscriptionsMonths!: any[];
   subscriptionsPerYear!: any;
+  subscriptionsPerYear_first!: number;
+  subscriptionsPerYear_last!: number;
   subscriptionsPerYear_years!: number[];
   subscriptionsPerYear_occurrences: number[] = [];
   subscriptionsPerMonth!: any;
@@ -36,11 +38,18 @@ export class AdminStatsComponent implements OnInit {
     this.ageAverage = Math.round(this.members.reduce((total, member) => { return total + member.age }, 0) / this.totalOfMembers);
     this.subscriptions = this.members.map(x => new Date(x.dateInscription));
 
-    // Création du dataset pour le graphique des inscriptions par année -------------------------------
+    // --------------------- Création du dataset pour le graphique des inscriptions par année -------
     this.subscriptionsYears = this.subscriptions.map(x => x.getFullYear()).sort((a,b) => a - b);
     this.subscriptionsPerYear_years = this.removeDuplicates(this.subscriptionsYears);
+    this.subscriptionsPerYear_first = Math.min(...this.subscriptionsPerYear_years);
+    this.subscriptionsPerYear_last = Math.max(...this.subscriptionsPerYear_years);
 
-    this.subscriptionsPerYear_years.forEach(year => {
+    const years: number[] = [];
+    for (let year = this.subscriptionsPerYear_first; year < this.subscriptionsPerYear_last; year++) {
+      years.push(year); // Récupère toutes les ans de la première à la dernière inscription
+    };
+
+    years.forEach(year => {
       let count = 0
       this.subscriptionsYears.forEach(element => {
         if (year == element)
@@ -49,22 +58,32 @@ export class AdminStatsComponent implements OnInit {
       this.subscriptionsPerYear_occurrences.push(count);
     });
 
+    // this.subscriptionsPerYear_years.forEach(year => {
+    //   let count = 0
+    //   this.subscriptionsYears.forEach(element => {
+    //     if (year == element)
+    //       count++;
+    //   });
+    //   this.subscriptionsPerYear_occurrences.push(count);
+    // });
+
     // Graphique des inscriptions par année
     this.subscriptionsPerYear = {
-      labels: this.subscriptionsPerYear_years,
+      labels: years,
       datasets: [
         {
           label: 'Inscriptions par année',
           data: this.subscriptionsPerYear_occurrences,
-          borderColor: '#42A5F5',
-          tension: .3
+          borderColor: '#ff4b5d',
+          tension: .3,
+          fill: false,
         }
       ]
     };
 
-    // Création du dataset pour le graphique des inscriptions par mois --------------------------------
+    // ----------------------- Création du dataset pour le graphique des inscriptions par mois -------
     this.subscriptionsMonths = this.subscriptions.map(x => x.getMonth()).sort((a,b) => a - b); // tableau des mois (number) d'inscriptions, trié
-    let months:string[] = [];
+    let months: string[] = [];
 
     this.subscriptionsMonths.forEach(m => {
       this.subscriptionsPerMonths_months.push(getMonthName(m)); // liste des mois d'inscriptions, en string
@@ -90,7 +109,7 @@ export class AdminStatsComponent implements OnInit {
         {
           label: 'Insciptions par mois',
           data: this.subscriptionsPerMonths_occurences,
-          backgroundColor: '#42A5F5',
+          backgroundColor: '#ff4b5d',
         }
       ]
     };

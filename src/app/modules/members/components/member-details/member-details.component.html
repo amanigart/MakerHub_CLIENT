@@ -1,243 +1,277 @@
-<div class="member-container">
-  <p-toast position="bottom-center" key="newBeltSuccess"></p-toast>
-  <p-toast position="bottom-center" key="newMembershipSuccess"></p-toast>
+<div class="blank-margin">
 
-  <div class="member-content-container">
-    <div class="member-top-infos">
-      <div class="member-photo-container">
-        <img class="member-photo"
-             src="../../../../../assets/images/default-profile.jpg"
-             alt="photo de {{member.personne.prenom}}-{{member.personne.nom}}">
-      </div>
-      <div class="member-basic-infos">
-        <h2 class="member-fullname">{{ member.personne.prenom }} {{ member.personne.nom }}</h2>
-        <p class="member-since">
-          Membre depuis le {{ member.dateInscription | date: 'dd/MM/yyyy' }}
-          <span class="member-status">({{ member.estActif ? 'actif' : 'inactif' }})</span>
-        </p>
-      </div>
-      <div class="member-belts-container">
-        <p-chip label="jiu-jutsu" styleClass="{{jujutsuTopBelt}}"></p-chip>
-        <p-chip label="taï-jutsu" styleClass="{{taijutsuTopBelt}}"></p-chip>
-      </div>
-    </div>
+  <div class="member-container">
+    <p-toast position="bottom-center" key="newBeltSuccess"></p-toast>
+    <p-toast position="bottom-center" key="newMembershipSuccess"></p-toast>
 
-    <p-divider align="left">
-      <b>Informations</b>
-    </p-divider>
+    <div class="member-content-container">
 
-    <div class="member-infos-container">
-      <p>
-        Né le {{ member.dateNaissance | date: 'dd-MM-yyyy' }} ({{ member.dateNaissance | age }} ans)
-      </p>
-      <p><u>Sexe</u> : {{ member.sexe }}</p>
-      <p><u>Groupe sanguin</u>: {{ member.groupeSanguin ? member.groupeSanguin: 'inconnu' }}</p>
-      <p><u>Autorisation image</u> : {{ member.autoriseImage ? 'oui' : 'non' }}</p>
-    </div>
-
-    <p-divider align="left">
-      <b>Contact</b>
-    </p-divider>
-
-    <div class="contact-container">
-
-      <div class="contact-personal">
-        <p><i class="pi pi-phone"></i> {{ member.personne.telephone }}</p>
-        <p><i class="pi pi-envelope"></i> {{ member.personne.email }}</p>
-        <p *ngIf="member.adresse">
-          <i class="pi pi-map-marker"></i>
-          {{ member.adresse.rue }},
-          {{ member.adresse.numero }} -
-          {{ member.adresse.codePostal }} {{ member.adresse.ville }}
-        </p>
+      <div class="member-top-infos">
+        <div class="member-photo-container">
+          <img class="member-photo"
+              src="../../../../../assets/images/default-profile.jpg"
+              alt="photo de {{member.personne.prenom}}-{{member.personne.nom}}">
+        </div>
+        <div class="member-basic-infos">
+          <p class="member-fullname">{{ member.personne.prenom }} {{ member.personne.nom }}</p>
+          <p class="member-since">
+            Membre depuis le {{ member.dateInscription | date: 'dd/MM/yyyy' }}
+            <span class="member-status">({{ member.estActif ? 'actif' : 'inactif' }})</span>
+          </p>
+        </div>
+        <div class="member-belts-container">
+          <p-chip label="jiu-jutsu" styleClass="{{jujutsuTopBelt}}"></p-chip>
+          <p-chip label="taï-jutsu" styleClass="{{taijutsuTopBelt}}"></p-chip>
+        </div>
       </div>
 
-      <div class="contact-others">
-        <p-accordion>
-          <p-accordionTab header="Contact en cas d'urgence">
-            <div class="contact-contact">
-              <p>
-                <b>{{ member.contact.personne.prenom }} {{ member.contact.personne.nom }}</b>
-                <span> ({{ member.contact.lienAvecMembre }} de l'adhérent)</span>
-              </p>
-              <p><i class="pi pi-phone"></i> {{ member.contact.personne.telephone }}</p>
-            </div>
-          </p-accordionTab>
-          <p-accordionTab header="Référent légal" *ngIf="member.referent">
-            <div class="contact-referent">
-              <p>
-                <b>{{ member.referent.personne.prenom }} {{ member.referent.personne.nom }}</b>
-                <span> ({{ member.referent.lienAvecMembre }} de l'adhérent)</span>
-              </p>
-              <p><i class="pi pi-phone"></i> {{ member.referent.personne.telephone }}</p>
-              <p><i class="pi pi-envelope"></i> {{ member.referent.personne.email }}</p>
-              <p>
-                <i class="pi pi-map-marker"></i>
-                {{ member.referent.adresse.rue }},
-                {{ member.referent.adresse.numero }} -
-                {{ member.referent.adresse.codePostal }} {{ member.referent.adresse.ville }}
-              </p>
-            </div>
-          </p-accordionTab>
-        </p-accordion>
-      </div>
+      <p-divider align="left">
+        <!-- <i class="pi pi-info-circle" style="font-size: 1rem"></i>&nbsp; -->
+        <b>Informations</b>
+      </p-divider>
 
-    </div>
+      <div class="member-global-infos-container">
+        <div class="member-infos-container">
+          <p>
+            <li class="info-txt-p">
+              <span class="fas fa-caret-right"></span><span class="bold"> Age</span> : {{ member.dateNaissance | age }} ans
+            </li>
+          </p>
+          <p>
+            <li class="info-txt-p">
+              <span class="fas fa-caret-right"></span><span class="bold"> Date de naissance</span> : {{ member.dateNaissance | date: 'dd/MM/yyyy' }}
+            </li>
+          </p>
+          <p>
+            <li class="info-txt-p">
+              <span class="fas fa-caret-right"></span><span class="bold"> Genre</span> : {{ member.sexe }}
+            </li>
+          </p>
+          <p>
+            <li class="info-txt-p">
+              <span class="fas fa-caret-right"></span><span class="bold"> Groupe sanguin</span> : {{ member.groupeSanguin ? member.groupeSanguin: 'inconnu' }}
+            </li>
+            </p>
+          <p>
+            <li class="info-txt-p">
+              <span class="fas fa-caret-right"></span><span class="bold"> Autorisation de publication d'image</span> : {{ member.autoriseImage ? 'oui' : 'non' }}
+            </li>
+          </p>
+        </div>
 
-    <p-divider align="left">
-      <b>Ceintures</b>
-    </p-divider>
+        <p-divider align="left">
+          <b>Contact</b>
+        </p-divider>
 
-    <div class="grades">
-      <p-dialog header="Ajouter une ceinture à {{member.personne.prenom}}" [(visible)]="displayBeltModal" [modal]="true" [style]="{width: '35vw'}" [draggable]="false" [resizable]="false">
-        <p class="m-0">
-        </p>
-        <form [formGroup]="beltForm">
-          <div class="flex">  <!-- field col-6 col-offset-3 -->
-            <div>
-              <h4>Date d'obtention</h4>
-              <div>
-                <!-- <span>Date d'obtention</span> -->
-                <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateObtention"></p-inputMask>
-              </div>
-              <h4>Discipline</h4>
-              <div class="add-belt-radio">
-                <p-radioButton name="discipline" value="jiu-jitsu" inputId="discipline_jj" formControlName="discipline"></p-radioButton>
-                <label for="discipline_jj">Jiu-jitsu</label>
-              </div>
-              <div class="add-belt-radio">
-                <p-radioButton name="discipline" value="taï-jitsu" inputId="discipline_tj" formControlName="discipline"></p-radioButton>
-                <label for="discipline_tj">Taï-jitsu</label>
-              </div>
-            </div>
-            <p-divider layout="vertical" ></p-divider>
-            <div>
-              <h4>Ceinture</h4>
-              <div class="add-belt-radio">
-                <p-radioButton name="ceinture" value="blanche" inputId="white-belt" formControlName="ceinture"></p-radioButton>
-                <label for="white-belt">Blanche</label>
-              </div>
-              <div class="add-belt-radio">
-                <p-radioButton name="ceinture" value="jaune" inputId="yellow-belt" formControlName="ceinture"></p-radioButton>
-                <label for="yellow-belt">Jaune</label>
-              </div>
-              <div class="add-belt-radio">
-                <p-radioButton name="ceinture" value="orange" inputId="orange-belt" formControlName="ceinture"></p-radioButton>
-                <label for="orange-belt">Orange</label>
-              </div>
-              <div class="add-belt-radio">
-                <p-radioButton name="ceinture" value="verte" inputId="green-belt" formControlName="ceinture"></p-radioButton>
-                <label for="green-belt">Verte</label>
-              </div>
-              <div class="add-belt-radio">
-                <p-radioButton name="ceinture" value="bleue" inputId="blue-belt" formControlName="ceinture"></p-radioButton>
-                <label for="blue-belt">Bleue</label>
-              </div>
-              <div class="add-belt-radio">
-                <p-radioButton name="ceinture" value="marron" inputId="brown-belt" formControlName="ceinture"></p-radioButton>
-                <label for="brown-belt">Marron</label>
-              </div>
-              <div class="add-belt-radio">
-                <p-radioButton name="ceinture" value="noire" inputId="black-belt" formControlName="ceinture"></p-radioButton>
-                <label for="black-belt">Noire</label>
-              </div>
-            </div>
+        <div class="contact-container">
+          <div class="contact-personal">
+            <p><i class="pi pi-phone red-icon icon-1plus1"></i> {{ member.personne.telephone }}</p>
+            <p><i class="pi pi-envelope red-icon icon-1plus1"></i> {{ member.personne.email }}</p>
+            <p *ngIf="member.adresse">
+              <i class="pi pi-map-marker red-icon icon-1plus1"></i>
+              {{ member.adresse.rue }},
+              {{ member.adresse.numero }} -
+              {{ member.adresse.codePostal }} {{ member.adresse.ville }}
+            </p>
           </div>
-        </form>
+          <div class="contact-others">
+            <p-accordion>
+              <p-accordionTab header="Personne à contacter en cas d'urgence">
+                <div class="contact-contact">
+                  <p>
+                    <span class="bold">{{ member.contact.personne.prenom }} {{ member.contact.personne.nom }} </span>
+                    <span> ({{ member.contact.lienAvecMembre }} de l'adhérent)</span>
+                  </p>
+                  <p>
+                    <i class="pi pi-phone red-icon"></i> {{ member.contact.personne.telephone }}
+                  </p>
+                </div>
+              </p-accordionTab>
+              <p-accordionTab header="Responsable légal" *ngIf="member.referent">
+                <div class="contact-referent">
+                  <p>
+                    <span class="bold">{{ member.referent.personne.prenom }} {{ member.referent.personne.nom }}</span>
+                    <span> ({{ member.referent.lienAvecMembre }} de l'adhérent)</span>
+                  </p>
+                  <p>
+                    <i class="pi pi-phone red-icon"></i> {{ member.referent.personne.telephone }}
+                  </p>
+                  <p>
+                    <i class="pi pi-envelope red-icon"></i> {{ member.referent.personne.email }}
+                  </p>
+                  <p>
+                    <i class="pi pi-map-marker red-icon"></i>
+                    {{ member.referent.adresse.rue }},
+                    {{ member.referent.adresse.numero }} -
+                    {{ member.referent.adresse.codePostal }} {{ member.referent.adresse.ville }}
+                  </p>
+                </div>
+              </p-accordionTab>
+            </p-accordion>
+          </div>
+        </div>
+      </div>
 
-        <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="addBelt()" label="Enregistrer" styleClass="p-button-text"></p-button>
-        </ng-template>
-      </p-dialog>
-      <p-table [value]="member.ceintures" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-            <tr>
-              <th pSortableColumn="dateObtention">Date <p-sortIcon field="dateObtention"></p-sortIcon></th>
-              <th pSortableColumn="discipline">Discipline<p-sortIcon field="discipline"></p-sortIcon></th>
-              <th pSortableColumn="couleur">Ceinture <p-sortIcon field="couleur"></p-sortIcon></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-belt>
-            <tr>
-              <td>{{ belt.dateObtention | date: 'dd-MM-yyyy' }}</td>
-              <td>{{ belt.discipline }}</td>
-              <td>{{ belt.couleur }}</td>
-            </tr>
-        </ng-template>
-      </p-table>
+      <p-divider align="left">
+        <b>Ceintures</b>
+      </p-divider>
+
+      <div class="grades-container">
+        <p-dialog header="Ajouter une ceinture à {{member.personne.prenom}}" [(visible)]="displayBeltModal" [modal]="true" [style]="{width: '35vw'}" [draggable]="false" [resizable]="false">
+          <p class="m-0">
+          </p>
+          <form [formGroup]="beltForm">
+            <div class="flex add-member-belt-form">  <!-- field col-6 col-offset-3 -->
+              <div class="member-belt-form-left">
+                <h4>Date d'obtention</h4>
+                <div>
+                  <!-- <span>Date d'obtention</span> -->
+                  <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateObtention"></p-inputMask>
+                </div>
+                <h4>Discipline</h4>
+                <div class="add-belt-radio">
+                  <p-radioButton name="discipline" value="jiu-jitsu" inputId="discipline_jj" formControlName="discipline"></p-radioButton>
+                  <label for="discipline_jj">Jiu-jitsu</label>
+                </div>
+                <div class="add-belt-radio">
+                  <p-radioButton name="discipline" value="taï-jitsu" inputId="discipline_tj" formControlName="discipline"></p-radioButton>
+                  <label for="discipline_tj">Taï-jitsu</label>
+                </div>
+              </div>
+              <p-divider layout="vertical" class="add-belt-divider"></p-divider>
+              <div class="member-belt-form-right">
+                <h4>Ceinture</h4>
+                <div class="add-belt-radio">
+                  <p-radioButton name="ceinture" value="blanche" inputId="white-belt" formControlName="ceinture"></p-radioButton>
+                  <label for="white-belt">Blanche</label>
+                </div>
+                <div class="add-belt-radio">
+                  <p-radioButton name="ceinture" value="jaune" inputId="yellow-belt" formControlName="ceinture"></p-radioButton>
+                  <label for="yellow-belt">Jaune</label>
+                </div>
+                <div class="add-belt-radio">
+                  <p-radioButton name="ceinture" value="orange" inputId="orange-belt" formControlName="ceinture"></p-radioButton>
+                  <label for="orange-belt">Orange</label>
+                </div>
+                <div class="add-belt-radio">
+                  <p-radioButton name="ceinture" value="verte" inputId="green-belt" formControlName="ceinture"></p-radioButton>
+                  <label for="green-belt">Verte</label>
+                </div>
+                <div class="add-belt-radio">
+                  <p-radioButton name="ceinture" value="bleue" inputId="blue-belt" formControlName="ceinture"></p-radioButton>
+                  <label for="blue-belt">Bleue</label>
+                </div>
+                <div class="add-belt-radio">
+                  <p-radioButton name="ceinture" value="marron" inputId="brown-belt" formControlName="ceinture"></p-radioButton>
+                  <label for="brown-belt">Marron</label>
+                </div>
+                <div class="add-belt-radio">
+                  <p-radioButton name="ceinture" value="noire" inputId="black-belt" formControlName="ceinture"></p-radioButton>
+                  <label for="black-belt">Noire</label>
+                </div>
+              </div>
+            </div>
+          </form>
+          <ng-template pTemplate="footer">
+          <p-button icon="pi pi-check" (click)="addBelt()" label="Enregistrer" styleClass="p-button-danger p-button-text"></p-button>
+          </ng-template>
+        </p-dialog>
+
+        <p-table [value]="member.ceintures" responsiveLayout="scroll">
+          <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="dateObtention">Date d'obtention<p-sortIcon field="dateObtention"></p-sortIcon></th>
+                <th pSortableColumn="discipline">Discipline<p-sortIcon field="discipline"></p-sortIcon></th>
+                <th pSortableColumn="couleur">Ceinture <p-sortIcon field="couleur"></p-sortIcon></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-belt>
+              <tr>
+                <td>{{ belt.dateObtention | date: 'dd-MM-yyyy' }}</td>
+                <td>{{ belt.discipline }}</td>
+                <td>{{ belt.couleur }}</td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <p-divider align="left">
+        <b>Cotisations</b>
+      </p-divider>
+
+      <div class="member-cotisations-container">
+        <p-dialog header="Ajouter une cotisation à {{member.personne.prenom}}" [(visible)]="displayMembershipModal" [modal]="true" [style]="{width: '35vw'}" [draggable]="false" [resizable]="false">
+          <p class="m-0">
+          </p>
+          <form [formGroup]="membershipForm">
+            <div class="flex add-member-membership-form">
+              <div class="add-member-membership-left">
+                <h4>Formule tarifaire</h4>
+                <div *ngFor="let plan of pricePlans; let i = index" class="add-membership-radio">
+                  <p-radioButton name="idTarif" value="{{plan.idTarif}}" inputId="plan{{i}}" formControlName="idTarif"></p-radioButton>
+                  <label for="plan{{i}}">{{ plan.duree }} ({{ plan.prix }}€)</label>
+                </div>
+              </div>
+              <p-divider layout="vertical" class="add-membership-divider"></p-divider>
+              <div class="add-member-membership-right">
+                <h4>Date de souscription</h4>
+                <div>
+                  <!-- <span>Date d'obtention</span> -->
+                  <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateDebut"></p-inputMask>
+                </div>
+                <h4>Status du paiement</h4>
+                <div class="add-membership-radio">
+                  <p-radioButton name="estPaye" value="true" inputId="paied" formControlName="estPaye"></p-radioButton>
+                  <label for="paied">Payé</label>
+                </div>
+                <div class="add-membership-radio">
+                  <p-radioButton name="estPaye" value="false" inputId="unpaied" formControlName="estPaye"></p-radioButton>
+                  <label for="unpaied">Impayé</label>
+                </div>
+              </div>
+            </div>
+          </form>
+          <ng-template pTemplate="footer">
+          <p-button icon="pi pi-check" (click)="addMembership()" label="Enregistrer" styleClass="p-button-danger p-button-text"></p-button>
+          </ng-template>
+        </p-dialog>
+        <p-table [value]="member.cotisations" responsiveLayout="scroll">
+          <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="estArchive">Status<p-sortIcon field="estArchive"></p-sortIcon></th>
+                <th pSortableColumn="estPaye">Paiement<p-sortIcon field="estPaye"></p-sortIcon></th>
+                <th pSortableColumn="prix">Prix<p-sortIcon field="prix"></p-sortIcon></th>
+                <th pSortableColumn="duree">Formule<p-sortIcon field="duree"></p-sortIcon></th>
+                <th pSortableColumn="dateDebut">Date de souscription<p-sortIcon field="dateDebut"></p-sortIcon></th>
+                <th pSortableColumn="dateFin">Echéance<p-sortIcon field="dateFin"></p-sortIcon></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-cotisation>
+              <tr>
+                <td>{{ cotisation.estArchive ? 'Archivé' : 'Active' }}</td>
+                <td>{{ cotisation.estPaye ? 'Payé' : 'En attente de paiement' }}</td>
+                <td>{{ cotisation.prix }}€</td>
+                <td>{{ cotisation.duree }}</td>
+                <td>{{ cotisation.dateDebut | date: 'dd-MM-yyyy' }}</td>
+                <td>{{ cotisation.dateFin | date: 'dd-MM-yyyy' }}</td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </div>
     </div>
 
-    <p-divider align="left">
-      <b>Cotisations</b>
-    </p-divider>
-
-    <div class="member-cotisations">
-      <p-dialog header="Ajouter une cotisation à {{member.personne.prenom}}" [(visible)]="displayMembershipModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
-        <p class="m-0">
-        </p>
-        <form [formGroup]="membershipForm">
-          <div class="flex">
-            <div>
-              <h4>Formule tarifaire</h4>
-              <div *ngFor="let plan of pricePlans; let i = index" class="add-membership-radio">
-                <p-radioButton name="idTarif" value="{{plan.idTarif}}" inputId="plan{{i}}" formControlName="idTarif"></p-radioButton>
-                <label for="plan{{i}}">{{ plan.duree }} ({{ plan.prix }}€)</label>
-              </div>
-            </div>
-            <p-divider layout="vertical" ></p-divider>
-            <div>
-              <h4>Date de souscription</h4>
-              <div>
-                <!-- <span>Date d'obtention</span> -->
-                <p-inputMask mask="99/99/9999" placeholder="31/12/2022" slotChar="dd/mm/yyyy" formControlName="dateDebut"></p-inputMask>
-              </div>
-              <h4>Status du paiement</h4>
-              <div class="add-membership-radio">
-                <p-radioButton name="estPaye" value="true" inputId="paied" formControlName="estPaye"></p-radioButton>
-                <label for="paied">Payé</label>
-              </div>
-              <div class="add-membership-radio">
-                <p-radioButton name="estPaye" value="false" inputId="unpaied" formControlName="estPaye"></p-radioButton>
-                <label for="unpaied">Impayé</label>
-              </div>
-            </div>
-          </div>
-        </form>
-        <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="addMembership()" label="Enregistrer" styleClass="p-button-text"></p-button>
-        </ng-template>
-      </p-dialog>
-      <p-table [value]="member.cotisations" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-            <tr>
-              <th pSortableColumn="estArchive">Status<p-sortIcon field="estArchive"></p-sortIcon></th>
-              <th pSortableColumn="estPaye">Paiement<p-sortIcon field="estPaye"></p-sortIcon></th>
-              <th pSortableColumn="prix">Prix<p-sortIcon field="prix"></p-sortIcon></th>
-              <th pSortableColumn="duree">Formule<p-sortIcon field="duree"></p-sortIcon></th>
-              <th pSortableColumn="dateDebut">Date de souscription<p-sortIcon field="dateDebut"></p-sortIcon></th>
-              <th pSortableColumn="dateFin">Echéance<p-sortIcon field="dateFin"></p-sortIcon></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-cotisation>
-            <tr>
-              <td>{{ cotisation.estArchive ? 'Archivé' : 'Active' }}</td>
-              <td>{{ cotisation.estPaye ? 'Payé' : 'En attente de paiement' }}</td>
-              <td>{{ cotisation.prix }}€</td>
-              <td>{{ cotisation.duree }}</td>
-              <td>{{ cotisation.dateDebut | date: 'dd-MM-yyyy' }}</td>
-              <td>{{ cotisation.dateFin | date: 'dd-MM-yyyy' }}</td>
-            </tr>
-        </ng-template>
-      </p-table>
+    <div class="member-actions-container">
+      <div class="action-btns">
+        <div>
+          &nbsp; <button (click)="displayAddBelt()" pButton type="button" label="Ajouter une ceinture" class="p-button-outlined p-button-danger"></button>
+          &nbsp; <button (click)="displayAddMembership()" pButton type="button" label="Ajouter une cotisation" class="p-button-outlined p-button-danger"></button>
+        </div>
+        <div>
+          &nbsp; <button *ngIf="member.estActif" (click)="disableMember()" pButton type="button" label="Désactiver" class="p-button-danger"></button>
+          &nbsp; <button *ngIf="!member.estActif" (click)="activateMember()" pButton type="button" label="Activer" class="p-button-secondary"></button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="member-actions-container">
-    <div class="action-btns">
-      &nbsp; <button (click)="displayAddBelt()" pButton type="button" label="Ajouter une ceinture" class="p-button-sm"></button>
-      &nbsp; <button (click)="displayAddMembership()" pButton type="button" label="Ajouter une cotisation" class="p-button-sm"></button>
-      &nbsp; <button *ngIf="member.estActif" (click)="disableMember()" pButton type="button" label="Désactiver" class="p-button-sm"></button>
-      &nbsp; <button *ngIf="!member.estActif" (click)="activateMember()" pButton type="button" label="Activer" class="p-button-sm"></button>
-    </div>
-  </div>
 </div>

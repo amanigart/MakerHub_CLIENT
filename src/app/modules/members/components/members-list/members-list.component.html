@@ -1,27 +1,36 @@
 <div class="container-module">
 
   <div class="container-module-menu">
-    <div class="header-module flex justify-content-between">
+    <!-- <div class="header-module flex justify-content-between">
       <h1>Membres</h1>
-    </div>
+    </div> -->
 
     <div class="module-menu-header flex justify-content-between">
-      <!-- <p-dropdown optionLabel="name"></p-dropdown> -->
-      <button (click)="filterList()">Active only</button>
-      <button pButton type="button" icon="pi pi-plus" class="p-button-rounded" routerLink="inscription"></button>
+      <button *ngIf="!showAllMembers" pButton pRipple type="button" label="Voir tous les membres" (click)="filterList()" icon="pi pi-filter-slash" class="p-button-secondary p-button-text"></button>
+      <button *ngIf="showAllMembers" pButton pRipple type="button" label="Voir uniquement membres actifs" (click)="filterList()" icon="pi pi-filter" class="p-button-secondary p-button-text"></button>
+      <!-- <p-autoComplete [(ngModel)]="selectedMember" [suggestions]="filteredMembers" (completeMethod)="searchMember($event)"></p-autoComplete> -->
+      <!-- <button class="btn-create" (click)="filterList()"><i class="bx bx-plus icon-circle"></i></button> -->
+      <button pButton type="button" icon="pi pi-plus" class="p-button-secondary p-button-rounded" routerLink="inscription"></button>
     </div>
 
-    <div *ngIf="showAllMembers">
+    <div *ngIf="showAllMembers" class="module-menu-card-container">
       <a *ngFor="let member of members" [routerLink]="['details/', member.idMembre]">
         <div class="module-menu-card">
-          <p>{{ member.prenom }} {{ member.nom }}</p>
+          <div class="card-pastille">
+            <span>{{getInitials(member.prenom, member.nom)}}</span>
+          </div>
+          <p class="card-name">{{ member.prenom }} {{ member.nom }}</p>
         </div>
       </a>
     </div>
-    <div *ngIf="!showAllMembers">
+    <div *ngIf="!showAllMembers" class="module-menu-card-container">
       <a *ngFor="let member of activeMembers" [routerLink]="['details/', member.idMembre]">
         <div class="module-menu-card">
-          <p>{{ member.prenom }} {{ member.nom }}</p>
+          <div class="overlay"></div>
+          <div class="card-pastille">
+            <span>{{getInitials(member.prenom, member.nom)}}</span>
+          </div>
+          <p class="card-name">{{ member.prenom }} {{ member.nom }}</p>
         </div>
       </a>
     </div>

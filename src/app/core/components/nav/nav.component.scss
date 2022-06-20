@@ -1,27 +1,31 @@
 /* ----- DESKTOP ----- */
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-}
+// .navbar {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   height: 80px;
+// }
 
-.nav-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  margin-top: 10px;
-}
+// .nav-menu {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   list-style: none;
+//   margin-top: 10px;
+// }
 
-.nav-items {
-}
+// .nav-items {
+// }
 
-.nav-link {
-  margin-left: 15px;
-  color: black;
-}
-.nav-link:hover, .nav-link:visited {
-  color: black;
+// .nav-link {
+//   margin-left: 15px;
+//   color: black;
+// }
+// .nav-link:hover, .nav-link:visited {
+//   color: black;
+// }
+
+.icon {
+  font-size: 1.3rem;
 }

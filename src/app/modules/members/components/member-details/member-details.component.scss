@@ -1,6 +1,14 @@
+.member-container {
+  background: white;
+  padding: 3rem;
+}
+
 .member-top-infos {
+  margin: 0 auto;
+  padding-bottom: 1rem;
 
   .member-photo-container {
+    margin: 0 auto;
     width: 12%;
     height: 12%;
 
@@ -12,23 +20,40 @@
   }
 
   .member-basic-infos {
+    text-align: center;
+    padding-top: 1rem;
 
     .member-fullname {
       font-size: 3rem;
       font-weight: 700;
+      color: black;
     }
 
     .member-since {
+
       color: grey;
     }
+  }
+
+  .member-belts-container {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: center;
   }
 }
 
 .member-infos-container {
-
+  padding-top: 1.1rem;
+  padding-bottom: 3rem;
+  line-height: 2rem;
 }
 
 .contact-container {
+  padding-top: 1.1rem;
+  padding-bottom: 3rem;
+  line-height: 2rem;
+  font-size: 1.2rem;
   display: flex;
   justify-content: space-between;
 
@@ -37,8 +62,82 @@
   }
 
   .contact-others{
-    width: 62.5%;
+    min-width: 50%;
   }
+}
+
+.grades-container {
+  padding-top: 1.1rem;
+  padding-bottom: 3rem;
+}
+
+.member-cotisations-container {
+  padding-top: 1.1rem;
+  padding-bottom: 2rem;
+}
+
+.member-actions-container {
+  margin-top: 2rem;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  bottom: 0;
+  padding-bottom: 1.2rem;
+  padding-top: 1.2rem;
+  width: 100%;
+  //border-top: 1px solid whitesmoke;
+  background: white;
+  z-index: 5;
+
+  .action-btns {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.divider-details {
+  // padding-top: 2rem;
+  // padding-bottom: 2rem;
+}
+
+/* ------- Modals ------- */
+.add-member-belt-form {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.member-belt-form-left {
+  width: 50%;
+}
+.member-belt-form-right {
+  padding-left: 2rem;
+}
+.add-belt-radio {
+  line-height: 2rem;
+}
+.add-belt-radio > label {
+  padding-left: 10px;
+}
+.add-belt-divider {
+  padding-top:2rem;
+}
+
+.add-member-membership-form {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.add-member-membership-left {
+  width: 50%;
+}
+.add-member-membership-right {
+  padding-left: 2rem;
+}
+.add-membership-radio {
+  line-height: 2rem;;
+}
+.add-membership-radio > label {
+  padding-left: 10px;
+}
+.add-membership-divider {
+  padding-top:2rem;
 }
 
 
@@ -80,3 +179,23 @@
 }
 
 
+
+
+
+.member-container {
+  // //margin-bottom: 2rem;
+  // background: white;
+  // //border-radius: 1rem;
+  // //height: calc(100% - 2.5rem);
+  // width: 100%;
+  // height:100%;
+  // overflow: hidden;
+  // display: flex;
+  // flex-direction: column;
+
+  .member-content-container {
+    // height: calc(100% - 80px);
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+  }
+}
