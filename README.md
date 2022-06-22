@@ -1,4 +1,8 @@
-# AppJTCN
+# Application de gestion d'un club d'arts martiaux
+
+Application client qui fonctionne avec l'API et la database suivantes : https://github.com/amanigart/MakerHub_API/
+
+---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
