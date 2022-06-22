@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
@@ -137,9 +137,7 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
     this.items = [
       { label: 'Ajouter une ceinture', command: () => {this.addBelt()} },
       { label: 'Ajouter une cotisation', command: () => {this.addMembership()} }
-    ]
-
-
+    ];
   }
 
   blankBeltForm(): void {
@@ -159,17 +157,24 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
   }
 
   disableMember(): void {
+    let sound: HTMLAudioElement = new Audio('../../../../../assets/sounds/mixkit-message-pop-alert-2354.mp3');
+    sound.play();
     this.memberService.disableMember(this.member.idMembre);
+
   }
 
   activateMember(): void {
+    let sound: HTMLAudioElement = new Audio('../../../../../assets/sounds/mixkit-message-pop-alert-2354.mp3');
+    sound.play();
     this.memberService.activateMember(this.member.idMembre);
   }
 
+  // Affiche le modal de création de ceinture
   displayAddBelt(): void {
     this.displayBeltModal = true;
   }
 
+  // Affiche le modal de création de cotisation
   displayAddMembership(): void {
     this.displayMembershipModal = true;
   }
@@ -185,6 +190,8 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
     };
     this.beltService.createBeltForMember(this.newBelt);
     this.displayBeltModal = false;
+    let sound: HTMLAudioElement = new Audio('../../../../../assets/sounds/mixkit-water-sci-fi-bleep-902.wav');
+    sound.play();
   }
 
   addMembership(): void {
@@ -237,9 +244,15 @@ export class MemberDetailsComponent implements OnInit, OnDestroy {
     this.messageService.add({key: 'newMembershipSuccess', severity:'success', summary: 'Succès', detail: 'Cotisation correctement ajoutée à la base de données.'});
   }
 
-  // Naviguer vers lapage de modification
+  // Naviguer vers la page de modification
   navToUpdateMember(): void {
     this.router.navigate(['/app/membres/update/', this.member.idMembre]);
   }
+
+  // Emet un son à la fermeture du toaster
+  // playSound(): void{
+  //   let sound: HTMLAudioElement = new Audio('../../../../../assets/sounds/mixkit-water-sci-fi-bleep-902.wav');
+  //   sound.play();
+  // }
 
 }

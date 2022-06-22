@@ -79,6 +79,8 @@ export class MembersListComponent implements OnInit, OnDestroy {
   }
 
   filterList(): void {
+    let sound: HTMLAudioElement = new Audio('../../../../../assets/sounds/mixkit-light-button-2580.wav');
+    sound.play();
     this.showAllMembers = !this.showAllMembers;
   }
 
